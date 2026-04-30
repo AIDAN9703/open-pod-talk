@@ -19,6 +19,8 @@ type SearchParams = {
   q?: string;
 };
 
+const STAT_STATUSES = ["pending", "selected", "contacted", "scheduled"] as const;
+
 export default async function AdminPage({
   searchParams,
 }: {
@@ -27,38 +29,47 @@ export default async function AdminPage({
   const params = await searchParams;
   const supabase = await createClient();
 
-  let query = supabase
+  // Fetch all submissions for stats + filtered view in one query
+  const { data: allSubmissions, error } = await supabase
     .from("submissions")
     .select("id, name, email, topic, status, created_at, rating")
     .order("created_at", { ascending: false })
-    .limit(200);
-
-  if (params.status && params.status !== "all") {
-    query = query.eq("status", params.status);
-  }
-
-  const { data: submissions, error } = await query;
+    .limit(500);
 
   if (error) {
     return <p className="text-[#ff8566]">Error loading submissions: {error.message}</p>;
   }
 
-  // Client-side text search filter (small dataset for now)
-  const filtered = params.q
-    ? (submissions ?? []).filter((s) => {
-        const q = params.q!.toLowerCase();
-        return (
-          s.name.toLowerCase().includes(q) ||
-          s.email.toLowerCase().includes(q) ||
-          s.topic.toLowerCase().includes(q)
-        );
-      })
-    : (submissions ?? []);
+  const all = allSubmissions ?? [];
+
+  // Status counts for the summary bar
+  const counts = STAT_STATUSES.reduce<Record<string, number>>((acc, s) => {
+    acc[s] = all.filter((x) => x.status === s).length;
+    return acc;
+  }, {});
+  counts.total = all.length;
+
+  // Apply filters
+  let filtered = all;
+  if (params.status && params.status !== "all") {
+    filtered = filtered.filter((s) => s.status === params.status);
+  }
+  if (params.q) {
+    const q = params.q.toLowerCase();
+    filtered = filtered.filter(
+      (s) =>
+        s.name.toLowerCase().includes(q) ||
+        s.email.toLowerCase().includes(q) ||
+        s.topic.toLowerCase().includes(q)
+    );
+  }
 
   return (
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-        <h1 className="font-[family-name:var(--font-opt)] text-2xl font-bold text-white">Submissions</h1>
+        <h1 className="font-[family-name:var(--font-opt)] text-2xl font-bold text-white">
+          Submissions
+        </h1>
         <a
           href="/submit"
           target="_blank"
@@ -67,6 +78,15 @@ export default async function AdminPage({
         >
           View submission form ↗
         </a>
+      </div>
+
+      {/* Stats bar */}
+      <div className="grid grid-cols-2 gap-3 sm:grid-cols-5">
+        <StatCard label="Total" value={counts.total} href="?status=all" />
+        <StatCard label="Pending" value={counts.pending} href="?status=pending" accent />
+        <StatCard label="Selected" value={counts.selected} href="?status=selected" />
+        <StatCard label="Contacted" value={counts.contacted} href="?status=contacted" />
+        <StatCard label="Scheduled" value={counts.scheduled} href="?status=scheduled" />
       </div>
 
       {/* Filters */}
@@ -97,7 +117,12 @@ export default async function AdminPage({
         </button>
       </form>
 
-      <p className="text-sm text-white/45">{filtered.length} result{filtered.length !== 1 ? "s" : ""}</p>
+      <p className="text-sm text-white/45">
+        {filtered.length} result{filtered.length !== 1 ? "s" : ""}
+        {params.q || (params.status && params.status !== "all")
+          ? " (filtered)"
+          : ""}
+      </p>
 
       {/* Table */}
       <div className="overflow-hidden rounded-xl border border-white/10 bg-[#0a0a0a]">
@@ -132,8 +157,8 @@ export default async function AdminPage({
                   <td className="px-4 py-3">
                     <StatusBadge status={sub.status} />
                   </td>
-                  <td className="hidden px-4 py-3 text-white/55 md:table-cell">
-                    {sub.rating ? "★".repeat(sub.rating) + "☆".repeat(5 - sub.rating) : "—"}
+                  <td className="hidden px-4 py-3 text-amber-400 md:table-cell">
+                    {sub.rating ? "★".repeat(sub.rating) : <span className="text-white/25">—</span>}
                   </td>
                   <td className="hidden whitespace-nowrap px-4 py-3 text-white/40 md:table-cell">
                     {formatDate(sub.created_at)}
@@ -145,5 +170,39 @@ export default async function AdminPage({
         )}
       </div>
     </div>
+  );
+}
+
+function StatCard({
+  label,
+  value,
+  href,
+  accent,
+}: {
+  label: string;
+  value: number;
+  href: string;
+  accent?: boolean;
+}) {
+  return (
+    <a
+      href={href}
+      className={[
+        "flex flex-col items-center justify-center rounded-xl border p-4 text-center transition hover:border-white/20",
+        accent && value > 0
+          ? "border-[#ff6600]/35 bg-[#ff6600]/8 shadow-[0_0_20px_rgba(255,102,0,0.12)]"
+          : "border-white/10 bg-[#0a0a0a]",
+      ].join(" ")}
+    >
+      <span
+        className={[
+          "font-[family-name:var(--font-opt)] text-2xl font-extrabold",
+          accent && value > 0 ? "text-[#ff6600]" : "text-white",
+        ].join(" ")}
+      >
+        {value}
+      </span>
+      <span className="mt-0.5 text-xs font-medium text-white/45">{label}</span>
+    </a>
   );
 }
