@@ -1,12 +1,17 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { createServerClient } from "@supabase/ssr";
+import { getSupabasePublishableKey, getSupabaseUrl } from "@/lib/supabase/public-env";
 
+/**
+ * Refresh Supabase session on most navigations (not only /admin), so cookies stay
+ * in sync with Server Components and we avoid /admin ↔ /admin/login redirect loops.
+ */
 export async function proxy(request: NextRequest) {
   let response = NextResponse.next({ request });
 
   const supabase = createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    getSupabaseUrl(),
+    getSupabasePublishableKey(),
     {
       cookies: {
         getAll() {
@@ -25,14 +30,12 @@ export async function proxy(request: NextRequest) {
     }
   );
 
-  // Refresh session — must use getUser() not getSession() per Supabase security guidance
   const {
     data: { user },
   } = await supabase.auth.getUser();
 
   const { pathname } = request.nextUrl;
 
-  // Protect /admin routes (except /admin/login)
   if (pathname.startsWith("/admin") && !pathname.startsWith("/admin/login")) {
     if (!user) {
       const loginUrl = request.nextUrl.clone();
@@ -42,14 +45,11 @@ export async function proxy(request: NextRequest) {
     }
   }
 
-  // Redirect authenticated users away from login page
-  if (pathname === "/admin/login" && user) {
-    return NextResponse.redirect(new URL("/admin", request.url));
-  }
-
   return response;
 }
 
 export const config = {
-  matcher: ["/admin/:path*"],
+  matcher: [
+    "/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
+  ],
 };

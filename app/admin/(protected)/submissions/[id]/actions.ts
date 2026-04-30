@@ -1,6 +1,6 @@
 "use server";
 
-import { createClient } from "@/lib/supabase/server";
+import { createSupabaseServerActionClient } from "@/lib/supabase/server-action";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { Resend } from "resend";
 
@@ -14,8 +14,8 @@ export async function updateSubmission(
   }>
 ) {
   try {
-    // Use regular auth client for writes — RLS allows authenticated hosts to update
-    const supabase = await createClient();
+    // Use regular auth client for writes — RLS allows authenticated admins to update
+    const supabase = await createSupabaseServerActionClient();
 
     const patch: Record<string, unknown> = {
       ...updates,
@@ -51,7 +51,7 @@ export async function updateSubmission(
 async function sendRiversideInvite(submissionId: string, link: string) {
   if (!process.env.RESEND_API_KEY) return;
 
-  const supabase = await createClient();
+  const supabase = await createSupabaseServerActionClient();
   const { data: sub } = await supabase
     .from("submissions")
     .select("name, email, topic")

@@ -35,7 +35,7 @@ function TurnstileWidget() {
       ref={ref}
       className="cf-turnstile"
       data-sitekey={SITE_KEY}
-      data-theme="light"
+      data-theme="dark"
     />
   );
 }
@@ -62,16 +62,18 @@ export function SubmissionForm() {
 
   if (state.status === "success") {
     return (
-      <div className="text-center py-16 px-4">
-        <div className="text-5xl mb-6">🎙️</div>
-        <h2 className="text-2xl font-bold text-slate-900 mb-3">
+      <div className="px-4 py-16 text-center">
+        <div className="mb-6 text-5xl drop-shadow-[0_0_20px_rgba(255,102,0,0.4)]">
+          🎙️
+        </div>
+        <h2 className="mb-3 font-[family-name:var(--font-opt)] text-2xl font-bold text-white">
           You&apos;re in the queue!
         </h2>
-        <p className="text-slate-600 max-w-md mx-auto">
+        <p className="mx-auto max-w-md text-white/60">
           We received your submission. If selected, we&apos;ll reach out with a
           Riverside guest link at least 48 hours before the episode.
         </p>
-        <p className="mt-4 text-sm text-slate-400">
+        <p className="mt-4 text-sm text-white/35">
           Check your inbox for a confirmation email.
         </p>
       </div>
@@ -84,7 +86,9 @@ export function SubmissionForm() {
     <form action={action} className="space-y-8">
       {/* Basic info */}
       <section className="space-y-5">
-        <h2 className="text-lg font-semibold text-slate-900 border-b pb-2">About you</h2>
+        <h2 className="border-b border-white/10 pb-2 font-[family-name:var(--font-opt)] text-lg font-bold text-white">
+          About you
+        </h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
           <Field label="Full name *" error={err.name?.[0]}>
@@ -115,7 +119,9 @@ export function SubmissionForm() {
 
       {/* Social handles */}
       <section className="space-y-5">
-        <h2 className="text-lg font-semibold text-slate-900 border-b pb-2">Social handles (optional)</h2>
+        <h2 className="border-b border-white/10 pb-2 font-[family-name:var(--font-opt)] text-lg font-bold text-white">
+          Social handles (optional)
+        </h2>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
           <Field label="Instagram" error={err.instagram?.[0]}>
             <input name="instagram" maxLength={120} className={input()} placeholder="@yourhandle" />
@@ -131,7 +137,9 @@ export function SubmissionForm() {
 
       {/* Topic */}
       <section className="space-y-5">
-        <h2 className="text-lg font-semibold text-slate-900 border-b pb-2">Your topic</h2>
+        <h2 className="border-b border-white/10 pb-2 font-[family-name:var(--font-opt)] text-lg font-bold text-white">
+          Your topic
+        </h2>
         <Field label="Topic headline *" error={err.topic?.[0]}>
           <input
             name="topic"
@@ -155,9 +163,11 @@ export function SubmissionForm() {
 
       {/* Release and consent */}
       <section className="space-y-5">
-        <h2 className="text-lg font-semibold text-slate-900 border-b pb-2">Legal & consent</h2>
+        <h2 className="border-b border-white/10 pb-2 font-[family-name:var(--font-opt)] text-lg font-bold text-white">
+          Legal & consent
+        </h2>
 
-        <div className="rounded-lg bg-slate-50 border border-slate-200 p-4 text-xs text-slate-600 font-mono whitespace-pre-wrap max-h-40 overflow-y-auto">
+        <div className="max-h-40 overflow-y-auto rounded-lg border border-white/10 bg-black/40 p-4 font-mono text-xs whitespace-pre-wrap text-white/55">
           {RELEASE_TEXT}
         </div>
 
@@ -166,9 +176,9 @@ export function SubmissionForm() {
             type="checkbox"
             name="release_accepted"
             required
-            className="mt-1 h-4 w-4 rounded border-slate-300 accent-red-600"
+            className="mt-1 h-4 w-4 rounded border-white/25 accent-[#ff6600]"
           />
-          <span className="text-sm text-slate-700">
+          <span className="text-sm text-white/75">
             I have read and agree to the Caller Release Agreement above.
           </span>
         </label>
@@ -178,9 +188,9 @@ export function SubmissionForm() {
             type="checkbox"
             name="age_confirmed"
             required
-            className="mt-1 h-4 w-4 rounded border-slate-300 accent-red-600"
+            className="mt-1 h-4 w-4 rounded border-white/25 accent-[#ff6600]"
           />
-          <span className="text-sm text-slate-700">
+          <span className="text-sm text-white/75">
             I confirm I am 18 years of age or older.
           </span>
         </label>
@@ -198,7 +208,7 @@ export function SubmissionForm() {
       <button
         type="submit"
         disabled={pending}
-        className="w-full sm:w-auto px-8 py-3 rounded-lg bg-red-600 text-white font-semibold hover:bg-red-700 disabled:opacity-60 transition-colors"
+        className="w-full rounded-full bg-[#ff6600] px-8 py-3.5 font-[family-name:var(--font-opt)] font-bold text-white shadow-[0_0_24px_rgba(255,102,0,0.35)] transition hover:bg-[#ff781a] disabled:opacity-60 sm:w-auto"
       >
         {pending ? "Submitting…" : "Submit my topic →"}
       </button>
@@ -217,17 +227,17 @@ function Field({
 }) {
   return (
     <div className="flex flex-col gap-1.5">
-      <label className="text-sm font-medium text-slate-700">{label}</label>
+      <label className="text-sm font-medium text-white/80">{label}</label>
       {children}
-      {error && <p className="text-xs text-red-600">{error}</p>}
+      {error && <p className="text-xs text-[#ff8566]">{error}</p>}
     </div>
   );
 }
 
 function input(extra?: string) {
   return [
-    "block w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm",
-    "placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent",
+    "block w-full rounded-lg border border-white/15 bg-[#050505] px-3 py-2.5 text-sm text-white shadow-inner",
+    "placeholder:text-white/35 focus:border-[#ff6600]/50 focus:outline-none focus:ring-2 focus:ring-[#ff6600]/40 focus:ring-offset-0 focus:ring-offset-transparent",
     extra,
   ]
     .filter(Boolean)

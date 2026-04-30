@@ -92,6 +92,14 @@ export async function submitCaller(
   };
 
   try {
+    if (!process.env.SUPABASE_SERVICE_ROLE_KEY) {
+      return {
+        status: "error",
+        message:
+          "Submissions are not configured yet. Add SUPABASE_SERVICE_ROLE_KEY to .env.local and restart the dev server.",
+      };
+    }
+
     const supabase = createAdminClient();
     const { error } = await supabase.from("submissions").insert({
       name: data.name,

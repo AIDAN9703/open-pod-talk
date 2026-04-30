@@ -40,7 +40,7 @@ export default async function AdminPage({
   const { data: submissions, error } = await query;
 
   if (error) {
-    return <p className="text-red-600">Error loading submissions: {error.message}</p>;
+    return <p className="text-[#ff8566]">Error loading submissions: {error.message}</p>;
   }
 
   // Client-side text search filter (small dataset for now)
@@ -58,11 +58,12 @@ export default async function AdminPage({
   return (
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-        <h1 className="text-2xl font-bold text-slate-900">Submissions</h1>
+        <h1 className="font-[family-name:var(--font-opt)] text-2xl font-bold text-white">Submissions</h1>
         <a
           href="/submit"
           target="_blank"
-          className="text-sm text-slate-500 hover:text-slate-700"
+          rel="noopener noreferrer"
+          className="text-sm text-[#ffb380] hover:text-[#ff8533]"
         >
           View submission form ↗
         </a>
@@ -74,12 +75,12 @@ export default async function AdminPage({
           name="q"
           defaultValue={params.q}
           placeholder="Search name, email, topic…"
-          className="flex-1 rounded-md border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-500"
+          className="flex-1 rounded-lg border border-white/15 bg-[#0a0a0a] px-3 py-2 text-sm text-white placeholder:text-white/35 focus:border-[#ff6600]/40 focus:outline-none focus:ring-2 focus:ring-[#ff6600]/35"
         />
         <select
           name="status"
           defaultValue={params.status ?? "pending"}
-          className="rounded-md border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-500"
+          className="rounded-lg border border-white/15 bg-[#0a0a0a] px-3 py-2 text-sm text-white focus:border-[#ff6600]/40 focus:outline-none focus:ring-2 focus:ring-[#ff6600]/35"
         >
           <option value="all">All statuses</option>
           {STATUS_OPTIONS.map((s) => (
@@ -90,22 +91,22 @@ export default async function AdminPage({
         </select>
         <button
           type="submit"
-          className="px-4 py-2 rounded-md bg-slate-900 text-white text-sm hover:bg-slate-700"
+          className="rounded-full bg-[#ff6600] px-5 py-2 text-sm font-semibold text-white shadow-[0_0_20px_rgba(255,102,0,0.25)] hover:bg-[#ff781a]"
         >
           Filter
         </button>
       </form>
 
-      <p className="text-sm text-slate-500">{filtered.length} result{filtered.length !== 1 ? "s" : ""}</p>
+      <p className="text-sm text-white/45">{filtered.length} result{filtered.length !== 1 ? "s" : ""}</p>
 
       {/* Table */}
-      <div className="bg-white rounded-xl border border-slate-200 overflow-hidden">
+      <div className="overflow-hidden rounded-xl border border-white/10 bg-[#0a0a0a]">
         {filtered.length === 0 ? (
-          <div className="py-16 text-center text-slate-400">No submissions found.</div>
+          <div className="py-16 text-center text-white/40">No submissions found.</div>
         ) : (
           <table className="w-full text-sm">
             <thead>
-              <tr className="border-b border-slate-200 bg-slate-50 text-slate-500 text-left">
+              <tr className="border-b border-white/10 bg-white/[0.03] text-left text-white/50">
                 <th className="px-4 py-3 font-medium">Name</th>
                 <th className="px-4 py-3 font-medium hidden sm:table-cell">Topic</th>
                 <th className="px-4 py-3 font-medium">Status</th>
@@ -113,28 +114,28 @@ export default async function AdminPage({
                 <th className="px-4 py-3 font-medium hidden md:table-cell">Submitted</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-100">
+            <tbody className="divide-y divide-white/[0.06]">
               {filtered.map((sub) => (
-                <tr key={sub.id} className="hover:bg-slate-50 transition-colors">
+                <tr key={sub.id} className="transition-colors hover:bg-white/[0.03]">
                   <td className="px-4 py-3">
                     <Link
                       href={`/admin/submissions/${sub.id}`}
-                      className="font-medium text-slate-900 hover:text-red-600"
+                      className="font-medium text-white hover:text-[#ffb380]"
                     >
                       {sub.name}
                     </Link>
-                    <div className="text-slate-400 text-xs">{sub.email}</div>
+                    <div className="text-xs text-white/40">{sub.email}</div>
                   </td>
-                  <td className="px-4 py-3 hidden sm:table-cell text-slate-600 max-w-xs truncate">
+                  <td className="hidden max-w-xs truncate px-4 py-3 text-white/55 sm:table-cell">
                     {sub.topic}
                   </td>
                   <td className="px-4 py-3">
                     <StatusBadge status={sub.status} />
                   </td>
-                  <td className="px-4 py-3 hidden md:table-cell text-slate-600">
+                  <td className="hidden px-4 py-3 text-white/55 md:table-cell">
                     {sub.rating ? "★".repeat(sub.rating) + "☆".repeat(5 - sub.rating) : "—"}
                   </td>
-                  <td className="px-4 py-3 hidden md:table-cell text-slate-500 whitespace-nowrap">
+                  <td className="hidden whitespace-nowrap px-4 py-3 text-white/40 md:table-cell">
                     {formatDate(sub.created_at)}
                   </td>
                 </tr>

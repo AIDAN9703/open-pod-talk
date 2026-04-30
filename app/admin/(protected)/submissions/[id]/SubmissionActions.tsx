@@ -39,10 +39,10 @@ export function SubmissionActions({
   }
 
   return (
-    <div className="space-y-6 border-t pt-6">
+    <div className="space-y-6 border-t border-white/10 pt-6">
       {/* Status */}
       <div>
-        <h2 className="text-sm font-semibold text-slate-500 uppercase tracking-wide mb-3">
+        <h2 className="mb-3 text-xs font-semibold uppercase tracking-wide text-white/40">
           Status
         </h2>
         <div className="flex flex-wrap gap-2">
@@ -52,10 +52,10 @@ export function SubmissionActions({
               disabled={isPending || submission.status === s}
               onClick={() => save({ status: s })}
               className={[
-                "px-3 py-1.5 rounded-md text-sm font-medium transition-colors",
+                "rounded-full px-3 py-1.5 text-sm font-medium transition-colors",
                 submission.status === s
-                  ? "bg-slate-900 text-white"
-                  : "bg-slate-100 text-slate-700 hover:bg-slate-200",
+                  ? "bg-[#ff6600] text-white shadow-[0_0_16px_rgba(255,102,0,0.35)]"
+                  : "border border-white/15 bg-white/5 text-white/70 hover:border-white/25 hover:bg-white/10",
               ].join(" ")}
             >
               {s}
@@ -66,18 +66,21 @@ export function SubmissionActions({
 
       {/* Rating */}
       <div>
-        <h2 className="text-sm font-semibold text-slate-500 uppercase tracking-wide mb-2">
+        <h2 className="mb-2 text-xs font-semibold uppercase tracking-wide text-white/40">
           Rating
         </h2>
         <div className="flex gap-1">
           {[1, 2, 3, 4, 5].map((n) => (
             <button
               key={n}
+              type="button"
               onClick={() => {
                 setRating(n);
                 save({ rating: n });
               }}
-              className={`text-2xl ${n <= rating ? "text-yellow-400" : "text-slate-300"} hover:text-yellow-400 transition-colors`}
+              className={`text-2xl transition-colors ${
+                n <= rating ? "text-amber-400" : "text-white/25"
+              } hover:text-amber-400`}
             >
               ★
             </button>
@@ -87,7 +90,7 @@ export function SubmissionActions({
 
       {/* Host notes */}
       <div>
-        <h2 className="text-sm font-semibold text-slate-500 uppercase tracking-wide mb-2">
+        <h2 className="mb-2 text-xs font-semibold uppercase tracking-wide text-white/40">
           Host notes
         </h2>
         <textarea
@@ -96,17 +99,17 @@ export function SubmissionActions({
           onBlur={() => save({ host_notes: notes })}
           rows={4}
           placeholder="Private notes visible only to hosts…"
-          className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-500 resize-none"
+          className="w-full resize-none rounded-lg border border-white/15 bg-[#050505] px-3 py-2 text-sm text-white placeholder:text-white/35 focus:border-[#ff6600]/40 focus:outline-none focus:ring-2 focus:ring-[#ff6600]/35"
         />
-        <p className="text-xs text-slate-400 mt-1">Auto-saves on blur</p>
+        <p className="mt-1 text-xs text-white/35">Auto-saves on blur</p>
       </div>
 
       {/* Riverside link */}
       <div>
-        <h2 className="text-sm font-semibold text-slate-500 uppercase tracking-wide mb-2">
+        <h2 className="mb-2 text-xs font-semibold uppercase tracking-wide text-white/40">
           Riverside guest link
         </h2>
-        <p className="text-xs text-slate-500 mb-2">
+        <p className="mb-2 text-xs text-white/45">
           Manually copy from Riverside → studio → invite, then paste and save.
         </p>
         <div className="flex gap-2">
@@ -115,12 +118,13 @@ export function SubmissionActions({
             value={riversideLink}
             onChange={(e) => setRiversideLink(e.target.value)}
             placeholder="https://riverside.fm/studio/…"
-            className="flex-1 rounded-md border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-500"
+            className="flex-1 rounded-lg border border-white/15 bg-[#050505] px-3 py-2 text-sm text-white placeholder:text-white/35 focus:border-[#ff6600]/40 focus:outline-none focus:ring-2 focus:ring-[#ff6600]/35"
           />
           <button
+            type="button"
             onClick={() => save({ riverside_link: riversideLink })}
             disabled={isPending}
-            className="px-4 py-2 rounded-md bg-slate-900 text-white text-sm hover:bg-slate-700 disabled:opacity-60"
+            className="rounded-full bg-[#ff6600] px-4 py-2 text-sm font-semibold text-white shadow-[0_0_16px_rgba(255,102,0,0.35)] hover:bg-[#ff781a] disabled:opacity-60"
           >
             Save & send invite
           </button>
