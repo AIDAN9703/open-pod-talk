@@ -49,8 +49,8 @@ export default function HomePage() {
                 priority
               />
             </div>
-            <h1 className="font-[family-name:var(--font-opt)] text-3xl font-extrabold leading-[1.12] tracking-tight text-white sm:text-5xl lg:text-[3rem] xl:text-[3.35rem] [text-shadow:0_0_1px_rgba(255,255,255,0.5),0_2px_28px_rgba(255,120,60,0.35),0_0_48px_rgba(255,102,0,0.2)]">
-              all views, just bring it!
+            <h1 className="font-[family-name:var(--font-opt)] text-4xl font-black uppercase leading-[0.98] tracking-[-0.055em] text-white sm:text-6xl lg:text-[3.8rem] xl:text-[4.35rem] [font-stretch:condensed] [text-shadow:0_0_1px_rgba(255,255,255,0.75),0_2px_34px_rgba(255,120,60,0.46),0_0_68px_rgba(255,102,0,0.28)]">
+              ALL VIEWS, JUST BRING IT!
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/65">
               Real callers, real debates, zero script polish. Pitch your topic —
