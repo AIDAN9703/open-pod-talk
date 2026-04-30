@@ -50,7 +50,7 @@ export default function HomePage() {
               />
             </div>
             <h1 className="font-[family-name:var(--font-opt)] text-4xl font-black uppercase leading-[0.98] tracking-[-0.055em] text-white sm:text-6xl lg:text-[3.8rem] xl:text-[4.35rem] [font-stretch:condensed] [text-shadow:0_0_1px_rgba(255,255,255,0.75),0_2px_34px_rgba(255,120,60,0.46),0_0_68px_rgba(255,102,0,0.28)]">
-              ALL VIEWS, JUST BRING IT!
+              ALL VIEWS, JUST BRING IT !
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/65">
               Real callers, real debates, zero script polish. Pitch your topic —
@@ -61,7 +61,7 @@ export default function HomePage() {
                 href="/submit"
                 className="inline-flex items-center justify-center rounded-full bg-[#ff6600] px-8 py-3.5 text-base font-semibold text-white shadow-[0_0_32px_rgba(255,102,0,0.4)] transition hover:bg-[#ff781a] hover:shadow-[0_0_40px_rgba(255,102,0,0.55)]"
               >
-                Call in to the show
+                Put me on air
               </Link>
               <a
                 href="#studio"

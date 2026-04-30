@@ -19,18 +19,6 @@ export function SiteNav({ isLive }: { isLive: boolean }) {
           <AirBadge isLive={isLive} />
           <nav className="flex items-center gap-2 sm:gap-6 text-sm font-medium">
             <Link
-              href="/#studio"
-              className="hidden text-white/70 transition-colors hover:text-white sm:inline"
-            >
-              Studio
-            </Link>
-            <Link
-              href="/#how-it-works"
-              className="hidden text-white/70 transition-colors hover:text-white sm:inline"
-            >
-              How it works
-            </Link>
-            <Link
               href="/submit"
               className="rounded-full bg-[#ff6600] px-4 py-2 text-white shadow-[0_0_20px_rgba(255,102,0,0.35)] transition hover:bg-[#ff781a] hover:shadow-[0_0_28px_rgba(255,102,0,0.5)]"
             >
