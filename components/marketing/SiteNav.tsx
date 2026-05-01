@@ -7,7 +7,7 @@ export function SiteNav({ isLive }: { isLive: boolean }) {
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-3 px-4 sm:px-6">
         <Link href="/" className="group flex shrink-0 items-center gap-3">
           <Image
-            src="/open-pod-talk-logo.png"
+            src="/logo-with-name.png"
             alt="Open Pod Talk"
             width={140}
             height={48}
@@ -17,14 +17,6 @@ export function SiteNav({ isLive }: { isLive: boolean }) {
         </Link>
         <div className="flex items-center gap-2 sm:gap-4">
           <AirBadge isLive={isLive} />
-          <nav className="flex items-center gap-2 sm:gap-6 text-sm font-medium">
-            <Link
-              href="/submit"
-              className="rounded-full bg-[#ff6600] px-4 py-2 text-white shadow-[0_0_20px_rgba(255,102,0,0.35)] transition hover:bg-[#ff781a] hover:shadow-[0_0_28px_rgba(255,102,0,0.5)]"
-            >
-              Call in
-            </Link>
-          </nav>
         </div>
       </div>
     </header>

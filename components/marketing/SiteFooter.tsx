@@ -52,7 +52,7 @@ export function SiteFooter() {
               <Link href="/about" className="text-white/60 hover:text-white transition-colors">
                 About
               </Link>
-              <Link href="/submit" className="text-[#ff6600] hover:text-[#ff781a] transition-colors font-medium">
+              <Link href="/" className="text-[#ff6600] hover:text-[#ff781a] transition-colors font-medium">
                 Call in →
               </Link>
             </div>
