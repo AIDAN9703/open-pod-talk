@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { VersionSwitcher } from "@/components/marketing/VersionSwitcher";
+import { StudioBentoGrid, TopicThumbnailGrid } from "@/components/marketing/StudioBentoGrid";
 import { SubmitDialog } from "@/components/marketing/SubmitDialog";
+import { getBroadcastStatus } from "@/lib/broadcast";
 
 export const metadata: Metadata = {
   title: "Open Pod Talk — all views, just bring it!",
@@ -9,7 +10,9 @@ export const metadata: Metadata = {
     "all views, just bring it! Open Pod Talk (OPT): live podcast with real callers. Submit your story, debate, or hot take.",
 };
 
-export default function HomePage() {
+export default async function HomePage() {
+  const { currentTopic } = await getBroadcastStatus();
+
   return (
     <main>
       <section className="relative overflow-hidden border-b border-white/10">
@@ -34,7 +37,7 @@ export default function HomePage() {
               No hand picked guests or callers.
             </p>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
-              <SubmitDialog label="Put me on air" variant="primary" />
+              <SubmitDialog label="Put me on air" variant="primary" currentTopic={currentTopic} />
             </div>
             <p className="mt-4 max-w-xl rounded-xl px-4 text-sm leading-relaxed text-[#ffd2b3]">
               Download Riverside app
@@ -58,38 +61,26 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="studio" className="scroll-mt-20 border-b border-white/10 pb-16 pt-8 sm:pb-20 sm:pt-10">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <div className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
-            <div className="relative lg:order-first">
-              <div className="absolute -inset-4 rounded-[2rem] bg-[#ff6600]/20 blur-3xl" />
-              <div className="relative overflow-hidden rounded-[1.75rem] border border-white/10 bg-[#0a0a0a] shadow-[0_24px_80px_rgba(0,0,0,0.45)]">
-                <Image
-                  src="/open-pod-talk-studio.png"
-                  alt="Open Pod Talk studio with host desk, chairs, wall signs, and neon logo"
-                  width={1024}
-                  height={582}
-                  className="h-auto w-full object-cover"
-                />
-              </div>
-            </div>
-            <div>
-              <h2 className="font-[family-name:var(--font-opt)] text-3xl font-bold tracking-tight text-white sm:text-4xl">
-                Built for the back-and-forth
-              </h2>
-              <p className="mt-4 text-lg leading-relaxed text-white/60">
-                Your topic gets turned into a real exchange. No script or prep —
-                just the mic and whatever you came to say.
-              </p>
-              <div className="mt-8">
-                <SubmitDialog label="Pitch your topic" variant="outline" />
+      <section id="studio" className="scroll-mt-20 border-b border-white/10 py-16 sm:py-20 lg:py-28">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6">
+          <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,24rem)] lg:items-stretch xl:grid-cols-[minmax(0,1fr)_minmax(20rem,26rem)]">
+            <StudioBentoGrid />
+            <div className="grid gap-6 lg:grid-rows-2">
+              <TopicThumbnailGrid />
+              <div>
+                <h2 className="font-[family-name:var(--font-opt)] text-3xl font-bold tracking-tight text-white sm:text-4xl">
+                  Built for the back-and-forth
+                </h2>
+                <p className="mt-4 text-lg leading-relaxed text-white/60">
+                  Your topic gets turned into a real exchange. No script or prep —
+                  just the mic and whatever you came to say.
+                </p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <VersionSwitcher />
     </main>
   );
 }

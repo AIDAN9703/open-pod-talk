@@ -6,6 +6,7 @@ import { useMediaQuery } from "@/hooks/use-media-query";
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -77,9 +78,16 @@ function Field({
   );
 }
 
-function SubmitForm({ onSuccess }: { onSuccess: () => void }) {
+function SubmitForm({
+  onSuccess,
+  currentTopic,
+}: {
+  onSuccess: () => void;
+  currentTopic: string | null;
+}) {
   const initial: FormState = { status: "idle" };
   const [state, action, pending] = useActionState(submitCaller, initial);
+  const [topicType, setTopicType] = useState<"current" | "new">("current");
 
   useEffect(() => {
     if (state.status === "error") toast.error(state.message);
@@ -99,7 +107,7 @@ function SubmitForm({ onSuccess }: { onSuccess: () => void }) {
         </Field>
       </div>
 
-      <Field label="Where are you from?" error={err.location?.[0]}>
+      <Field label="Your Location *" error={err.location?.[0]}>
         <input
           name="location"
           maxLength={120}
@@ -115,16 +123,60 @@ function SubmitForm({ onSuccess }: { onSuccess: () => void }) {
         </datalist>
       </Field>
 
-      <Field label="Topic *" error={err.topic?.[0]}>
-        <input
-          name="topic"
-          required
-          minLength={3}
-          maxLength={200}
-          className={inp()}
-          placeholder="What's on your mind?"
-        />
-      </Field>
+      <div className="flex flex-col gap-2">
+        <p className="text-sm font-medium text-white/75">Topic *</p>
+        <div className="flex gap-3">
+          {(["current", "new"] as const).map((type) => (
+            <label
+              key={type}
+              className={[
+                "flex flex-1 cursor-pointer items-center gap-2.5 rounded-lg border px-4 py-3 transition",
+                topicType === type
+                  ? "border-[#ff6600]/70 bg-[#ff6600]/12 text-white"
+                  : "border-white/15 bg-[#050505] text-white/55 hover:border-white/25",
+              ].join(" ")}
+            >
+              <input
+                type="radio"
+                name="topic_type"
+                value={type}
+                checked={topicType === type}
+                onChange={() => setTopicType(type)}
+                className="accent-[#ff6600]"
+              />
+              <span className="text-sm font-medium">
+                {type === "current" ? "Current Topic" : "New Topic"}
+              </span>
+            </label>
+          ))}
+        </div>
+
+        {topicType === "current" ? (
+          <>
+            <input type="hidden" name="topic" value={currentTopic ?? ""} />
+            <p className={[
+              "rounded-lg border border-white/10 bg-black/30 px-4 py-3 text-sm",
+              currentTopic ? "text-white/80" : "italic text-white/35",
+            ].join(" ")}>
+              {currentTopic || "No current topic set yet."}
+            </p>
+          </>
+        ) : (
+          <>
+            {err.topic?.[0] && (
+              <p className="text-xs text-[#ff8566]">{err.topic[0]}</p>
+            )}
+            <input
+              name="topic"
+              required
+              minLength={3}
+              maxLength={200}
+              className={inp()}
+              placeholder="What's on your mind?"
+            />
+          </>
+        )}
+      </div>
 
       {/* Honeypot */}
       <div className="hidden" aria-hidden>
@@ -195,12 +247,14 @@ interface SubmitDialogProps {
   label?: string;
   variant?: "primary" | "outline";
   className?: string;
+  currentTopic?: string | null;
 }
 
 export function SubmitDialog({
   label = "Put me on air",
   variant = "primary",
   className,
+  currentTopic = null,
 }: SubmitDialogProps) {
   const [open, setOpen] = useState(false);
   const [succeeded, setSucceeded] = useState(false);
@@ -219,7 +273,7 @@ export function SubmitDialog({
   const inner = succeeded ? (
     <SuccessView onClose={() => handleOpenChange(false)} />
   ) : (
-    <SubmitForm onSuccess={() => setSucceeded(true)} />
+    <SubmitForm onSuccess={() => setSucceeded(true)} currentTopic={currentTopic} />
   );
 
   const title = "Put Me On Air";
@@ -233,6 +287,9 @@ export function SubmitDialog({
         <DialogContent>
           <DialogHeader>
             <DialogTitle>{title}</DialogTitle>
+            <DialogDescription className="sr-only">
+              Submit your name, email, location, and topic to be considered as an Open Pod Talk caller.
+            </DialogDescription>
           </DialogHeader>
           {inner}
         </DialogContent>

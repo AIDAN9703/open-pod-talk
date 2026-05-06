@@ -1,22 +1,24 @@
-import Image from "next/image";
-import Link from "next/link";
+import { RecordingNoticeButton } from "@/components/marketing/RecordingNoticeButton";
 
-export function SiteNav({ isLive }: { isLive: boolean }) {
+export function SiteNav({
+  isLive,
+  currentTopic,
+}: {
+  isLive: boolean;
+  currentTopic: string | null;
+}) {
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-[#050505]/90 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-3 px-4 sm:px-6">
-        <Link href="/" className="group flex shrink-0 items-center gap-3">
-          <Image
-            src="/logo-with-name.png"
-            alt="Open Pod Talk"
-            width={140}
-            height={48}
-            className="h-10 w-auto object-contain transition-[filter] group-hover:drop-shadow-[0_0_12px_rgba(255,102,0,0.45)]"
-            priority
-          />
-        </Link>
-        <div className="flex items-center gap-2 sm:gap-4">
+        <RecordingNoticeButton />
+        <div className="flex min-w-0 items-center gap-3 text-base text-white/90">
           <AirBadge isLive={isLive} />
+          <div className="min-w-0">
+            <span className="font-semibold text-white">Current Topic:</span>{" "}
+            <span className="inline-block max-w-[14rem] truncate align-bottom font-bold text-orange-400 sm:max-w-[20rem]">
+              {currentTopic || "-"}
+            </span>
+          </div>
         </div>
       </div>
     </header>

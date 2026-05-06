@@ -1,5 +1,7 @@
 import { BroadcastToggle } from "@/components/admin/BroadcastToggle";
-import { getBroadcastLive } from "@/lib/broadcast";
+import { BlastNoticeButton } from "@/components/admin/BlastNoticeButton";
+import { CurrentTopicEditor } from "@/components/admin/CurrentTopicEditor";
+import { getBroadcastStatus } from "@/lib/broadcast";
 import { createClient } from "@/lib/supabase/server";
 import { redirect } from "next/navigation";
 
@@ -17,7 +19,7 @@ export default async function AdminLayout({
     redirect("/admin/login");
   }
 
-  const siteLive = await getBroadcastLive();
+  const broadcast = await getBroadcastStatus();
 
   return (
     <div className="min-h-screen bg-[#050505] text-white">
@@ -35,7 +37,9 @@ export default async function AdminLayout({
             </nav>
           </div>
           <div className="flex flex-wrap items-center gap-4">
-            <BroadcastToggle initialLive={siteLive} />
+            <BlastNoticeButton />
+            <CurrentTopicEditor initialTopic={broadcast.currentTopic} />
+            <BroadcastToggle initialLive={broadcast.isLive} />
             <form action="/auth/signout" method="POST">
               <button className="text-sm text-white/45 transition-colors hover:text-white">
                 Sign out
