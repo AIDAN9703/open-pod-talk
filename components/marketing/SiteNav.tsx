@@ -1,5 +1,4 @@
-import Image from "next/image";
-import Link from "next/link";
+import { CurrentTopicMarquee } from "@/components/marketing/CurrentTopicMarquee";
 
 export function SiteNav({
   isLive,
@@ -10,25 +9,15 @@ export function SiteNav({
 }) {
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-[#050505]/90 backdrop-blur-md">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-3 px-4 sm:px-6">
-        <Link href="/" className="group flex shrink-0 items-center">
-          <Image
-            src="/logo-with-name.png"
-            alt="Open Pod Talk"
-            width={140}
-            height={48}
-            className="h-8 w-auto object-contain transition-[filter] group-hover:drop-shadow-[0_0_12px_rgba(255,102,0,0.45)] sm:h-9"
-            priority
-          />
-        </Link>
-        <div className="flex min-w-0 items-center gap-3 text-base text-white/90">
+      <div className="mx-auto flex h-auto min-h-16 max-w-6xl items-center justify-between gap-3 px-4 py-2.5 sm:h-16 sm:px-6 sm:py-0">
+        <div className="shrink-0">
           <AirBadge isLive={isLive} />
-          <div className="min-w-0">
-            <span className="font-semibold text-white">Current Topic:</span>{" "}
-            <span className="inline-block max-w-[14rem] truncate align-bottom font-bold text-orange-400 sm:max-w-[20rem]">
-              {currentTopic || "-"}
-            </span>
-          </div>
+        </div>
+        <div className="flex min-w-0 flex-1 items-start justify-end gap-x-2 text-right max-md:gap-x-3 sm:items-center md:gap-x-3">
+          <span className="max-md:leading-snug shrink-0 select-none whitespace-nowrap font-semibold text-white">
+            Current Topic:
+          </span>
+          <CurrentTopicMarquee value={currentTopic || "-"} />
         </div>
       </div>
     </header>
