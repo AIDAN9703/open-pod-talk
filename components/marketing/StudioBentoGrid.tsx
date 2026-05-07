@@ -2,15 +2,15 @@ import Image from "next/image";
 
 const photos = [
   {
-    src: "/open-pod-talk-studio.png",
-    alt: "Wide view of the Open Pod Talk studio set and decor",
+    src: "/studio-set-full-view-1.png",
+    alt: "Open Pod Talk podcast studio interior with brick wall, desk, neon sign, and wall decor",
     objectPosition: "object-center",
     priority: true,
   },
   {
-    src: "/studio-bento-wall-art.png",
-    alt: "Neon Open Pod Talk speech-bubble sign with microphone on wood wall",
-    objectPosition: "object-right",
+    src: "/studio-wall-politics-sign.png",
+    alt: "Studio wall art including politics heart sign, UFO poster, Johnny Cash print, and agree to disagree peacefully sign",
+    objectPosition: "object-center",
     priority: false,
   },
   {
