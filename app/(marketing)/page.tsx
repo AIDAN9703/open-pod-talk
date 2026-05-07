@@ -45,7 +45,7 @@ export default async function HomePage() {
               <br />
               JUST BRING IT !
             </h1>
-            <p className="mt-2 max-w-xl text-2xl leading-relaxed text-white/65">
+            <p className="mt-2 max-w-xl text-xl leading-relaxed text-white/65">
               No hand picked guests or callers.
             </p>
             <div className="mt-6 flex w-full max-w-xl flex-col gap-3 sm:flex-row sm:items-center">
