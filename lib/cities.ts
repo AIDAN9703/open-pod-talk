@@ -1,4 +1,4 @@
-export const CITIES: string[] = [
+const CITIES_RAW: string[] = [
   // Pennsylvania (home base)
   "Pittsburgh, PA",
   "Philadelphia, PA",
@@ -463,3 +463,5 @@ export const CITIES: string[] = [
   "Wellington, New Zealand",
   "Christchurch, New Zealand",
 ];
+
+export const CITIES: string[] = [...new Set(CITIES_RAW)];

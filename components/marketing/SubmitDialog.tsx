@@ -178,6 +178,19 @@ function SubmitForm({
         )}
       </div>
 
+      <Field label="Video URL (optional)" error={err.video_url?.[0]}>
+        <input
+          name="video_url"
+          type="url"
+          maxLength={500}
+          className={inp()}
+          placeholder="https://youtube.com/watch?v=…"
+        />
+        <p className="text-xs text-white/40">
+          Share a YouTube, TikTok, or any link to a video relevant to your topic.
+        </p>
+      </Field>
+
       {/* Honeypot */}
       <div className="hidden" aria-hidden>
         <input name="website" type="text" tabIndex={-1} autoComplete="off" />

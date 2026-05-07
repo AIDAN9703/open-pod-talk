@@ -70,6 +70,16 @@ export default async function SubmissionDetailPage({
               {sub.topic_details}
             </p>
           )}
+          {sub.video_url && (
+            <a
+              href={sub.video_url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-3 inline-flex items-center gap-1.5 text-sm text-[#ffb380] hover:text-[#ff8533] break-all"
+            >
+              🎬 {sub.video_url}
+            </a>
+          )}
         </div>
 
         <div className="grid grid-cols-2 gap-4 text-sm sm:grid-cols-3">

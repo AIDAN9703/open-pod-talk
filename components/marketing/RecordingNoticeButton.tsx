@@ -5,6 +5,7 @@ import { subscribeToRecordingNotice, type SubscribeState } from "@/lib/actions/s
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -60,17 +61,16 @@ export function RecordingNoticeButton() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <button className="flex items-center gap-1.5 rounded-full border border-[#ff6600]/50 bg-[#ff6600]/10 px-3.5 py-1.5 text-xs font-bold uppercase tracking-wider text-[#ffb380] transition hover:border-[#ff6600] hover:bg-[#ff6600]/20">
-          <span className="relative flex h-2 w-2 shrink-0">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#ff6600] opacity-60" />
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-[#ff6600]" />
-          </span>
+        <button className="rounded-lg border border-white/15 bg-white/[0.06] px-4 py-2 text-sm font-medium text-white/85 transition hover:border-white/25 hover:bg-white/10 hover:text-white">
           Recording Notice
         </button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Recording Notice</DialogTitle>
+          <DialogDescription>
+            Add your email and we&apos;ll notify you before the next recording.
+          </DialogDescription>
         </DialogHeader>
         <SubscribeForm />
       </DialogContent>

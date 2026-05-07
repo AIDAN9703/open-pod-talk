@@ -159,6 +159,19 @@ export function SubmissionForm() {
             placeholder="Background, relevant experience, what you hope listeners take away…"
           />
         </Field>
+        <Field
+          label="Video URL (optional)"
+          hint="Share a YouTube, TikTok, or any link to a video relevant to your topic — something you want to discuss, react to, or that shows your vibe."
+          error={err.video_url?.[0]}
+        >
+          <input
+            name="video_url"
+            type="url"
+            maxLength={500}
+            className={input()}
+            placeholder="https://youtube.com/watch?v=…"
+          />
+        </Field>
       </section>
 
       {/* Release and consent */}
@@ -218,16 +231,19 @@ export function SubmissionForm() {
 
 function Field({
   label,
+  hint,
   children,
   error,
 }: {
   label: string;
+  hint?: string;
   children: React.ReactNode;
   error?: string;
 }) {
   return (
     <div className="flex flex-col gap-1.5">
       <label className="text-sm font-medium text-white/80">{label}</label>
+      {hint && <p className="text-xs text-white/45">{hint}</p>}
       {children}
       {error && <p className="text-xs text-[#ff8566]">{error}</p>}
     </div>
