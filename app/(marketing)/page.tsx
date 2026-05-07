@@ -4,6 +4,14 @@ import { StudioBentoGrid, TopicThumbnailGrid } from "@/components/marketing/Stud
 import { SubmitDialog } from "@/components/marketing/SubmitDialog";
 import { getBroadcastStatus } from "@/lib/broadcast";
 
+const RIVERSIDE_APP_STORE =
+  "https://apps.apple.com/us/app/riverside-podcast-video-maker/id1554443872";
+const RIVERSIDE_PLAY_STORE =
+  "https://play.google.com/store/apps/details?id=riverside.fm&hl=en";
+
+const linkMobileStore =
+  "font-medium text-[#ffb380] underline decoration-[#ff6600]/50 underline-offset-2 transition hover:text-white hover:decoration-[#ff6600]";
+
 export const metadata: Metadata = {
   title: "Open Pod Talk — all views, just bring it!",
   description:
@@ -30,8 +38,8 @@ export default async function HomePage() {
                 priority
               />
             </div>
-            <h1 className="font-[family-name:var(--font-opt)] text-5xl font-black uppercase leading-[0.98] tracking-[-0.055em] text-white sm:text-6xl lg:text-[3.8rem] xl:text-[4.35rem] [font-stretch:condensed] [text-shadow:0_0_1px_rgba(255,255,255,0.75),0_2px_34px_rgba(255,120,60,0.46),0_0_68px_rgba(255,102,0,0.28)]">
-              ALL VIEWS JUST BRING IT !
+            <h1 className="max-w-[19ch] font-[family-name:var(--font-opt)] text-[clamp(2.125rem,7vw,2.75rem)] font-black uppercase leading-[0.98] tracking-[-0.055em] text-white sm:max-w-none sm:text-5xl md:text-6xl lg:text-[3.8rem] xl:text-[4.35rem] [font-stretch:condensed] [text-shadow:0_0_1px_rgba(255,255,255,0.75),0_2px_34px_rgba(255,120,60,0.46),0_0_68px_rgba(255,102,0,0.28)]">
+              ALL VIEWS JUST BRING IT{"\u00a0"}!
             </h1>
             <p className="mt-2 max-w-xl text-2xl leading-relaxed text-white/65">
               No hand picked guests or callers.
@@ -40,9 +48,25 @@ export default async function HomePage() {
               <SubmitDialog label="Put me on air" variant="primary" currentTopic={currentTopic} />
             </div>
             <p className="mt-4 max-w-xl rounded-xl px-4 text-sm leading-relaxed text-[#ffd2b3]">
-              Download Riverside app
-              <br />
-              if using mobile device.
+              On mobile, download the{" "}
+              <a
+                href={RIVERSIDE_APP_STORE}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={linkMobileStore}
+              >
+                Riverside app (App&nbsp;Store)
+              </a>{" "}
+              or{" "}
+              <a
+                href={RIVERSIDE_PLAY_STORE}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={linkMobileStore}
+              >
+                Google&nbsp;Play
+              </a>
+              .
             </p>
           </div>
           <div className="hidden flex-1 justify-center lg:flex">
