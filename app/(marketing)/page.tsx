@@ -28,15 +28,18 @@ export default async function HomePage() {
         <div className="pointer-events-none absolute -right-40 top-1/4 h-96 w-96 rounded-full bg-[#ff6600]/12 blur-[100px]" />
         <div className="relative mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14 lg:flex lg:items-end lg:gap-12 lg:py-16">
           <div className="flex flex-1 flex-col items-center text-center lg:items-start lg:text-left">
-            <div className="mb-10 lg:hidden">
-              <Image
-                src="/logo-with-name.png"
-                alt="Open Pod Talk logo"
-                width={320}
-                height={120}
-                className="mx-auto h-auto w-[min(100%,280px)] object-contain drop-shadow-[0_0_24px_rgba(255,102,0,0.35)]"
-                priority
-              />
+            <div className="relative mb-10 lg:hidden">
+              <div className="pointer-events-none absolute inset-0 rounded-3xl bg-[#ff6600]/20 blur-2xl" />
+              <div className="relative overflow-hidden rounded-3xl">
+                <Image
+                  src="/logo-with-name.png"
+                  alt="Open Pod Talk logo"
+                  width={320}
+                  height={120}
+                  className="mx-auto h-auto w-[min(100%,280px)] object-contain drop-shadow-[0_0_24px_rgba(255,102,0,0.35)]"
+                  priority
+                />
+              </div>
             </div>
             <h1 className="max-w-[19ch] font-[family-name:var(--font-opt)] text-[clamp(2.125rem,7vw,2.75rem)] font-black uppercase leading-[0.98] tracking-[-0.055em] text-white sm:max-w-none sm:text-5xl md:text-6xl lg:text-[3.8rem] xl:text-[4.35rem] [font-stretch:condensed] [text-shadow:0_0_1px_rgba(255,255,255,0.75),0_2px_34px_rgba(255,120,60,0.46),0_0_68px_rgba(255,102,0,0.28)]">
               ALL VIEWS JUST BRING IT{"\u00a0"}!
