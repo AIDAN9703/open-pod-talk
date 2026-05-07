@@ -40,8 +40,10 @@ export default async function HomePage() {
                 />
               </div>
             </div>
-            <h1 className="max-w-[19ch] font-[family-name:var(--font-opt)] text-[clamp(2.125rem,7vw,2.75rem)] font-black uppercase leading-[0.98] tracking-[-0.055em] text-white sm:max-w-none sm:text-5xl md:text-6xl lg:text-[3.8rem] xl:text-[4.35rem] [font-stretch:condensed] [text-shadow:0_0_1px_rgba(255,255,255,0.75),0_2px_34px_rgba(255,120,60,0.46),0_0_68px_rgba(255,102,0,0.28)]">
-              ALL VIEWS JUST BRING IT{"\u00a0"}!
+            <h1 className="font-[family-name:var(--font-opt)] text-[clamp(2.35rem,8.5vw,3.4rem)] font-black leading-[1.02] tracking-[-0.045em] text-white sm:text-5xl md:text-6xl lg:text-[3.6rem] xl:text-[4.1rem] [font-stretch:condensed] [text-shadow:0_0_1px_rgba(255,255,255,0.75),0_2px_34px_rgba(255,120,60,0.46),0_0_68px_rgba(255,102,0,0.28)]">
+              ALL VIEWS
+              <br />
+              JUST BRING IT !
             </h1>
             <p className="mt-2 max-w-xl text-2xl leading-relaxed text-white/65">
               No hand picked guests or callers.
