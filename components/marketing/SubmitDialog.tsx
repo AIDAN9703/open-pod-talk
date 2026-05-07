@@ -228,7 +228,7 @@ function SubmitForm({
       <button
         type="submit"
         disabled={pending}
-        className="w-full rounded-full bg-[#ff6600] py-3 font-[family-name:var(--font-opt)] font-bold text-white shadow-[0_0_24px_rgba(255,102,0,0.35)] transition hover:bg-[#ff781a] disabled:opacity-60"
+        className="w-full rounded-2xl bg-[#ff6600] py-4 font-[family-name:var(--font-opt)] text-base font-bold text-white shadow-[0_0_24px_rgba(255,102,0,0.35)] transition hover:bg-[#ff781a] disabled:opacity-60 md:rounded-full md:py-3"
       >
         {pending ? "Submitting…" : "Submit my topic →"}
       </button>
@@ -248,7 +248,7 @@ function SuccessView({ onClose }: { onClose: () => void }) {
       </p>
       <button
         onClick={onClose}
-        className="mt-8 rounded-full border border-white/20 px-6 py-2.5 text-sm text-white/80 transition hover:bg-white/5"
+        className="mx-auto mt-8 w-full max-w-sm rounded-2xl border border-white/20 py-3.5 text-sm font-medium text-white/80 transition hover:bg-white/5 md:mx-0 md:w-auto md:max-w-none md:rounded-full md:px-8 md:py-2.5"
       >
         Close
       </button>
@@ -280,8 +280,14 @@ export function SubmitDialog({
 
   const triggerClass =
     variant === "primary"
-      ? "inline-flex items-center justify-center rounded-full bg-[#ff6600] px-8 py-3.5 text-base font-semibold text-white shadow-[0_0_32px_rgba(255,102,0,0.4)] transition hover:bg-[#ff781a] hover:shadow-[0_0_40px_rgba(255,102,0,0.55)]"
-      : "inline-flex items-center justify-center rounded-full border border-[#ff6600]/45 bg-[#ff6600]/10 px-6 py-3 text-sm font-semibold text-[#ffb380] transition hover:border-[#ff6600] hover:bg-[#ff6600]/20]";
+      ? [
+          "flex w-full items-center justify-center rounded-2xl bg-[#ff6600] py-4 text-base font-semibold text-white shadow-[0_0_32px_rgba(255,102,0,0.4)] transition hover:bg-[#ff781a] hover:shadow-[0_0_40px_rgba(255,102,0,0.55)] active:scale-[0.99]",
+          "md:inline-flex md:w-auto md:rounded-full md:px-8 md:py-3.5 md:active:scale-100",
+        ].join(" ")
+      : [
+          "flex w-full items-center justify-center rounded-2xl border border-[#ff6600]/45 bg-[#ff6600]/10 py-4 text-sm font-semibold text-[#ffb380] transition hover:border-[#ff6600] hover:bg-[#ff6600]/20 active:scale-[0.99]",
+          "md:inline-flex md:w-auto md:rounded-full md:px-6 md:py-3 md:active:scale-100",
+        ].join(" ");
 
   const inner = succeeded ? (
     <SuccessView onClose={() => handleOpenChange(false)} />

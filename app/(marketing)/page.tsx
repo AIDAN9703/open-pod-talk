@@ -23,20 +23,19 @@ export default async function HomePage() {
 
   return (
     <main>
-      <section className="relative overflow-hidden border-b border-white/10">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_55%_at_50%_-10%,rgba(255,102,0,0.22),transparent)]" />
-        <div className="pointer-events-none absolute -right-40 top-1/4 h-96 w-96 rounded-full bg-[#ff6600]/12 blur-[100px]" />
+      <section className="relative border-b border-white/10">
+        <div className="pointer-events-none absolute inset-0 hidden bg-[radial-gradient(ellipse_80%_55%_at_50%_-10%,rgba(255,102,0,0.22),transparent)] lg:block" />
+        <div className="pointer-events-none absolute top-1/4 -right-40 hidden h-96 w-96 rounded-full bg-[#ff6600]/12 blur-[100px] lg:block" />
         <div className="relative mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14 lg:flex lg:items-end lg:gap-12 lg:py-16">
           <div className="flex flex-1 flex-col items-center text-center lg:items-start lg:text-left">
-            <div className="relative mb-10 lg:hidden">
-              <div className="pointer-events-none absolute inset-0 rounded-3xl bg-[#ff6600]/20 blur-2xl" />
-              <div className="relative overflow-hidden rounded-3xl">
+            <div className="mb-10 flex justify-center lg:hidden">
+              <div className="overflow-hidden rounded-3xl ring-1 ring-white/10">
                 <Image
                   src="/logo-with-name.png"
                   alt="Open Pod Talk logo"
                   width={320}
                   height={120}
-                  className="mx-auto h-auto w-[min(100%,280px)] object-contain drop-shadow-[0_0_24px_rgba(255,102,0,0.35)]"
+                  className="mx-auto block h-auto w-[min(100%,280px)] rounded-3xl object-contain"
                   priority
                 />
               </div>
@@ -47,7 +46,7 @@ export default async function HomePage() {
             <p className="mt-2 max-w-xl text-2xl leading-relaxed text-white/65">
               No hand picked guests or callers.
             </p>
-            <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
+            <div className="mt-6 flex w-full max-w-xl flex-col gap-3 sm:flex-row sm:items-center">
               <SubmitDialog label="Put me on air" variant="primary" currentTopic={currentTopic} />
             </div>
             <p className="mt-4 max-w-xl rounded-xl px-4 text-sm leading-relaxed text-[#ffd2b3]">

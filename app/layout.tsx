@@ -26,6 +26,11 @@ export const metadata: Metadata = {
   },
   description:
     "all views, just bring it! Open Pod Talk (OPT): live podcast with real callers.",
+  icons: {
+    icon: [{ url: "/logo.webp", type: "image/webp" }],
+    apple: [{ url: "/logo.webp", type: "image/webp" }],
+    shortcut: "/logo.webp",
+  },
 };
 
 export default function RootLayout({
@@ -36,9 +41,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${montserrat.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${montserrat.variable} h-full overflow-x-hidden antialiased`}
     >
-      <body className="flex min-h-full flex-col bg-[#050505] font-[family-name:var(--font-geist-sans)]">
+      <body className="flex min-h-full flex-col overflow-x-hidden bg-[#050505] font-[family-name:var(--font-geist-sans)]">
         {children}
         <Toaster
           theme="dark"

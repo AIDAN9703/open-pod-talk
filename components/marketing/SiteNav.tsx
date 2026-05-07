@@ -1,4 +1,5 @@
-import { RecordingNoticeButton } from "@/components/marketing/RecordingNoticeButton";
+import Image from "next/image";
+import Link from "next/link";
 
 export function SiteNav({
   isLive,
@@ -10,7 +11,16 @@ export function SiteNav({
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-[#050505]/90 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-3 px-4 sm:px-6">
-        <RecordingNoticeButton />
+        <Link href="/" className="group flex shrink-0 items-center">
+          <Image
+            src="/logo-with-name.png"
+            alt="Open Pod Talk"
+            width={140}
+            height={48}
+            className="h-8 w-auto object-contain transition-[filter] group-hover:drop-shadow-[0_0_12px_rgba(255,102,0,0.45)] sm:h-9"
+            priority
+          />
+        </Link>
         <div className="flex min-w-0 items-center gap-3 text-base text-white/90">
           <AirBadge isLive={isLive} />
           <div className="min-w-0">
