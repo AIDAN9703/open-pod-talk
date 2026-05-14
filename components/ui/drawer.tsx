@@ -26,15 +26,16 @@ function DrawerContent({
       <DrawerOverlay />
       <DrawerPrimitive.Content
         className={cn(
-          "fixed inset-x-0 bottom-0 z-50 flex flex-col",
+          "fixed inset-x-0 bottom-0 z-50 flex max-h-[92vh] min-h-0 flex-col outline-none",
           "rounded-t-2xl border-t border-white/10 bg-[#0a0a0a]",
-          "max-h-[92vh]",
           className
         )}
         {...props}
       >
         <div className="mx-auto mt-3 mb-1 h-1.5 w-12 shrink-0 rounded-full bg-white/20" />
-        <div className="overflow-y-auto flex-1">{children}</div>
+        <div className="min-h-0 flex-1 overflow-y-auto overscroll-y-contain touch-pan-y [-webkit-overflow-scrolling:touch]">
+          {children}
+        </div>
       </DrawerPrimitive.Content>
     </DrawerPortal>
   );

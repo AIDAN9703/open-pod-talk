@@ -52,7 +52,8 @@ function TurnstileWidget() {
 
 function inp(extra?: string) {
   return [
-    "block w-full rounded-lg border border-white/15 bg-[#050505] px-3 py-2.5 text-sm text-white",
+    /* text-base avoids iOS Safari auto-zoom-on-focus (<16px), which broke the drawer */
+    "block w-full rounded-lg border border-white/15 bg-[#050505] px-3 py-2.5 text-base text-white",
     "placeholder:text-white/35 focus:border-[#ff6600]/50 focus:outline-none focus:ring-2 focus:ring-[#ff6600]/40",
     extra,
   ]
@@ -264,7 +265,7 @@ interface SubmitDialogProps {
 }
 
 export function SubmitDialog({
-  label = "Put me on air",
+  label = "Stream me in!",
   variant = "primary",
   className,
   currentTopic = null,
@@ -295,7 +296,7 @@ export function SubmitDialog({
     <SubmitForm onSuccess={() => setSucceeded(true)} currentTopic={currentTopic} />
   );
 
-  const title = "Put Me On Air";
+  const title = "Stream me in!";
 
   if (isDesktop) {
     return (
@@ -317,7 +318,13 @@ export function SubmitDialog({
   }
 
   return (
-    <Drawer open={open} onOpenChange={handleOpenChange}>
+    <Drawer
+      open={open}
+      onOpenChange={handleOpenChange}
+      repositionInputs={false}
+      fixed
+      shouldScaleBackground={false}
+    >
       <DrawerTrigger asChild>
         <button className={className ?? triggerClass}>{label}</button>
       </DrawerTrigger>

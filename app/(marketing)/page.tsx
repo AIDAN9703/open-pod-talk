@@ -49,7 +49,7 @@ export default async function HomePage() {
               No hand picked guests or callers.
             </p>
             <div className="mt-6 flex w-full max-w-xl flex-col gap-3 sm:flex-row sm:items-center">
-              <SubmitDialog label="Put me on air" variant="primary" currentTopic={currentTopic} />
+              <SubmitDialog label="Stream me in!" variant="primary" currentTopic={currentTopic} />
             </div>
             <p className="mt-4 max-w-xl rounded-xl px-4 text-sm leading-relaxed text-[#ffd2b3]">
               On mobile, download the{" "}

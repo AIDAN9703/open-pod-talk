@@ -103,7 +103,7 @@ function buildRecordingEmail(token: string) {
       </p>
       <a href="${SITE_URL}/submit"
          style="display:inline-block;background:#ff6600;color:#fff;font-weight:700;font-size:15px;padding:14px 28px;border-radius:100px;text-decoration:none">
-        Put Me On Air →
+        Stream me in! →
       </a>
     </div>
     <p style="font-size:11px;color:#444;margin:28px 0 0;text-align:center;line-height:1.6">
