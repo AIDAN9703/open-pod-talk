@@ -265,7 +265,7 @@ interface SubmitDialogProps {
 }
 
 export function SubmitDialog({
-  label = "Stream me in!",
+  label = "Stream me in !",
   variant = "primary",
   className,
   currentTopic = null,
@@ -296,7 +296,7 @@ export function SubmitDialog({
     <SubmitForm onSuccess={() => setSucceeded(true)} currentTopic={currentTopic} />
   );
 
-  const title = "Stream me in!";
+  const title = "Stream me in !";
 
   if (isDesktop) {
     return (
