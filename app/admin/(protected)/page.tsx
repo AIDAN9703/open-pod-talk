@@ -32,7 +32,7 @@ export default async function AdminPage({
   // Fetch all submissions for stats + filtered view in one query
   const { data: allSubmissions, error } = await supabase
     .from("submissions")
-    .select("id, name, email, topic, status, created_at, rating")
+    .select("id, name, email, topic, status, created_at, rating, request_type")
     .order("created_at", { ascending: false })
     .limit(500);
 
@@ -132,7 +132,7 @@ export default async function AdminPage({
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-white/10 bg-white/[0.03] text-left text-white/50">
-                <th className="px-4 py-3 font-medium">Name</th>
+                <th className="px-4 py-3 font-medium">Name / kind</th>
                 <th className="px-4 py-3 font-medium hidden sm:table-cell">Topic</th>
                 <th className="px-4 py-3 font-medium">Status</th>
                 <th className="px-4 py-3 font-medium hidden md:table-cell">Rating</th>
@@ -150,6 +150,11 @@ export default async function AdminPage({
                       {sub.name}
                     </Link>
                     <div className="text-xs text-white/40">{sub.email}</div>
+                    {sub.request_type === "in_person" && (
+                      <span className="mt-1 inline-flex rounded-full border border-emerald-500/35 bg-emerald-950/50 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-emerald-200">
+                        In-studio visit
+                      </span>
+                    )}
                   </td>
                   <td className="hidden max-w-xs truncate px-4 py-3 text-white/55 sm:table-cell">
                     {sub.topic}

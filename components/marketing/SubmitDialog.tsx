@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState, useEffect, useRef, useState } from "react";
+import { useActionState, useEffect, useState, type ComponentProps } from "react";
 import { toast } from "sonner";
 import { useMediaQuery } from "@/hooks/use-media-query";
 import {
@@ -20,63 +20,19 @@ import {
 } from "@/components/ui/drawer";
 import { submitCaller, type FormState } from "@/app/(marketing)/submit/actions";
 import { CITIES } from "@/lib/cities";
-
-const SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? "";
-
-const RELEASE_TEXT = `CALLER RELEASE AGREEMENT — v1.0
-
-By submitting this form and appearing on OpenPodTalk, you grant OpenPodTalk and its hosts a perpetual, irrevocable, worldwide, royalty-free license to use, reproduce, edit, distribute, and create derivative works from your name, likeness, voice, and statements in all media now known or hereafter developed, including AI-assisted transcription and captioning. You waive any claim against OpenPodTalk arising from such use, except fabrication of statements you did not make. This agreement is governed by applicable law in the host's state of residence.`;
-
-function TurnstileWidget() {
-  const ref = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    if (!SITE_KEY || !ref.current) return;
-    if (!document.querySelector("#cf-turnstile-script")) {
-      const script = document.createElement("script");
-      script.id = "cf-turnstile-script";
-      script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js";
-      script.async = true;
-      script.defer = true;
-      document.head.appendChild(script);
-    }
-  }, []);
-
-  if (!SITE_KEY) {
-    return <input type="hidden" name="cf-turnstile-response" value="dev-bypass" />;
-  }
-
-  return (
-    <div ref={ref} className="cf-turnstile" data-sitekey={SITE_KEY} data-theme="dark" />
-  );
-}
+import {
+  RELEASE_TEXT,
+  SubmissionField,
+  submissionInputClass,
+  TurnstileWidget,
+} from "@/components/marketing/submission-shared";
 
 function inp(extra?: string) {
-  return [
-    /* text-base avoids iOS Safari auto-zoom-on-focus (<16px), which broke the drawer */
-    "block w-full rounded-lg border border-white/15 bg-[#050505] px-3 py-2.5 text-base text-white",
-    "placeholder:text-white/35 focus:border-[#ff6600]/50 focus:outline-none focus:ring-2 focus:ring-[#ff6600]/40",
-    extra,
-  ]
-    .filter(Boolean)
-    .join(" ");
+  return submissionInputClass(extra);
 }
 
-function Field({
-  label,
-  children,
-  error,
-}: {
-  label: string;
-  children: React.ReactNode;
-  error?: string;
-}) {
-  return (
-    <div className="flex flex-col gap-1.5">
-      <label className="text-sm font-medium text-white/75">{label}</label>
-      {children}
-      {error && <p className="text-xs text-[#ff8566]">{error}</p>}
-    </div>
-  );
+function Field(props: ComponentProps<typeof SubmissionField>) {
+  return <SubmissionField {...props} />;
 }
 
 function SubmitForm({
@@ -265,7 +221,7 @@ interface SubmitDialogProps {
 }
 
 export function SubmitDialog({
-  label = "Stream me in !",
+  label = "Stream me in!",
   variant = "primary",
   className,
   currentTopic = null,
@@ -296,7 +252,7 @@ export function SubmitDialog({
     <SubmitForm onSuccess={() => setSucceeded(true)} currentTopic={currentTopic} />
   );
 
-  const title = "Stream me in !";
+  const title = "Stream me in!";
 
   if (isDesktop) {
     return (

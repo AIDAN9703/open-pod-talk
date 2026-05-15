@@ -1,3 +1,4 @@
+import { InPersonRequestDialog } from "@/components/marketing/InPersonRequestDialog";
 import { RecordingNoticeSignup } from "@/components/marketing/RecordingNoticeSignup";
 import { SiteFooter } from "@/components/marketing/SiteFooter";
 import { SiteNav } from "@/components/marketing/SiteNav";
@@ -31,6 +32,21 @@ export default async function MarketingLayout({
         </div>
       )}
       <div className="flex-1">{children}</div>
+      <section aria-label="In-studio guest requests" className="border-t border-white/10 bg-[#070707] px-4 py-10 sm:py-14">
+        <div className="mx-auto w-full max-w-2xl text-center sm:max-w-3xl">
+          <h2 className="font-[family-name:var(--font-opt)] text-lg font-bold text-white sm:text-xl">
+            Studio Guest
+          </h2>
+          <p className="mx-auto mt-3 max-w-xl text-sm leading-relaxed text-white/60 sm:text-base">
+            Tell us you can make it to the studio and we&apos;ll schedule you in. Remote callers use <span className="text-white/85">Stream me in!</span> at the top of the page.
+          </p>
+          <div className="mt-6 flex justify-center">
+            <div className="w-full max-w-md sm:max-w-none">
+              <InPersonRequestDialog />
+            </div>
+          </div>
+        </div>
+      </section>
       <section aria-label="Recording notice signup" className="border-t border-white/10 bg-[#050505] px-4 py-10 sm:py-14">
         <div className="mx-auto w-full max-w-xl text-center sm:max-w-2xl">
           <h2 className="font-[family-name:var(--font-opt)] text-lg font-bold text-white sm:text-xl">

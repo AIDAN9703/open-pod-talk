@@ -49,7 +49,7 @@ export default async function SubmissionDetailPage({
       </div>
 
       <div className="space-y-6 rounded-2xl border border-white/10 bg-[#0a0a0a] p-6 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.05)]">
-        <div className="flex items-start justify-between gap-4">
+        <div className="flex flex-wrap items-start justify-between gap-4">
           <div>
             <h1 className="font-[family-name:var(--font-opt)] text-xl font-bold text-white">
               {sub.name}
@@ -57,7 +57,14 @@ export default async function SubmissionDetailPage({
             <div className="mt-0.5 text-sm text-white/45">{sub.email}</div>
             {sub.phone && <div className="text-sm text-white/45">{sub.phone}</div>}
           </div>
-          <StatusBadge status={sub.status} />
+          <div className="flex flex-wrap items-center justify-end gap-2">
+            {sub.request_type === "in_person" && (
+              <span className="rounded-full border border-emerald-500/35 bg-emerald-950/50 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wide text-emerald-200">
+                In-studio
+              </span>
+            )}
+            <StatusBadge status={sub.status} />
+          </div>
         </div>
 
         <div>

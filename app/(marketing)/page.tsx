@@ -48,8 +48,8 @@ export default async function HomePage() {
             <p className="mt-2 max-w-xl text-xl leading-relaxed text-white/65">
               No hand picked guests or callers.
             </p>
-            <div className="mt-6 flex w-full max-w-xl flex-col gap-3 sm:flex-row sm:items-center">
-              <SubmitDialog label="Stream me in !" variant="primary" currentTopic={currentTopic} />
+            <div className="mt-6 flex w-full max-w-xl justify-center sm:justify-start">
+              <SubmitDialog label="Stream me in!" variant="primary" currentTopic={currentTopic} />
             </div>
             <p className="mt-4 max-w-xl rounded-xl px-4 text-sm leading-relaxed text-[#ffd2b3]">
               On mobile, download the{" "}

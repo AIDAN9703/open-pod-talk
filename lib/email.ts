@@ -30,16 +30,24 @@ export async function sendSubmissionNotification(data: {
   name: string;
   email: string;
   topic: string;
+  request_type?: "stream" | "in_person";
 }) {
   const client = getResend();
   if (!client) return;
 
+  const subject =
+    data.request_type === "in_person"
+      ? `In-studio visitor: ${esc(data.topic)}`
+      : `New caller submission: ${esc(data.topic)}`;
+  const heading =
+    data.request_type === "in_person" ? "In-studio visitor request" : "New caller submission";
+
   await client.emails.send({
     from: fromAddress(),
     to: process.env.HOST_EMAIL ?? "host@openpodtalk.com",
-    subject: `New caller submission: ${esc(data.topic)}`,
+    subject,
     html: `
-      <h2>New Caller Submission</h2>
+      <h2>${heading}</h2>
       <p><strong>Name:</strong> ${esc(data.name)}</p>
       <p><strong>Email:</strong> ${esc(data.email)}</p>
       <p><strong>Topic:</strong> ${esc(data.topic)}</p>
@@ -52,18 +60,29 @@ export async function sendConfirmationEmail(data: {
   to: string;
   name: string;
   topic: string;
+  request_type?: "stream" | "in_person";
 }) {
   const client = getResend();
   if (!client) return;
 
+  const inPerson =
+    data.request_type === "in_person"
+      ? `
+      <p>If we can slot you into the calendar, we'll reach out with studio address, parking, timing, and what to expect.</p>`
+      : `
+      <p>If selected, we'll reach out with a Riverside guest link and tech-check time at least 48 hours before the episode.</p>`;
+
   await client.emails.send({
     from: fromAddress(),
     to: data.to,
-    subject: "We received your Open Pod Talk submission",
+    subject:
+      data.request_type === "in_person"
+        ? "We received your in-studio Open Pod Talk request"
+        : "We received your Open Pod Talk submission",
     html: `
       <h2>Thanks, ${esc(data.name)}!</h2>
-      <p>We've received your submission about: <strong>${esc(data.topic)}</strong></p>
-      <p>If selected, we'll reach out with a Riverside guest link and tech-check time at least 48 hours before the episode.</p>
+      <p>We've received ${data.request_type === "in_person" ? "your request to join us in-studio" : "your submission"} about: <strong>${esc(data.topic)}</strong></p>
+      ${inPerson}
       <p>By submitting, you confirmed your acceptance of the
         <a href="${esc(siteUrl())}/privacy">Open Pod Talk Caller Release</a>.
       </p>
