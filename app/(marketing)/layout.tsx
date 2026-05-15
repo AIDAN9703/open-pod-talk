@@ -38,7 +38,7 @@ export default async function MarketingLayout({
             Studio Guest
           </h2>
           <p className="mx-auto mt-3 max-w-xl text-sm leading-relaxed text-white/60 sm:text-base">
-            Tell us you can make it to the studio and we&apos;ll schedule you in. Remote callers use <span className="text-white/85">Stream me in!</span> at the top of the page.
+            Interested in being an in-studio guest? Click the link below. Remote callers use <span className="text-white/85">Stream me in!</span> at the top of the page.
           </p>
           <div className="mt-6 flex justify-center">
             <div className="w-full max-w-md sm:max-w-none">
