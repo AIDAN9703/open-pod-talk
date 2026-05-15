@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { StudioBentoGrid, TopicThumbnailGrid } from "@/components/marketing/StudioBentoGrid";
 import { SubmitDialog } from "@/components/marketing/SubmitDialog";
+import { WatchLiveSection } from "@/components/marketing/WatchLiveSection";
 import { getBroadcastStatus } from "@/lib/broadcast";
 
 const RIVERSIDE_APP_STORE =
@@ -19,7 +20,7 @@ export const metadata: Metadata = {
 };
 
 export default async function HomePage() {
-  const { currentTopic } = await getBroadcastStatus();
+  const { currentTopic, isLive } = await getBroadcastStatus();
 
   return (
     <main>
@@ -88,6 +89,8 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
+
+      <WatchLiveSection isLive={isLive} />
 
       <section id="studio" className="scroll-mt-20 border-b border-white/10 py-16 sm:py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
