@@ -1,6 +1,7 @@
+import type { BroadcastShowState } from "@/lib/broadcast";
 import { getYoutubeEmbedSrc } from "@/lib/youtube-embed";
 
-export function WatchLiveSection({ isLive }: { isLive: boolean }) {
+export function WatchLiveSection({ showState }: { showState: BroadcastShowState }) {
   const embedSrc = getYoutubeEmbedSrc();
   const channelUrl = process.env.NEXT_PUBLIC_YOUTUBE_URL?.trim() || null;
 
@@ -28,10 +29,16 @@ export function WatchLiveSection({ isLive }: { isLive: boolean }) {
             Watch live on YouTube
           </h2>
           <p className="mx-auto mt-2 max-w-2xl text-sm leading-relaxed text-white/60 sm:mx-0 sm:text-base">
-            {isLive ? (
+            {showState === "live" ? (
               <>
                 We&apos;re marked <span className="text-emerald-300/90">on air</span> on the site — the player
                 below is the same public YouTube stream.
+              </>
+            ) : showState === "recording" ? (
+              <>
+                We&apos;re marked <span className="text-emerald-300/90">recording</span> — not streaming live right
+                now. The embed may show a replay or idle state; episodes still land on YouTube and in the podcast
+                feed.
               </>
             ) : (
               <>

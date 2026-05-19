@@ -2,8 +2,9 @@
 
 import { revalidatePath } from "next/cache";
 import { createSupabaseServerActionClient } from "@/lib/supabase/server-action";
+import type { BroadcastShowState } from "@/lib/broadcast";
 
-export async function setBroadcastLive(isLive: boolean) {
+export async function setBroadcastState(showState: BroadcastShowState) {
   let supabase: Awaited<ReturnType<typeof createSupabaseServerActionClient>>;
   try {
     supabase = await createSupabaseServerActionClient();
@@ -20,10 +21,14 @@ export async function setBroadcastLive(isLive: boolean) {
     return { ok: false as const, error: "Not signed in." };
   }
 
+  if (showState !== "off" && showState !== "recording" && showState !== "live") {
+    return { ok: false as const, error: "Invalid broadcast state." };
+  }
+
   const { error } = await supabase
     .from("broadcast_status")
     .update({
-      is_live: isLive,
+      broadcast_state: showState,
       updated_at: new Date().toISOString(),
     })
     .eq("id", 1);
@@ -32,9 +37,11 @@ export async function setBroadcastLive(isLive: boolean) {
     return {
       ok: false as const,
       error:
-        error.message.includes("does not exist") || error.code === "42P01"
-          ? "Run the broadcast_status migration in Supabase (see supabase/migrations)."
-          : error.message,
+        error.message.includes("broadcast_state") && error.code === "42703"
+          ? 'Run migration 20260619153000_broadcast_state.sql (adds broadcast_state; drops legacy is_live).'
+          : error.message.includes("does not exist") || error.code === "42P01"
+            ? "Run the broadcast_status migrations in Supabase (see supabase/migrations)."
+            : error.message,
     };
   }
 

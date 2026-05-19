@@ -1,37 +1,57 @@
 import { createClient } from "@/lib/supabase/server";
 import { getSupabasePublishableKey, getSupabaseUrl } from "@/lib/supabase/public-env";
 
+/** Public site-wide studio status set from admin dashboard. */
+export type BroadcastShowState = "live" | "recording" | "off";
+
 export type BroadcastStatus = {
-  isLive: boolean;
+  showState: BroadcastShowState;
   currentTopic: string | null;
+  /** Livestream / streaming on YouTube (not in-studio-only recording mode). */
+  isLiveStreaming: boolean;
 };
+
+const STATES = new Set<BroadcastShowState>(["live", "recording", "off"]);
+
+function coerceState(value: unknown): BroadcastShowState {
+  if (value === "live" || value === "recording" || value === "off") return value;
+  return "off";
+}
 
 /** Public read: works for visitors (anon) when RLS allows SELECT. */
 export async function getBroadcastStatus(): Promise<BroadcastStatus> {
   const url = getSupabaseUrl();
   const key = getSupabasePublishableKey();
-  if (!url || !key) return { isLive: false, currentTopic: null };
+  if (!url || !key) {
+    return { showState: "off", currentTopic: null, isLiveStreaming: false };
+  }
 
   try {
     const supabase = await createClient();
     const { data, error } = await supabase
       .from("broadcast_status")
-      .select("is_live, current_topic")
+      .select("broadcast_state, current_topic")
       .eq("id", 1)
       .maybeSingle();
 
-    if (error) return { isLive: false, currentTopic: null };
+    if (error) return { showState: "off", currentTopic: null, isLiveStreaming: false };
+
+    let showState: BroadcastShowState = coerceState(data?.broadcast_state);
+
+    if (!STATES.has(showState)) showState = "off";
+
     return {
-      isLive: Boolean(data?.is_live),
+      showState,
       currentTopic: data?.current_topic?.trim() || null,
+      isLiveStreaming: showState === "live",
     };
   } catch {
-    return { isLive: false, currentTopic: null };
+    return { showState: "off", currentTopic: null, isLiveStreaming: false };
   }
 }
 
-/** Public read: works for visitors (anon) when RLS allows SELECT. */
+/** @deprecated Prefer getBroadcastStatus().isLiveStreaming */
 export async function getBroadcastLive(): Promise<boolean> {
   const status = await getBroadcastStatus();
-  return status.isLive;
+  return status.isLiveStreaming;
 }

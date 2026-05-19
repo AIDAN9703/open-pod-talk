@@ -39,7 +39,7 @@ export default async function AdminLayout({
           <div className="flex flex-wrap items-center gap-4">
             <BlastNoticeButton />
             <CurrentTopicEditor initialTopic={broadcast.currentTopic} />
-            <BroadcastToggle initialLive={broadcast.isLive} />
+            <BroadcastToggle initialState={broadcast.showState} />
             <form action="/auth/signout" method="POST">
               <button className="text-sm text-white/45 transition-colors hover:text-white">
                 Sign out

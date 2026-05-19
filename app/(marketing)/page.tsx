@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 };
 
 export default async function HomePage() {
-  const { currentTopic, isLive } = await getBroadcastStatus();
+  const broadcast = await getBroadcastStatus();
 
   return (
     <main>
@@ -50,7 +50,7 @@ export default async function HomePage() {
               No hand picked guests or callers.
             </p>
             <div className="mt-6 flex w-full max-w-xl justify-center sm:justify-start">
-              <SubmitDialog label="Stream me in!" variant="primary" currentTopic={currentTopic} />
+              <SubmitDialog label="Stream me in!" variant="primary" currentTopic={broadcast.currentTopic} />
             </div>
             <p className="mt-4 max-w-xl rounded-xl px-4 text-sm leading-relaxed text-[#ffd2b3]">
               On mobile, download the{" "}
@@ -90,7 +90,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <WatchLiveSection isLive={isLive} />
+      <WatchLiveSection showState={broadcast.showState} />
 
       <section id="studio" className="scroll-mt-20 border-b border-white/10 py-16 sm:py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
