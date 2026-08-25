@@ -30,17 +30,23 @@ export async function sendSubmissionNotification(data: {
   name: string;
   email: string;
   topic: string;
-  request_type?: "stream" | "in_person";
+  request_type?: "stream" | "in_person" | "panel";
 }) {
   const client = getResend();
   if (!client) return;
 
   const subject =
-    data.request_type === "in_person"
-      ? `In-studio visitor: ${esc(data.topic)}`
-      : `New caller submission: ${esc(data.topic)}`;
+    data.request_type === "panel"
+      ? `Tee & Tap panel application: ${esc(data.name)}`
+      : data.request_type === "in_person"
+        ? `In-studio visitor: ${esc(data.topic)}`
+        : `New caller submission: ${esc(data.topic)}`;
   const heading =
-    data.request_type === "in_person" ? "In-studio visitor request" : "New caller submission";
+    data.request_type === "panel"
+      ? "Tee & Tap panel application"
+      : data.request_type === "in_person"
+        ? "In-studio visitor request"
+        : "New caller submission";
 
   await client.emails.send({
     from: fromAddress(),
@@ -60,29 +66,40 @@ export async function sendConfirmationEmail(data: {
   to: string;
   name: string;
   topic: string;
-  request_type?: "stream" | "in_person";
+  request_type?: "stream" | "in_person" | "panel";
 }) {
   const client = getResend();
   if (!client) return;
 
-  const inPerson =
-    data.request_type === "in_person"
+  const followUp =
+    data.request_type === "panel"
       ? `
+      <p>We cast each Tee &amp; Tap panel by hand to keep the sides balanced. If you're picked for an upcoming Monday or Tuesday taping, we'll reach out with the date, venue details, and what to expect on camera.</p>`
+      : data.request_type === "in_person"
+        ? `
       <p>If we can slot you into the calendar, we'll reach out with studio address, parking, timing, and what to expect.</p>`
-      : `
+        : `
       <p>If selected, we'll reach out with a Riverside guest link and tech-check time at least 48 hours before the episode.</p>`;
 
   await client.emails.send({
     from: fromAddress(),
     to: data.to,
     subject:
-      data.request_type === "in_person"
-        ? "We received your in-studio Open Pod Talk request"
-        : "We received your Open Pod Talk submission",
+      data.request_type === "panel"
+        ? "We received your Tee & Tap panel application"
+        : data.request_type === "in_person"
+          ? "We received your in-studio Open Pod Talk request"
+          : "We received your Open Pod Talk submission",
     html: `
       <h2>Thanks, ${esc(data.name)}!</h2>
-      <p>We've received ${data.request_type === "in_person" ? "your request to join us in-studio" : "your submission"} about: <strong>${esc(data.topic)}</strong></p>
-      ${inPerson}
+      <p>We've received ${
+        data.request_type === "panel"
+          ? "your application for the Tee &amp; Tap panel series"
+          : data.request_type === "in_person"
+            ? "your request to join us in-studio"
+            : "your submission"
+      } about: <strong>${esc(data.topic)}</strong></p>
+      ${followUp}
       <p>By submitting, you confirmed your acceptance of the
         <a href="${esc(siteUrl())}/privacy">Open Pod Talk Caller Release</a>.
       </p>

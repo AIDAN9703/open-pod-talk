@@ -1,11 +1,14 @@
 @import "tailwindcss";
 
 :root {
-  --background: #050505;
+  --background: #060606;
   --foreground: #f5f5f5;
   --opt-orange: #ff6600;
   --opt-orange-soft: #ff8533;
   --opt-glow: rgba(255, 102, 0, 0.45);
+  /* Panel-debate accents (Tee & Tap sessions) */
+  --side-red: #e5484d;
+  --side-blue: #3e83f8;
 }
 
 @theme inline {
@@ -13,6 +16,8 @@
   --color-foreground: var(--foreground);
   --color-opt-orange: var(--opt-orange);
   --color-opt-orange-soft: var(--opt-orange-soft);
+  --color-side-red: var(--side-red);
+  --color-side-blue: var(--side-blue);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -20,7 +25,48 @@
 html {
   overflow-x: hidden;
   max-width: 100%;
+  scroll-behavior: smooth;
 }
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+/* ---------- Shared display typography ---------- */
+
+.opt-display {
+  font-family: var(--font-opt);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -0.03em;
+  line-height: 0.95;
+  font-stretch: condensed;
+}
+
+.opt-eyebrow {
+  font-family: var(--font-opt);
+  font-weight: 700;
+  font-size: 0.72rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--opt-orange);
+}
+
+/* ---------- Subtle film grain over dark sections ---------- */
+
+.opt-grain::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.5;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---------- Nav topic marquee (mobile ticker) ---------- */
 
 @keyframes nav-topic-marquee {
   from {
@@ -36,6 +82,23 @@ html {
   animation-duration: var(--nav-marquee-duration, 14s);
 }
 
+/* ---------- Full-width tape ticker ---------- */
+
+@keyframes opt-ticker {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.opt-ticker-track {
+  display: inline-flex;
+  white-space: nowrap;
+  animation: opt-ticker 28s linear infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .nav-topic-marquee-track {
     animation: none;
@@ -43,11 +106,10 @@ html {
     white-space: normal;
     overflow-wrap: anywhere;
   }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  overflow-x: hidden;
-  max-width: 100%;
+  .opt-ticker-track {
+    animation: none;
+  }
+  html {
+    scroll-behavior: auto;
+  }
 }

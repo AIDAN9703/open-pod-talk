@@ -18,24 +18,22 @@ const social = [
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-white/10 bg-[#030303]">
+    <footer className="border-t border-white/10 bg-[#040404]">
       <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
         <div className="flex flex-col gap-10 sm:flex-row sm:items-start sm:justify-between">
           {/* Brand */}
           <div className="max-w-xs">
-            <p className="font-[family-name:var(--font-opt)] text-lg font-bold tracking-tight text-white">
-              <span className="text-[#ff6600]">O</span>
-              <span className="text-white/90">PEN </span>
-              <span className="text-[#ff6600]">P</span>
-              <span className="text-white/90">OD </span>
-              <span className="text-[#ff6600]">T</span>
-              <span className="text-white/90">ALK</span>
+            <p className="opt-display text-xl text-white">
+              <span className="text-[#ff6600]">O</span>PEN{" "}
+              <span className="text-[#ff6600]">P</span>OD{" "}
+              <span className="text-[#ff6600]">T</span>ALK
             </p>
             <p className="mt-1 text-base font-semibold leading-snug text-white/85">
               all views, just bring it!
             </p>
             <p className="mt-2 text-sm leading-relaxed text-white/45">
-              Live call-in podcast. Real callers, real debates, zero script polish.
+              Live call-in podcast and 5v5 bar debates filmed at Tee &amp; Tap.
+              Real people, real arguments, zero script polish.
             </p>
           </div>
 
@@ -55,6 +53,24 @@ export function SiteFooter() {
               <Link href="/" className="text-[#ff6600] hover:text-[#ff781a] transition-colors font-medium">
                 Call in →
               </Link>
+            </div>
+
+            {/* Tee & Tap */}
+            <div className="flex flex-col gap-2">
+              <span className="text-xs font-semibold uppercase tracking-wider text-white/35">
+                Tee &amp; Tap
+              </span>
+              <Link href="/#tee-and-tap" className="text-white/60 hover:text-white transition-colors">
+                Join a panel
+              </Link>
+              <a
+                href="https://teeandtaps.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white/60 hover:text-white transition-colors"
+              >
+                The venue ↗
+              </a>
             </div>
 
             {/* Listen */}

@@ -5,7 +5,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "About — Open Pod Talk",
   description:
-    "What is Open Pod Talk? A live call-in podcast where real people bring real topics. All views, just bring it.",
+    "What is Open Pod Talk? A live call-in podcast and Jubilee-style bar debate series filmed at Tee & Tap. All views, just bring it.",
 };
 
 const FAQ = [
@@ -14,7 +14,15 @@ const FAQ = [
     a: "Anyone 18 or older with a topic, a debate, a story, or a hot take. We read every submission — no topic is too niche or too blunt, as long as you can back it up.",
   },
   {
-    q: "What do I need to participate?",
+    q: "What are the Tee & Tap sessions?",
+    a: "Our Jubilee-style panel series filmed inside Tee & Tap, the bar we own. We rent the whole place out on Mondays and Tuesdays, set a table with five conservatives and five liberals (plus the occasional wildcard), and film the debate. Apply from the homepage — every seat is cast by hand.",
+  },
+  {
+    q: "Do Tee & Tap panelists need debate experience?",
+    a: "No. We're casting for conviction and composure, not credentials. If you can state what you believe and hold your ground for ten minutes of pushback without shouting, you're qualified.",
+  },
+  {
+    q: "What do I need to participate remotely?",
     a: "Chrome or Edge on a desktop or laptop, wired headphones (not AirPods or Bluetooth), a quiet room, and at least 10 Mbps upload. We run on Riverside.fm — no app to download, just a browser link.",
   },
   {
@@ -23,7 +31,7 @@ const FAQ = [
   },
   {
     q: "Do I have to be on camera?",
-    a: "Camera is optional for callers. Audio is required. We record both video and audio on our end — the recording happens locally on your device, so a network hiccup won't kill the quality.",
+    a: "Camera is optional for remote callers; audio is required. Tee & Tap panelists are on camera — that's the format. We record both video and audio on our end, locally on your device, so a network hiccup won't kill the quality.",
   },
   {
     q: "Where can I watch or listen?",
@@ -39,7 +47,7 @@ const FAQ = [
   },
   {
     q: "Can I be anonymous?",
-    a: "You can ask to use a first name only or a pseudonym on air. We still need your real contact info internally to send you the studio link and manage scheduling.",
+    a: "Remote callers can ask to use a first name only or a pseudonym on air. We still need your real contact info internally to send you the studio link and manage scheduling. Panelists appear on camera, so anonymity isn't possible for Tee & Tap tapings.",
   },
 ];
 
@@ -55,19 +63,21 @@ export default function AboutPage() {
         {/* Hero */}
         <div className="mt-6 grid gap-10 lg:grid-cols-2 lg:items-center">
           <div>
-            <h1 className="font-[family-name:var(--font-opt)] text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
-              All views. Just bring it.
+            <p className="opt-eyebrow">The show</p>
+            <h1 className="opt-display mt-3 text-4xl text-white sm:text-5xl">
+              All views. <span className="text-[#ff6600]">Just bring it.</span>
             </h1>
             <p className="mt-4 text-lg leading-relaxed text-white/65">
-              Open Pod Talk is a live call-in podcast built around one idea: the
-              best conversations happen when real people bring real topics — not
-              guests who have already rehearsed their sound bite.
+              Open Pod Talk is built around one idea: the best conversations
+              happen when real people bring real topics — not guests who have
+              already rehearsed their sound bite.
             </p>
             <p className="mt-4 text-base leading-relaxed text-white/50">
-              We pull callers from a public submission queue, run them through a
-              quick 60-second lobby check, and put them on mic with our hosts live.
-              The conversation either works or it doesn&apos;t — and that&apos;s the
-              whole point.
+              It runs in two formats. The live call-in show pulls callers from a
+              public submission queue and puts them on mic with our hosts. And
+              the Tee &amp; Tap sessions put five conservatives and five liberals
+              at one table inside our bar — whole venue shut down, cameras
+              rolling, Jubilee-style.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
@@ -77,17 +87,17 @@ export default function AboutPage() {
                 Submit your topic
               </Link>
               <Link
-                href="/episodes"
+                href="/#tee-and-tap"
                 className="inline-flex items-center justify-center rounded-full border border-white/20 px-7 py-3 text-sm font-medium text-white/80 transition hover:border-white/40 hover:bg-white/5"
               >
-                Browse episodes
+                Join a Tee &amp; Tap panel
               </Link>
             </div>
           </div>
           <div className="relative">
             <div className="absolute -inset-4 rounded-3xl bg-[#ff6600]/15 blur-3xl" />
             <Image
-              src="/open-pod-talk-studio.png"
+              src="/studio-set-full-view-1.png"
               alt="Open Pod Talk studio"
               width={600}
               height={400}
@@ -98,7 +108,8 @@ export default function AboutPage() {
 
         {/* How it works */}
         <section className="mt-20">
-          <h2 className="font-[family-name:var(--font-opt)] text-2xl font-bold text-white">
+          <p className="opt-eyebrow">Format</p>
+          <h2 className="opt-display mt-3 text-3xl text-white">
             How the show works
           </h2>
           <div className="mt-6 grid gap-4 sm:grid-cols-2">
@@ -110,6 +121,10 @@ export default function AboutPage() {
               {
                 title: "Real callers, not guests",
                 body: "Callers submit a topic, get screened, and come on mic cold. We don't share questions in advance. The exchange is the product.",
+              },
+              {
+                title: "Tee & Tap panel tapings",
+                body: "Mondays and Tuesdays we film 5v5 debates inside Tee & Tap — our bar, rented out entirely for the shoot. Panels are cast from applications to keep both sides even.",
               },
               {
                 title: "Studio-grade recording",
@@ -135,7 +150,8 @@ export default function AboutPage() {
 
         {/* FAQ */}
         <section className="mt-20">
-          <h2 className="font-[family-name:var(--font-opt)] text-2xl font-bold text-white">
+          <p className="opt-eyebrow">FAQ</p>
+          <h2 className="opt-display mt-3 text-3xl text-white">
             Frequently asked questions
           </h2>
           <div className="mt-6 divide-y divide-white/[0.08]">
@@ -150,7 +166,7 @@ export default function AboutPage() {
 
         {/* CTA */}
         <section className="mt-16 rounded-2xl border border-[#ff6600]/25 bg-[#ff6600]/8 p-8 text-center">
-          <h2 className="font-[family-name:var(--font-opt)] text-2xl font-bold text-white">
+          <h2 className="opt-display text-3xl text-white">
             Ready to be on the show?
           </h2>
           <p className="mt-3 text-white/55">

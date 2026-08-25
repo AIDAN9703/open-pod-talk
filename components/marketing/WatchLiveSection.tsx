@@ -22,9 +22,10 @@ export function WatchLiveSection({ showState }: { showState: BroadcastShowState 
     >
       <div className="mx-auto max-w-5xl px-4 sm:px-6">
         <div className="mb-6 text-center sm:text-left">
+          <p className="opt-eyebrow">The stream</p>
           <h2
             id="watch-heading"
-            className="font-[family-name:var(--font-opt)] text-2xl font-bold text-white sm:text-3xl"
+            className="opt-display mt-3 text-3xl text-white sm:text-4xl"
           >
             Watch live on YouTube
           </h2>

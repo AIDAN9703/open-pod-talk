@@ -15,15 +15,14 @@ export default async function MarketingLayout({
   const broadcast = await getBroadcastStatus();
 
   return (
-    <div className="flex min-h-full flex-col bg-[#050505] text-white">
+    <div className="flex min-h-full flex-col bg-[#060606] text-white">
       <SiteNav showState={broadcast.showState} currentTopic={broadcast.currentTopic} />
       {broadcast.showState === "live" && (
         <div className="border-b border-emerald-500/40 bg-emerald-950/60 px-4 py-2.5 text-center text-sm leading-snug text-emerald-50">
           <strong className="mr-1.5 font-bold uppercase tracking-wide text-emerald-200">
             On air
           </strong>
-          We&apos;re live right now on the stream (website status). Open your podcast app if you&apos;re tuning in —
-          this is your studio tally for the site.
+          We&apos;re live right now — scroll to the player or open your podcast app.
         </div>
       )}
       {broadcast.showState === "recording" && (
@@ -31,36 +30,43 @@ export default async function MarketingLayout({
           <strong className="mr-1.5 font-bold uppercase tracking-wide text-emerald-200">
             Recording
           </strong>
-          We&apos;re in session capturing the podcast — not livestreaming right now. Thanks for respecting the tape.
+          We&apos;re in session capturing the podcast — not livestreaming right now.
         </div>
       )}
       <div className="flex-1">{children}</div>
-      <section aria-label="In-studio guest requests" className="border-t border-white/10 bg-[#070707] px-4 py-10 sm:py-14">
-        <div className="mx-auto w-full max-w-2xl text-center sm:max-w-3xl">
-          <h2 className="font-[family-name:var(--font-opt)] text-lg font-bold text-white sm:text-xl">
-            Studio Guest
-          </h2>
-          <p className="mx-auto mt-3 max-w-xl text-sm leading-relaxed text-white/60 sm:text-base">
-            Interested in being an in-studio guest? Click the link below. Remote callers use <span className="text-white/85">Stream me in!</span> at the top of the page.
-          </p>
-          <div className="mt-6 flex justify-center">
-            <div className="w-full max-w-md sm:max-w-none">
-              <InPersonRequestDialog />
+
+      {/* Get involved band */}
+      <section
+        aria-label="Get involved"
+        className="border-t border-white/10 bg-[#080808] px-4 py-12 sm:py-16"
+      >
+        <div className="mx-auto grid w-full max-w-5xl gap-10 sm:px-2 md:grid-cols-2 md:gap-8">
+          <div className="text-center md:text-left">
+            <p className="opt-eyebrow">In-studio guest</p>
+            <h2 className="mt-2 font-[family-name:var(--font-opt)] text-xl font-bold text-white">
+              Want a seat in the studio?
+            </h2>
+            <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-white/55 md:mx-0">
+              We host in-person guests in the Pittsburgh area. Remote callers use{" "}
+              <span className="text-white/85">Stream me in!</span> at the top of the page.
+            </p>
+            <div className="mt-5 flex justify-center md:justify-start">
+              <div className="w-full max-w-md md:w-auto md:max-w-none">
+                <InPersonRequestDialog />
+              </div>
             </div>
           </div>
-        </div>
-      </section>
-      <section aria-label="Recording notice signup" className="border-t border-white/10 bg-[#050505] px-4 py-10 sm:py-14">
-        <div className="mx-auto w-full max-w-xl text-center sm:max-w-2xl">
-          <h2 className="font-[family-name:var(--font-opt)] text-lg font-bold text-white sm:text-xl">
-            Recording notices
-          </h2>
-          <p className="mt-3 text-sm leading-relaxed text-white/60 sm:text-base">
-            Want a quick email when we&apos;re about to hit record? Add your address
-            below — we&apos;ll only use it for that heads-up (and you can unsubscribe
-            anytime from the email).
-          </p>
-          <RecordingNoticeSignup />
+          <div className="text-center md:text-left">
+            <p className="opt-eyebrow">Recording notices</p>
+            <h2 className="mt-2 font-[family-name:var(--font-opt)] text-xl font-bold text-white">
+              Know when we hit record
+            </h2>
+            <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-white/55 md:mx-0">
+              A quick email right before we go into session — nothing else, and you
+              can unsubscribe from the email itself.
+            </p>
+            <RecordingNoticeSignup />
+          </div>
         </div>
       </section>
       <SiteFooter />

@@ -91,7 +91,8 @@ export default async function EpisodesPage() {
 
         <div className="mt-6 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <h1 className="font-[family-name:var(--font-opt)] text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
+            <p className="opt-eyebrow">The archive</p>
+            <h1 className="opt-display mt-3 text-4xl text-white sm:text-5xl">
               Episodes
             </h1>
             <p className="mt-2 text-white/55">
@@ -202,12 +203,12 @@ function ComingSoon() {
 
       <div className="rounded-2xl border border-[#ff6600]/25 bg-[#ff6600]/8 p-8 text-center">
         <div className="mb-4 text-4xl drop-shadow-[0_0_16px_rgba(255,102,0,0.35)]">🎙️</div>
-        <h2 className="font-[family-name:var(--font-opt)] text-xl font-bold text-white">
-          First episode dropping May 2026
+        <h2 className="opt-display text-2xl text-white">
+          Episodes are coming
         </h2>
         <p className="mt-3 text-white/55">
-          We&apos;re building the caller queue right now. Submit your topic and you
-          could be in episode one.
+          We&apos;re building the caller queue and casting the first Tee &amp; Tap
+          panels right now. Submit your topic and you could be in episode one.
         </p>
         <Link
           href="/submit"

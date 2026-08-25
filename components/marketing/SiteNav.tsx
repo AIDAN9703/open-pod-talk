@@ -1,5 +1,13 @@
+import Link from "next/link";
 import { CurrentTopicMarquee } from "@/components/marketing/CurrentTopicMarquee";
 import type { BroadcastShowState } from "@/lib/broadcast";
+
+const NAV_LINKS = [
+  { label: "Watch", href: "/#watch" },
+  { label: "Tee & Tap", href: "/#tee-and-tap" },
+  { label: "Episodes", href: "/episodes" },
+  { label: "About", href: "/about" },
+] as const;
 
 export function SiteNav({
   showState,
@@ -9,18 +17,46 @@ export function SiteNav({
   currentTopic: string | null;
 }) {
   return (
-    <header className="sticky top-0 z-50 border-b border-white/10 bg-[#050505]/90 backdrop-blur-md">
-      <div className="mx-auto flex h-auto min-h-16 max-w-6xl items-center justify-between gap-3 px-4 py-2.5 sm:h-16 sm:px-6 sm:py-0">
+    <header className="sticky top-0 z-50 border-b border-white/10 bg-[#060606]/90 backdrop-blur-md">
+      <div className="mx-auto flex h-14 max-w-6xl items-center justify-between gap-3 px-4 sm:h-16 sm:px-6">
+        <Link
+          href="/"
+          className="opt-display shrink-0 text-lg text-white transition hover:text-[#ffb380] sm:text-xl"
+        >
+          <span className="text-[#ff6600]">O</span>PEN{" "}
+          <span className="text-[#ff6600]">P</span>OD{" "}
+          <span className="text-[#ff6600]">T</span>ALK
+        </Link>
+        <nav className="hidden items-center gap-6 text-sm font-medium text-white/60 md:flex">
+          {NAV_LINKS.map((link) => (
+            <Link key={link.href} href={link.href} className="transition hover:text-white">
+              {link.label}
+            </Link>
+          ))}
+        </nav>
         <div className="shrink-0">
           <AirBadge showState={showState} />
         </div>
-        <div className="flex min-w-0 flex-1 items-start justify-end gap-x-2 text-right max-md:gap-x-3 sm:items-center md:gap-x-3">
-          <span className="max-md:leading-snug shrink-0 select-none whitespace-nowrap font-semibold text-white">
-            Current Topic:
+      </div>
+
+      {/* Topic ticker strip */}
+      <div className="border-t border-white/[0.06] bg-black/40">
+        <div className="mx-auto flex min-w-0 max-w-6xl items-center gap-3 px-4 py-1.5 sm:px-6">
+          <span className="shrink-0 select-none font-[family-name:var(--font-opt)] text-[10px] font-bold uppercase tracking-[0.22em] text-white/40 sm:text-[11px]">
+            Current topic
           </span>
           <CurrentTopicMarquee value={currentTopic || "-"} />
         </div>
       </div>
+
+      {/* Mobile nav row */}
+      <nav className="flex items-center gap-5 overflow-x-auto border-t border-white/[0.06] px-4 py-2 text-xs font-semibold uppercase tracking-wider text-white/55 md:hidden">
+        {NAV_LINKS.map((link) => (
+          <Link key={link.href} href={link.href} className="shrink-0 transition hover:text-white">
+            {link.label}
+          </Link>
+        ))}
+      </nav>
     </header>
   );
 }
@@ -56,7 +92,7 @@ function AirBadge({ showState }: { showState: BroadcastShowState }) {
   }
 
   return (
-    <span className="inline-flex shrink-0 items-center rounded-full border border-red-600/55 bg-red-950/65 px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-red-100 shadow-[0_0_12px_rgba(239,68,68,0.2)] sm:px-2.5 sm:text-[11px]">
+    <span className="inline-flex shrink-0 items-center rounded-full border border-white/15 bg-white/[0.04] px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-white/50 sm:px-2.5 sm:text-[11px]">
       Off air
     </span>
   );
