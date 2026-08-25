@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 const YEAR = new Date().getFullYear();
@@ -23,12 +24,16 @@ export function SiteFooter() {
         <div className="flex flex-col gap-10 sm:flex-row sm:items-start sm:justify-between">
           {/* Brand */}
           <div className="max-w-xs">
-            <p className="opt-display text-xl text-white">
-              <span className="text-[#ff6600]">O</span>PEN{" "}
-              <span className="text-[#ff6600]">P</span>OD{" "}
-              <span className="text-[#ff6600]">T</span>ALK
-            </p>
-            <p className="mt-1 text-base font-semibold leading-snug text-white/85">
+            <Link href="/" className="inline-block">
+              <Image
+                src="/logo-with-name.png"
+                alt="Open Pod Talk"
+                width={220}
+                height={83}
+                className="h-14 w-auto object-contain"
+              />
+            </Link>
+            <p className="mt-3 text-base font-semibold leading-snug text-white/85">
               all views, just bring it!
             </p>
             <p className="mt-2 text-sm leading-relaxed text-white/45">
@@ -44,6 +49,9 @@ export function SiteFooter() {
               <span className="text-xs font-semibold uppercase tracking-wider text-white/35">
                 Show
               </span>
+              <Link href="/watch" className="text-white/60 hover:text-white transition-colors">
+                Watch live
+              </Link>
               <Link href="/episodes" className="text-white/60 hover:text-white transition-colors">
                 Episodes
               </Link>

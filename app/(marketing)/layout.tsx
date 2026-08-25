@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { InPersonRequestDialog } from "@/components/marketing/InPersonRequestDialog";
 import { RecordingNoticeSignup } from "@/components/marketing/RecordingNoticeSignup";
 import { SiteFooter } from "@/components/marketing/SiteFooter";
@@ -22,7 +23,11 @@ export default async function MarketingLayout({
           <strong className="mr-1.5 font-bold uppercase tracking-wide text-emerald-200">
             On air
           </strong>
-          We&apos;re live right now — scroll to the player or open your podcast app.
+          We&apos;re live right now —{" "}
+          <Link href="/watch" className="font-semibold underline underline-offset-2 hover:text-white">
+            watch the stream
+          </Link>{" "}
+          or open your podcast app.
         </div>
       )}
       {broadcast.showState === "recording" && (

@@ -3,7 +3,7 @@ import { CurrentTopicMarquee } from "@/components/marketing/CurrentTopicMarquee"
 import type { BroadcastShowState } from "@/lib/broadcast";
 
 const NAV_LINKS = [
-  { label: "Watch", href: "/#watch" },
+  { label: "Watch", href: "/watch" },
   { label: "Tee & Tap", href: "/#tee-and-tap" },
   { label: "Episodes", href: "/episodes" },
   { label: "About", href: "/about" },
