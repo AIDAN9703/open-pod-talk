@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     template: "%s — Open Pod Talk",
   },
   description:
-    "all views, just bring it! Open Pod Talk (OPT): live call-in podcast and 5v5 bar debates filmed at Tee & Tap.",
+    "all views, just bring it! Open Pod Talk (OPT): live call-in podcast and 3v3 bar debates filmed at Tee & Tap.",
   icons: {
     icon: [{ url: "/logo.webp", type: "image/webp" }],
     apple: [{ url: "/logo.webp", type: "image/webp" }],

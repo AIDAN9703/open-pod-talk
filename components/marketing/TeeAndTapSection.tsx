@@ -6,7 +6,7 @@ const FORMAT_CARDS = [
   {
     num: "01",
     title: "The panel",
-    body: "Ten people, two sides, one table in the middle of the bar. Five conservatives across from five liberals — no moderators feeding lines, no pre-screened talking points.",
+    body: "Six people, two sides, one table in the middle of the bar. Three conservatives across from three liberals, with Mark in the moderator's chair keeping it fair — nobody feeds lines, no pre-screened talking points.",
   },
   {
     num: "02",
@@ -94,8 +94,8 @@ export function TeeAndTapSection() {
         <div className="mx-auto max-w-3xl text-center">
           <p className="opt-eyebrow">Casting call — The Tee &amp; Tap Sessions</p>
           <h2 className="opt-display mt-4 text-[clamp(2.4rem,7vw,4.5rem)] text-white">
-            <span className="text-side-red">5 conservatives.</span>{" "}
-            <span className="text-side-blue">5 liberals.</span>
+            <span className="text-side-red">3 conservatives.</span>{" "}
+            <span className="text-side-blue">3 liberals.</span>
             <br />
             One bar.
           </h2>
@@ -110,8 +110,9 @@ export function TeeAndTapSection() {
               Tee &amp; Tap
             </a>
             . Every Monday and Tuesday we shut the whole bar down, set up the
-            cameras, and put ten strangers with opposite politics at one table.
-            We&apos;re casting the panels now.
+            cameras, and put six strangers with opposite politics at one table with
+            Mark moderating. Panelists are paid $50 an hour for their time on
+            site, plus dinner. We&apos;re casting the panels now.
           </p>
         </div>
 
@@ -183,8 +184,9 @@ export function TeeAndTapSection() {
             </a>
           </div>
           <p className="mt-4 text-xs text-white/35">
-            18+. Filmed on location at Tee &amp; Tap. Panelists appear on camera and
-            in clips — the release agreement is part of the application.
+            18+. Filmed on location at Tee &amp; Tap; the set is dry until wrap.
+            Panelists appear on camera and in clips — the release agreement is
+            part of the application.
           </p>
         </div>
       </div>

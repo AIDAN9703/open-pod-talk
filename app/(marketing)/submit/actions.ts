@@ -181,7 +181,7 @@ const panelistSchema = z.object({
 });
 
 /**
- * Tee & Tap panel casting application — Jubilee-style 5v5 tapings.
+ * Tee & Tap panel casting application — Jubilee-style 3v3 tapings.
  * Stored as request_type 'in_person' (applicants come to the venue) with
  * source 'tee_tap_panel' so it needs no new DB constraint value.
  */
