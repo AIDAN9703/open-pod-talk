@@ -37,7 +37,7 @@ export function SiteFooter() {
               all views, just bring it!
             </p>
             <p className="mt-2 text-sm leading-relaxed text-white/45">
-              Live call-in podcast and 3v3 bar debates filmed at Tee &amp; Tap.
+              Live call-in podcast and 2v2 bar debates filmed at Tee &amp; Tap.
               Real people, real arguments, zero script polish.
             </p>
           </div>

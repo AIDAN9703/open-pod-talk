@@ -74,7 +74,7 @@ export async function sendConfirmationEmail(data: {
   const followUp =
     data.request_type === "panel"
       ? `
-      <p>We cast each Tee &amp; Tap panel by hand to keep the sides balanced. If you're picked for an upcoming Monday or Tuesday taping, we'll reach out with the date, venue details, and what to expect on camera.</p>`
+      <p>We cast each Tee &amp; Tap panel by hand to keep the sides balanced. If you're picked for an upcoming taping, we'll reach out with the date, venue details, and what to expect on camera.</p>`
       : data.request_type === "in_person"
         ? `
       <p>If we can slot you into the calendar, we'll reach out with studio address, parking, timing, and what to expect.</p>`

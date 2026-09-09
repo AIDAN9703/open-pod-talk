@@ -15,7 +15,7 @@ const FAQ = [
   },
   {
     q: "What are the Tee & Tap sessions?",
-    a: "Our Jubilee-style panel series filmed inside Tee & Tap, the bar we own. We rent the whole place out on Mondays and Tuesdays, set a table with three conservatives and three liberals (plus the occasional wildcard), put our moderator Mark at the head of it, and film the debate. Apply from the homepage — every seat is cast by hand.",
+    a: "Our Jubilee-style panel series filmed inside Tee & Tap, the bar we own. We close the whole place for the taping, set a table with two conservatives and two liberals (plus the occasional wildcard), put our moderator Mark at the head of it, and film the debate. Apply from the homepage — every seat is cast by hand.",
   },
   {
     q: "Do Tee & Tap panelists need debate experience?",
@@ -23,7 +23,7 @@ const FAQ = [
   },
   {
     q: "Do Tee & Tap panelists get paid?",
-    a: "Yes. $50 an hour for your time on site, which works out to about $150 for a typical three-hour taping, plus dinner. The set is dry — no alcohol before or during recording — and you'll sign a standard appearance release and liability waiver before you sit down.",
+    a: "Yes. $50 an hour for your time on site, which works out to about $150 for the recording. Food and drinks are included. Show up sober — drinks at the table during the recording are fine — and you'll sign a standard appearance release and liability waiver before you sit down.",
   },
   {
     q: "What do I need to participate remotely?",
@@ -79,7 +79,7 @@ export default function AboutPage() {
             <p className="mt-4 text-base leading-relaxed text-white/50">
               It runs in two formats. The live call-in show pulls callers from a
               public submission queue and puts them on mic with our hosts. And
-              the Tee &amp; Tap sessions put three conservatives and three liberals
+              the Tee &amp; Tap sessions put two conservatives and two liberals
               at one table inside our bar with Mark moderating — whole venue
               shut down, cameras rolling, Jubilee-style.
             </p>
@@ -128,7 +128,7 @@ export default function AboutPage() {
               },
               {
                 title: "Tee & Tap panel tapings",
-                body: "Mondays and Tuesdays we film 3v3 debates inside Tee & Tap — our bar, rented out entirely for the shoot. Panels are cast from applications to keep both sides even.",
+                body: "We film 2v2 debates inside Tee & Tap — our bar, closed to the public for the shoot. Panels are cast from applications to keep both sides even.",
               },
               {
                 title: "Studio-grade recording",

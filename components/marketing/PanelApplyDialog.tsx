@@ -68,9 +68,9 @@ function PanelForm({
   return (
     <form action={action} className="space-y-5 px-6 pb-8 pt-5">
       <p className="text-sm leading-relaxed text-white/55">
-        Tee &amp; Tap panels are filmed in person on Mondays and Tuesdays. We cast
-        every seat by hand to keep the table balanced — tell us where you stand
-        and why you can hold your ground.
+        Tee &amp; Tap panels are filmed in person at the bar. We cast every seat
+        by hand to keep the table balanced — tell us where you stand and why
+        you can hold your ground.
       </p>
 
       <div className="flex flex-col gap-2">
@@ -162,7 +162,7 @@ function PanelForm({
       </SubmissionField>
 
       <SubmissionField
-        label="Which Mondays or Tuesdays could you make? *"
+        label="Which evenings could you make? *"
         error={err.availability?.[0]}
       >
         <textarea
@@ -172,7 +172,7 @@ function PanelForm({
           maxLength={2500}
           rows={3}
           className={submissionInputClass("min-h-[88px] resize-y")}
-          placeholder="e.g. Most Mondays after 5pm, or any Tuesday with two weeks notice."
+          placeholder="e.g. Weeknights after 6pm, or any night with two weeks notice."
         />
       </SubmissionField>
 
@@ -308,7 +308,7 @@ export function PanelApplyDialog({
             <DialogTitle>{title}</DialogTitle>
             <DialogDescription className="sr-only">
               Apply to be a panelist on the Tee &amp; Tap debate series. Tell us your
-              perspective, your pitch, and your Monday/Tuesday availability.
+              perspective, your pitch, and your availability.
             </DialogDescription>
           </DialogHeader>
           {inner}
@@ -335,7 +335,7 @@ export function PanelApplyDialog({
           <DrawerTitle>{title}</DrawerTitle>
           <p className="sr-only">
             Apply to be a panelist on the Tee &amp; Tap debate series. Tell us your
-            perspective, your pitch, and your Monday/Tuesday availability.
+            perspective, your pitch, and your availability.
           </p>
         </DrawerHeader>
         {inner}

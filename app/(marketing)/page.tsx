@@ -16,14 +16,14 @@ const linkMobileStore =
 export const metadata: Metadata = {
   title: "Open Pod Talk — all views, just bring it!",
   description:
-    "Live call-in podcast and Jubilee-style bar debates filmed at Tee & Tap. 3 conservatives, 3 liberals, one table. Submit your topic or apply for the panel.",
+    "Live call-in podcast and Jubilee-style bar debates filmed at Tee & Tap. 2 conservatives, 2 liberals, one table. Submit your topic or apply for the panel.",
 };
 
 const TICKER_ITEMS = [
   "Live call-ins",
   "No scripts",
   "No hand-picked guests",
-  "3v3 bar debates at Tee & Tap",
+  "2v2 bar debates at Tee & Tap",
   "All views, just bring it",
 ];
 
@@ -80,7 +80,7 @@ export default async function HomePage() {
           </h1>
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/65 sm:text-xl">
             No hand-picked guests. No scripts. Real callers live on air — and
-            3v3 panel debates filmed inside our own bar.
+            2v2 panel debates filmed inside our own bar.
           </p>
           <div className="mt-9 flex w-full max-w-xl flex-col gap-3 sm:flex-row">
             <SubmitDialog label="Stream me in!" variant="primary" currentTopic={broadcast.currentTopic} />

@@ -169,7 +169,7 @@ const panelistSchema = z.object({
   availability: z
     .string()
     .trim()
-    .min(5, "Tell us which Mondays or Tuesdays could work")
+    .min(5, "Tell us which evenings could work")
     .max(2500),
   instagram: z.string().trim().max(120).optional().or(z.literal("")),
   tiktok: z.string().trim().max(120).optional().or(z.literal("")),
@@ -181,7 +181,7 @@ const panelistSchema = z.object({
 });
 
 /**
- * Tee & Tap panel casting application — Jubilee-style 3v3 tapings.
+ * Tee & Tap panel casting application — Jubilee-style 2v2 tapings.
  * Stored as request_type 'in_person' (applicants come to the venue) with
  * source 'tee_tap_panel' so it needs no new DB constraint value.
  */
@@ -231,7 +231,7 @@ export async function submitPanelist(
   const topic_details = [
     `Panel side: ${leanLabel}`,
     `Their pitch:\n${data.pitch}`,
-    `Monday/Tuesday availability:\n${data.availability}`,
+    `Availability:\n${data.availability}`,
   ].join("\n\n");
 
   try {
