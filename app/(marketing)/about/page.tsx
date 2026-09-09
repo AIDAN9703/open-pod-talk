@@ -15,7 +15,7 @@ const FAQ = [
   },
   {
     q: "What are the Tee & Tap sessions?",
-    a: "Our Jubilee-style panel series filmed inside Tee & Tap, the bar we own. We close the whole place for the taping, set a table with two conservatives and two liberals (plus the occasional wildcard), put our moderator Mark at the head of it, and film the debate. Apply from the homepage — every seat is cast by hand.",
+    a: "Our Jubilee-style panel series filmed inside Tee & Tap, the bar we own. We close the whole place for the taping, set a table with two conservatives and two liberals (plus the occasional wildcard), put our moderator Mark at the head of it, and film the debate. Apply at openpodtalk.com/casting — every seat is cast by hand.",
   },
   {
     q: "Do Tee & Tap panelists need debate experience?",
@@ -47,7 +47,7 @@ const FAQ = [
   },
   {
     q: "What happens to my recording?",
-    a: "By submitting and appearing on the show, you grant Open Pod Talk a perpetual license to use your voice, likeness, and statements in the episode and clips. Full legal language is in our Caller Release Agreement on the submit page.",
+    a: "By submitting and appearing on the show, you grant Open Pod Talk a perpetual license to use your voice, likeness, and statements in the episode and clips. Full legal language is on our privacy page.",
   },
   {
     q: "Can I be anonymous?",
@@ -91,7 +91,7 @@ export default function AboutPage() {
                 Submit your topic
               </Link>
               <Link
-                href="/#tee-and-tap"
+                href="/casting"
                 className="inline-flex items-center justify-center rounded-full border border-white/20 px-7 py-3 text-sm font-medium text-white/80 transition hover:border-white/40 hover:bg-white/5"
               >
                 Join a Tee &amp; Tap panel

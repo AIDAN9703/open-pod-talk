@@ -109,7 +109,7 @@ export default async function WatchPage() {
             </p>
           </div>
           <Link
-            href="/#tee-and-tap"
+            href="/casting"
             className="inline-flex shrink-0 items-center justify-center rounded-full bg-[#ff6600] px-6 py-3 text-sm font-bold text-white shadow-[0_0_24px_rgba(255,102,0,0.35)] transition hover:bg-[#ff781a]"
           >
             Get on air →

@@ -68,8 +68,8 @@ export function SiteFooter() {
               <span className="text-xs font-semibold uppercase tracking-wider text-white/35">
                 Tee &amp; Tap
               </span>
-              <Link href="/#tee-and-tap" className="text-white/60 hover:text-white transition-colors">
-                Join a panel
+              <Link href="/casting" className="text-white/60 hover:text-white transition-colors">
+                Casting call
               </Link>
               <a
                 href="https://teeandtaps.com"

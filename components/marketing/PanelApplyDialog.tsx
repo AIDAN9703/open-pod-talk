@@ -68,9 +68,10 @@ function PanelForm({
   return (
     <form action={action} className="space-y-5 px-6 pb-8 pt-5">
       <p className="text-sm leading-relaxed text-white/55">
-        Tee &amp; Tap panels are filmed in person at the bar. We cast every seat
-        by hand to keep the table balanced — tell us where you stand and why
-        you can hold your ground.
+        Tee &amp; Tap panels are filmed in person at the bar. Pay is $50 an hour,
+        about $150 for the recording, with food and drinks included. We cast
+        every seat by hand to keep the table balanced — tell us where you stand
+        and why you can hold your ground.
       </p>
 
       <div className="flex flex-col gap-2">
@@ -157,7 +158,7 @@ function PanelForm({
           maxLength={2500}
           rows={4}
           className={submissionInputClass("min-h-[104px] resize-y")}
-          placeholder="The takes you'd bring to the table, and why you won't fold when nine people push back."
+          placeholder="The takes you'd bring to the table, and why you won't fold when the other side pushes back."
         />
       </SubmissionField>
 

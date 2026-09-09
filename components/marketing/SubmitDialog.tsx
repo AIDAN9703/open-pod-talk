@@ -200,8 +200,9 @@ function SuccessView({ onClose }: { onClose: () => void }) {
       <h3 className="font-[family-name:var(--font-opt)] text-2xl font-bold text-white">
         You&apos;re in the queue!
       </h3>
-      <p className="mx-auto mt-3 max-w-xs text-sm text-white/60">
-        Good luck!
+      <p className="mx-auto mt-3 max-w-sm text-sm text-white/60">
+        We read every submission. If your topic fits an upcoming episode, we&apos;ll
+        email you a Riverside link and a tech-check time at least 48 hours ahead.
       </p>
       <button
         onClick={onClose}

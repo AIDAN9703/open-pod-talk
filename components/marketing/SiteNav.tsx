@@ -4,7 +4,7 @@ import type { BroadcastShowState } from "@/lib/broadcast";
 
 const NAV_LINKS = [
   { label: "Watch", href: "/watch" },
-  { label: "Tee & Tap", href: "/#tee-and-tap" },
+  { label: "Casting", href: "/casting" },
   { label: "Episodes", href: "/episodes" },
   { label: "About", href: "/about" },
 ] as const;
