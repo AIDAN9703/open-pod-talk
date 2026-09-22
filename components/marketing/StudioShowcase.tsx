@@ -25,7 +25,7 @@ const TOPIC_SIGNS = [
   { src: "/topic-police-ice.png", alt: "Police and ICE topic graphic" },
   { src: "/topic-left-right-wing.png", alt: "Left wing and right wing topic sign" },
   { src: "/topic-gender-question.png", alt: "Gender question topic sign" },
-  { src: "/topic-artificial-intelligence.webp", alt: "Artificial intelligence topic graphic: a grim reaper with a laptop covered in AI logos" },
+  { src: "/topic-artificial-intelligence.webp", alt: "Artificial intelligence topic graphic: a grim reaper with a laptop covered in AI logos", contain: true },
 ] as const;
 
 export function StudioShowcase() {
@@ -103,7 +103,7 @@ export function StudioShowcase() {
                   alt={sign.alt}
                   fill
                   sizes="208px"
-                  className="object-cover"
+                  className={"contain" in sign && sign.contain ? "object-contain bg-[#0a0a0a]" : "object-cover"}
                 />
               </figure>
             ))}
