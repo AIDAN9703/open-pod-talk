@@ -150,7 +150,7 @@ export default async function AdminPage({
                       {sub.name}
                     </Link>
                     <div className="text-xs text-white/40">{sub.email}</div>
-                    {sub.source === "tee_tap_panel" ? (
+                    {sub.source === "panel" || sub.source === "tee_tap_panel" ? (
                       <span className="mt-1 inline-flex rounded-full border border-[#ff6600]/40 bg-[#ff6600]/10 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-[#ffb380]">
                         Panel
                       </span>

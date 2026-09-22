@@ -38,15 +38,6 @@ function TickerStrip() {
   );
 }
 
-function Bullet({ children }: { children: React.ReactNode }) {
-  return (
-    <li className="flex gap-3 text-sm leading-relaxed text-white/60">
-      <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[#ff6600]" />
-      <span>{children}</span>
-    </li>
-  );
-}
-
 export default async function HomePage() {
   const broadcast = await getBroadcastStatus();
   return (
@@ -78,69 +69,18 @@ export default async function HomePage() {
             lean left. Real people, real arguments, no script.
           </p>
           <div className="mt-9 flex w-full max-w-xl flex-col gap-3 sm:flex-row">
+            <SubmitDialog label="Stream in" variant="primary" currentTopic={broadcast.currentTopic} />
             <Link
               href="/casting"
-              className="flex w-full items-center justify-center rounded-2xl bg-[#ff6600] py-4 text-base font-semibold text-white shadow-[0_0_32px_rgba(255,102,0,0.4)] transition hover:bg-[#ff781a] hover:shadow-[0_0_40px_rgba(255,102,0,0.55)] active:scale-[0.99] sm:w-auto md:rounded-full md:px-8 md:py-3.5 md:active:scale-100"
+              className="flex w-full items-center justify-center rounded-2xl border border-white/25 bg-black/30 py-4 text-base font-semibold text-white/85 backdrop-blur-sm transition hover:border-white/45 hover:bg-white/5 active:scale-[0.99] sm:w-auto md:rounded-full md:px-8 md:py-3.5"
             >
-              Studio sit-in →
+              In person
             </Link>
           </div>
         </div>
       </section>
 
       <TickerStrip />
-
-      {/* Two ways on the show */}
-      <section className="border-b border-white/10 py-16 sm:py-20">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <div className="max-w-2xl">
-            <p className="opt-eyebrow">Two ways on the show</p>
-            <h2 className="opt-display mt-3 text-4xl text-white sm:text-5xl">
-              Call in or studio visit
-            </h2>
-          </div>
-
-          <div className="mt-10 grid gap-5 md:grid-cols-2 md:gap-6">
-            <div className="flex flex-col rounded-2xl border border-white/10 bg-[#0a0a0a] p-7 ring-1 ring-white/[0.04] sm:p-8">
-              <p className="opt-eyebrow">Call in · from anywhere</p>
-              <h3 className="mt-3 font-[family-name:var(--font-opt)] text-2xl font-bold text-white sm:text-3xl">
-                Stream in and say it
-              </h3>
-              <ul className="mt-5 space-y-2.5">
-                <Bullet>Submit a topic, get a quick producer screen, and come on mic cold with the hosts.</Bullet>
-                <Bullet>Runs on Riverside in your browser. Wired headphones and a quiet room are the only requirements.</Bullet>
-                <Bullet>If your topic fits, you get a studio link at least 48 hours ahead.</Bullet>
-              </ul>
-              <div className="mt-auto pt-7">
-                <SubmitDialog label="Stream me in!" variant="outline" currentTopic={broadcast.currentTopic} />
-              </div>
-            </div>
-
-            <div className="relative flex flex-col overflow-hidden rounded-2xl border border-[#ff6600]/30 bg-[#0a0a0a] p-7 shadow-[0_0_60px_rgba(255,102,0,0.08)] ring-1 ring-white/[0.04] sm:p-8">
-              <div className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-side-red/10 blur-3xl" />
-              <div className="pointer-events-none absolute -bottom-16 -left-16 h-48 w-48 rounded-full bg-side-blue/10 blur-3xl" />
-              <p className="opt-eyebrow">Studio visit · in person</p>
-              <h3 className="relative mt-3 font-[family-name:var(--font-opt)] text-2xl font-bold text-white sm:text-3xl">
-                <span className="text-side-red">Conservative views.</span>{" "}
-                <span className="text-side-blue">Liberal views.</span> One table.
-              </h3>
-              <ul className="relative mt-5 space-y-2.5">
-                <Bullet>A moderated panel recording with Mark in the chair. A topic goes up, you defend your side, the other side pushes back.</Bullet>
-                <Bullet>Paid $35 an hour, about $105 for the recording. Food and drinks included.</Bullet>
-                <Bullet>Cast by hand, both sides at once. Evenings in Pittsburgh. 18+. Good panelists get invited back.</Bullet>
-              </ul>
-              <div className="relative mt-auto pt-7">
-                <Link
-                  href="/casting"
-                  className="flex w-full items-center justify-center rounded-2xl bg-[#ff6600] py-4 text-base font-semibold text-white shadow-[0_0_32px_rgba(255,102,0,0.4)] transition hover:bg-[#ff781a] active:scale-[0.99] md:inline-flex md:w-auto md:rounded-full md:px-8 md:py-3.5 md:active:scale-100"
-                >
-                  Request studio seat →
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       <StudioShowcase />
     </main>

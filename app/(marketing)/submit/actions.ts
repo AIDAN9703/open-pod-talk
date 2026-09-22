@@ -183,7 +183,7 @@ const panelistSchema = z.object({
 /**
  * Panel casting application — moderated 2v2 recordings.
  * Stored as request_type 'in_person' (applicants come to the venue) with
- * source 'tee_tap_panel' so it needs no new DB constraint value.
+ * source 'panel' so it needs no new DB constraint value.
  */
 export async function submitPanelist(
   _prev: FormState,
@@ -252,7 +252,7 @@ export async function submitPanelist(
       timezone: null,
       topic,
       topic_details,
-      source: "tee_tap_panel",
+      source: "panel",
       video_url: data.video_url || null,
       social_handles: {
         instagram: data.instagram || null,
