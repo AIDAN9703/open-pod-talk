@@ -19,6 +19,16 @@ const TICKER_ITEMS = [
   "All views, just bring it",
 ];
 
+const TOPIC_SIGNS = [
+  { src: "/topic-corruption.png", alt: "Corruption topic graphic", cls: "left-[55%] top-[5%] w-36 -rotate-6 lg:w-44" },
+  { src: "/topic-sports-trash-talk.png", alt: "Sports Trash Talk topic sign", cls: "left-[70%] top-[3%] w-32 rotate-8 lg:w-40" },
+  { src: "/topic-mainstream-media.png", alt: "Mainstream media topic sign", cls: "left-[85%] top-[12%] w-36 -rotate-3 lg:w-44" },
+  { src: "/topic-police-ice.png", alt: "Police and ICE topic graphic", cls: "left-[54%] top-[76%] w-32 rotate-4 lg:w-40" },
+  { src: "/topic-artificial-intelligence.webp", alt: "Artificial intelligence topic graphic", cls: "left-[78%] top-[36%] w-40 -rotate-8 lg:w-52" },
+  { src: "/topic-left-right-wing.png", alt: "Left wing and right wing topic sign", cls: "left-[88%] top-[62%] w-36 rotate-6 lg:w-44" },
+  { src: "/topic-gender-question.png", alt: "Gender question topic sign", cls: "left-[70%] top-[70%] w-32 -rotate-4 lg:w-40" },
+] as const;
+
 function TickerStrip() {
   const row = TICKER_ITEMS.map((item) => (
     <span key={item} className="mx-6 inline-flex items-center gap-6">
@@ -55,6 +65,18 @@ export default async function HomePage() {
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#060606]/85 from-10% via-[#060606]/45 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#060606] via-transparent to-[#060606]/40" />
+        </div>
+
+        {/* Topic signs scattered across the right side, like they're pinned to the studio wall */}
+        <div className="pointer-events-none absolute inset-0 hidden md:block" aria-hidden>
+          {TOPIC_SIGNS.map((sign) => (
+            <div
+              key={sign.src}
+              className={`absolute aspect-[4/3] overflow-hidden rounded-lg border border-white/15 bg-[#0a0a0a] shadow-[0_18px_40px_rgba(0,0,0,0.6)] ${sign.cls}`}
+            >
+              <Image src={sign.src} alt="" fill sizes="208px" className="object-cover" />
+            </div>
+          ))}
         </div>
 
         <div className="relative mx-auto flex min-h-[68vh] max-w-6xl flex-col justify-center px-4 py-24 sm:px-6 sm:py-32">

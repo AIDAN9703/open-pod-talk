@@ -18,16 +18,6 @@ const SUPPORT_PHOTOS = [
   },
 ] as const;
 
-const TOPIC_SIGNS = [
-  { src: "/topic-corruption.png", alt: "Corruption topic graphic" },
-  { src: "/topic-sports-trash-talk.png", alt: "Sports Trash Talk topic sign" },
-  { src: "/topic-mainstream-media.png", alt: "Mainstream media topic sign" },
-  { src: "/topic-police-ice.png", alt: "Police and ICE topic graphic" },
-  { src: "/topic-left-right-wing.png", alt: "Left wing and right wing topic sign" },
-  { src: "/topic-gender-question.png", alt: "Gender question topic sign" },
-  { src: "/topic-artificial-intelligence.webp", alt: "Artificial intelligence topic graphic: a grim reaper with a laptop covered in AI logos", contain: true },
-] as const;
-
 export function StudioShowcase() {
   return (
     <section id="studio" className="scroll-mt-20 border-b border-white/10 py-16 sm:py-20 lg:py-24">
@@ -85,29 +75,6 @@ export function StudioShowcase() {
               </figcaption>
             </figure>
           ))}
-        </div>
-
-        {/* Topic signs — horizontal scroll strip */}
-        <div className="mt-12">
-          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-white/40">
-            On the table lately
-          </p>
-          <div className="-mx-4 mt-4 flex snap-x snap-mandatory gap-3 overflow-x-auto px-4 pb-2 sm:-mx-6 sm:px-6 [scrollbar-width:thin]">
-            {TOPIC_SIGNS.map((sign) => (
-              <figure
-                key={sign.src}
-                className="relative aspect-[4/3] w-44 shrink-0 snap-start overflow-hidden rounded-xl border border-white/10 sm:w-52"
-              >
-                <Image
-                  src={sign.src}
-                  alt={sign.alt}
-                  fill
-                  sizes="208px"
-                  className={"contain" in sign && sign.contain ? "object-contain bg-[#0a0a0a]" : "object-cover"}
-                />
-              </figure>
-            ))}
-          </div>
         </div>
       </div>
     </section>
