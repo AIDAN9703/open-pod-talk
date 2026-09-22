@@ -85,10 +85,6 @@ export default async function HomePage() {
             <br />
             <span className="text-[#ff6600]">Just bring it.</span>
           </h1>
-          <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/75 drop-shadow-[0_1px_12px_rgba(0,0,0,0.7)] sm:text-xl">
-            A moderated panel recording for people who lean right and people who
-            lean left. Real people, real arguments, no script.
-          </p>
           <div className="mt-9 flex w-full max-w-xl flex-col gap-3 sm:flex-row">
             <SubmitDialog label="Stream in →" variant="primary" currentTopic={broadcast.currentTopic} />
             <Link

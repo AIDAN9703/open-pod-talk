@@ -18,12 +18,19 @@ export function SiteNav({
 }) {
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-[#060606]/90 backdrop-blur-md">
-      <div className="mx-auto flex h-14 max-w-6xl items-center justify-between gap-3 px-4 sm:h-16 sm:px-6">
+      {/* Launch banner */}
+      <div className="bg-[#ff6600] px-4 py-1 text-center font-[family-name:var(--font-opt)] text-[11px] font-bold uppercase tracking-[0.2em] text-black">
+        Coming fall 2026 · applications open now
+      </div>
+      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-3 px-4 sm:h-[4.5rem] sm:px-6">
         <Link
           href="/"
-          aria-label="Open Pod Talk podcast, home"
+          aria-label="Mark Raymond, Open Pod Talk podcast, home"
           className="group inline-flex shrink-0 flex-col leading-none text-white transition hover:text-[#ffb380]"
         >
+          <span className="mb-0.5 font-[family-name:var(--font-opt)] text-[9px] font-bold uppercase tracking-[0.28em] text-[#ff6600] sm:text-[10px]">
+            Mark Raymond
+          </span>
           <span className="opt-display flex items-baseline text-xl sm:text-2xl">
             <span className="text-[1.25em] text-[#ff6600]">O</span>PEN
             <span className="ml-[0.28em] text-[1.25em] text-[#ff6600]">P</span>OD
