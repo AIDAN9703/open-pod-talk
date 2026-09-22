@@ -28,7 +28,7 @@ export function SiteNav({
           aria-label="Mark Raymond's Open Pod Talk podcast, home"
           className="group inline-flex shrink-0 flex-col leading-none text-white transition hover:text-[#ffb380]"
         >
-          <span className="mb-0.5 font-[family-name:var(--font-opt)] text-[9px] font-bold uppercase tracking-[0.28em] text-[#ff6600] sm:text-[10px]">
+          <span className="mb-0.5 font-[family-name:var(--font-opt)] text-[9px] font-bold uppercase tracking-[0.28em] text-white sm:text-[10px]">
             Mark Raymond's
           </span>
           <span className="opt-display flex items-baseline text-xl sm:text-2xl">
