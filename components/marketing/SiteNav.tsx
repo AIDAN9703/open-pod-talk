@@ -24,10 +24,10 @@ export function SiteNav({
           aria-label="Open Pod Talk podcast, home"
           className="group inline-flex shrink-0 flex-col leading-none text-white transition hover:text-[#ffb380]"
         >
-          <span className="opt-display text-2xl sm:text-[1.75rem]">
-            <span className="text-[#ff6600]">O</span>PEN{" "}
-            <span className="text-[#ff6600]">P</span>OD{" "}
-            <span className="text-[#ff6600]">T</span>ALK
+          <span className="opt-display flex items-baseline text-xl sm:text-2xl">
+            <span className="text-[1.25em] text-[#ff6600]">O</span>PEN
+            <span className="ml-[0.28em] text-[1.25em] text-[#ff6600]">P</span>OD
+            <span className="ml-[0.28em] text-[1.25em] text-[#ff6600]">T</span>ALK
           </span>
           {/* One word stretched to the full width of the line above */}
           <span
