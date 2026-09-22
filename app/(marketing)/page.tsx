@@ -69,12 +69,12 @@ export default async function HomePage() {
             lean left. Real people, real arguments, no script.
           </p>
           <div className="mt-9 flex w-full max-w-xl flex-col gap-3 sm:flex-row">
-            <SubmitDialog label="Stream in" variant="primary" currentTopic={broadcast.currentTopic} />
+            <SubmitDialog label="Stream in →" variant="primary" currentTopic={broadcast.currentTopic} />
             <Link
               href="/casting"
               className="flex w-full items-center justify-center rounded-2xl border border-white/25 bg-black/30 py-4 text-base font-semibold text-white/85 backdrop-blur-sm transition hover:border-white/45 hover:bg-white/5 active:scale-[0.99] sm:w-auto md:rounded-full md:px-8 md:py-3.5"
             >
-              In person
+              In person →
             </Link>
           </div>
         </div>
