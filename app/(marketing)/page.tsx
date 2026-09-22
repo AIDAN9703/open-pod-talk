@@ -20,13 +20,13 @@ const TICKER_ITEMS = [
 ];
 
 const TOPIC_SIGNS = [
-  { src: "/topic-corruption.png", alt: "Corruption topic graphic", cls: "right-[36%] top-[4%] w-40 lg:w-48" },
-  { src: "/topic-sports-trash-talk.png", alt: "Sports Trash Talk topic sign", cls: "right-[19%] top-[4%] w-40 lg:w-48" },
-  { src: "/topic-mainstream-media.png", alt: "Mainstream media topic sign", cls: "right-[2%] top-[4%] w-40 lg:w-48" },
-  { src: "/topic-police-ice.png", alt: "Police and ICE topic graphic", cls: "right-[36%] top-[68%] w-40 lg:w-48" },
-  { src: "/topic-artificial-intelligence.webp", alt: "Artificial intelligence topic graphic", cls: "right-[2%] top-[36%] w-40 lg:w-48" },
-  { src: "/topic-left-right-wing.png", alt: "Left wing and right wing topic sign", cls: "right-[2%] top-[68%] w-40 lg:w-48" },
-  { src: "/topic-gender-question.png", alt: "Gender question topic sign", cls: "right-[19%] top-[68%] w-40 lg:w-48" },
+  { src: "/topic-corruption.png", alt: "Corruption topic graphic", cls: "hidden lg:block left-[2%] top-[12%] w-44 lg:w-56" },
+  { src: "/topic-sports-trash-talk.png", alt: "Sports Trash Talk topic sign", cls: "right-[21%] top-[4%] w-44 lg:w-56" },
+  { src: "/topic-mainstream-media.png", alt: "Mainstream media topic sign", cls: "right-[2%] top-[4%] w-44 lg:w-56" },
+  { src: "/topic-police-ice.png", alt: "Police and ICE topic graphic", cls: "right-[21%] top-[72%] w-44 lg:w-56" },
+  { src: "/topic-artificial-intelligence.webp", alt: "Artificial intelligence topic graphic", cls: "right-[2%] top-[46%] w-44 lg:w-56" },
+  { src: "/topic-left-right-wing.png", alt: "Left wing and right wing topic sign", cls: "right-[2%] top-[72%] w-44 lg:w-56" },
+  { src: "/topic-gender-question.png", alt: "Gender question topic sign", cls: "hidden lg:block left-[2%] top-[56%] w-44 lg:w-56" },
 ] as const;
 
 function TickerStrip() {
@@ -72,16 +72,16 @@ export default async function HomePage() {
           {TOPIC_SIGNS.map((sign) => (
             <div
               key={sign.src}
-              className={`absolute aspect-[4/3] overflow-hidden rounded-lg ${sign.cls}`}
+              className={`absolute aspect-[4/3] overflow-hidden rounded-2xl ${sign.cls}`}
             >
               <Image src={sign.src} alt="" fill sizes="256px" className="object-contain" />
             </div>
           ))}
         </div>
 
-        <div className="relative mx-auto flex min-h-[68vh] max-w-6xl flex-col justify-center px-4 py-24 sm:px-6 sm:py-32">
+        <div className="relative mx-auto flex min-h-[68vh] max-w-6xl flex-col justify-center px-4 py-24 sm:px-6 sm:py-32 lg:pl-[20%]">
           <p className="opt-eyebrow">A podcast recorded in Pittsburgh</p>
-          <h1 className="opt-display mt-5 max-w-4xl text-[clamp(3.2rem,12vw,5rem)] text-white drop-shadow-[0_2px_24px_rgba(0,0,0,0.6)] lg:text-[6rem] xl:text-[6.75rem]">
+          <h1 className="opt-display mt-5 max-w-4xl text-[clamp(3.2rem,12vw,5rem)] text-white drop-shadow-[0_2px_24px_rgba(0,0,0,0.6)] lg:text-[5.5rem] xl:text-[6rem]">
             All views.
             <br />
             <span className="text-[#ff6600]">Just bring it.</span>
