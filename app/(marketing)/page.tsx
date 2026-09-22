@@ -20,13 +20,13 @@ const TICKER_ITEMS = [
 ];
 
 const TOPIC_SIGNS = [
-  { src: "/topic-corruption.png", alt: "Corruption topic graphic", cls: "hidden lg:block left-[2%] top-[12%] w-44 lg:w-56" },
-  { src: "/topic-sports-trash-talk.png", alt: "Sports Trash Talk topic sign", cls: "right-[21%] top-[4%] w-44 lg:w-56" },
-  { src: "/topic-mainstream-media.png", alt: "Mainstream media topic sign", cls: "right-[2%] top-[4%] w-44 lg:w-56" },
-  { src: "/topic-police-ice.png", alt: "Police and ICE topic graphic", cls: "right-[21%] top-[72%] w-44 lg:w-56" },
-  { src: "/topic-artificial-intelligence.webp", alt: "Artificial intelligence topic graphic", cls: "right-[2%] top-[46%] w-44 lg:w-56" },
-  { src: "/topic-left-right-wing.png", alt: "Left wing and right wing topic sign", cls: "right-[2%] top-[72%] w-44 lg:w-56" },
-  { src: "/topic-gender-question.png", alt: "Gender question topic sign", cls: "hidden lg:block left-[2%] top-[56%] w-44 lg:w-56" },
+  { src: "/topic-corruption.png", alt: "Corruption" },
+  { src: "/topic-sports-trash-talk.png", alt: "Sports trash talk" },
+  { src: "/topic-mainstream-media.png", alt: "Mainstream media" },
+  { src: "/topic-artificial-intelligence.webp", alt: "Artificial intelligence" },
+  { src: "/topic-police-ice.png", alt: "Police and ICE" },
+  { src: "/topic-left-right-wing.png", alt: "Left wing, right wing" },
+  { src: "/topic-gender-question.png", alt: "Gender" },
 ] as const;
 
 function TickerStrip() {
@@ -67,21 +67,20 @@ export default async function HomePage() {
           <div className="absolute inset-0 bg-gradient-to-t from-[#060606] via-transparent to-[#060606]/40" />
         </div>
 
-        {/* Topic signs scattered across the right side, like they're pinned to the studio wall */}
-        <div className="pointer-events-none absolute inset-0 hidden md:block" aria-hidden>
-          {TOPIC_SIGNS.map((sign) => (
-            <div
-              key={sign.src}
-              className={`absolute aspect-[4/3] overflow-hidden rounded-2xl ${sign.cls}`}
-            >
-              <Image src={sign.src} alt="" fill sizes="256px" className="object-contain" />
-            </div>
-          ))}
-        </div>
-
-        <div className="relative mx-auto flex min-h-[68vh] max-w-6xl flex-col justify-center px-4 py-24 sm:px-6 sm:py-32 lg:pl-[20%]">
+        <div className="relative mx-auto flex min-h-[68vh] max-w-6xl flex-col justify-center px-4 py-24 sm:px-6 sm:py-32">
+          {/* Topic signs in a row across the top, AI in the center */}
+          <ul className="mb-10 grid grid-cols-7 gap-2 sm:mb-14 sm:gap-3" aria-label="Topics on the table lately">
+            {TOPIC_SIGNS.map((sign) => (
+              <li
+                key={sign.src}
+                className="relative aspect-[4/3] overflow-hidden rounded-lg bg-black/30 shadow-[0_10px_30px_rgba(0,0,0,0.5)] sm:rounded-2xl"
+              >
+                <Image src={sign.src} alt={sign.alt} fill sizes="(max-width: 640px) 14vw, 160px" className="object-contain" />
+              </li>
+            ))}
+          </ul>
           <p className="opt-eyebrow">A podcast recorded in Pittsburgh</p>
-          <h1 className="opt-display mt-5 max-w-4xl text-[clamp(3.2rem,12vw,5rem)] text-white drop-shadow-[0_2px_24px_rgba(0,0,0,0.6)] lg:text-[5.5rem] xl:text-[6rem]">
+          <h1 className="opt-display mt-5 max-w-4xl text-[clamp(3.2rem,12vw,5rem)] text-white drop-shadow-[0_2px_24px_rgba(0,0,0,0.6)] lg:text-[6rem] xl:text-[6.75rem]">
             All views.
             <br />
             <span className="text-[#ff6600]">Just bring it.</span>
