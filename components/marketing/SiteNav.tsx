@@ -18,9 +18,23 @@ export function SiteNav({
 }) {
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-[#060606]/90 backdrop-blur-md">
-      {/* Launch banner */}
-      <div className="bg-[#ff6600] px-4 py-2 text-center font-[family-name:var(--font-opt)] text-xs font-extrabold uppercase tracking-[0.2em] text-black sm:text-sm">
-        Coming November 2026 · applications open now
+      {/* Launch banner: slow marquee */}
+      <div className="overflow-hidden bg-[#ff6600] py-2" aria-label="Coming November 2026">
+        <div className="opt-ticker-track opt-ticker-slow">
+          {[0, 1].map((copy) => (
+            <div key={copy} className="flex shrink-0" aria-hidden={copy === 1}>
+              {Array.from({ length: 6 }).map((_, i) => (
+                <span
+                  key={i}
+                  className="mx-8 inline-flex items-center gap-8 font-[family-name:var(--font-opt)] text-xs font-extrabold uppercase tracking-[0.2em] text-black sm:text-sm"
+                >
+                  Coming November 2026
+                  <span className="h-1.5 w-1.5 rounded-full bg-black/60" />
+                </span>
+              ))}
+            </div>
+          ))}
+        </div>
       </div>
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-3 px-4 sm:h-[4.5rem] sm:px-6">
         <Link

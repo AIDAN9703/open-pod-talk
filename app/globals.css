@@ -99,6 +99,10 @@ body {
   animation: opt-ticker 28s linear infinite;
 }
 
+.opt-ticker-slow {
+  animation-duration: 60s;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .nav-topic-marquee-track {
     animation: none;
