@@ -20,13 +20,13 @@ const TICKER_ITEMS = [
 ];
 
 const TOPIC_SIGNS = [
-  { src: "/topic-corruption.png", alt: "Corruption topic graphic", cls: "left-[55%] top-[5%] w-36 -rotate-6 lg:w-44" },
-  { src: "/topic-sports-trash-talk.png", alt: "Sports Trash Talk topic sign", cls: "left-[70%] top-[3%] w-32 rotate-8 lg:w-40" },
-  { src: "/topic-mainstream-media.png", alt: "Mainstream media topic sign", cls: "left-[85%] top-[12%] w-36 -rotate-3 lg:w-44" },
-  { src: "/topic-police-ice.png", alt: "Police and ICE topic graphic", cls: "left-[54%] top-[76%] w-32 rotate-4 lg:w-40" },
-  { src: "/topic-artificial-intelligence.webp", alt: "Artificial intelligence topic graphic", cls: "left-[78%] top-[36%] w-40 -rotate-8 lg:w-52" },
-  { src: "/topic-left-right-wing.png", alt: "Left wing and right wing topic sign", cls: "left-[88%] top-[62%] w-36 rotate-6 lg:w-44" },
-  { src: "/topic-gender-question.png", alt: "Gender question topic sign", cls: "left-[70%] top-[70%] w-32 -rotate-4 lg:w-40" },
+  { src: "/topic-corruption.png", alt: "Corruption topic graphic", cls: "right-[36%] top-[4%] w-40 lg:w-48" },
+  { src: "/topic-sports-trash-talk.png", alt: "Sports Trash Talk topic sign", cls: "right-[19%] top-[4%] w-40 lg:w-48" },
+  { src: "/topic-mainstream-media.png", alt: "Mainstream media topic sign", cls: "right-[2%] top-[4%] w-40 lg:w-48" },
+  { src: "/topic-police-ice.png", alt: "Police and ICE topic graphic", cls: "right-[36%] top-[68%] w-40 lg:w-48" },
+  { src: "/topic-artificial-intelligence.webp", alt: "Artificial intelligence topic graphic", cls: "right-[2%] top-[36%] w-40 lg:w-48" },
+  { src: "/topic-left-right-wing.png", alt: "Left wing and right wing topic sign", cls: "right-[2%] top-[68%] w-40 lg:w-48" },
+  { src: "/topic-gender-question.png", alt: "Gender question topic sign", cls: "right-[19%] top-[68%] w-40 lg:w-48" },
 ] as const;
 
 function TickerStrip() {
@@ -72,9 +72,9 @@ export default async function HomePage() {
           {TOPIC_SIGNS.map((sign) => (
             <div
               key={sign.src}
-              className={`absolute aspect-[4/3] overflow-hidden rounded-lg border border-white/15 bg-[#0a0a0a] shadow-[0_18px_40px_rgba(0,0,0,0.6)] ${sign.cls}`}
+              className={`absolute aspect-[4/3] overflow-hidden rounded-lg ${sign.cls}`}
             >
-              <Image src={sign.src} alt="" fill sizes="208px" className="object-cover" />
+              <Image src={sign.src} alt="" fill sizes="256px" className="object-contain" />
             </div>
           ))}
         </div>
