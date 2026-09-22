@@ -6,7 +6,7 @@
   --opt-orange: #ff6600;
   --opt-orange-soft: #ff8533;
   --opt-glow: rgba(255, 102, 0, 0.45);
-  /* Panel-debate accents (Tee & Tap sessions) */
+  /* Panel accents: red side / blue side */
   --side-red: #e5484d;
   --side-blue: #3e83f8;
 }

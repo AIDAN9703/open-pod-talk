@@ -207,7 +207,7 @@ function ComingSoon() {
           Episodes are coming
         </h2>
         <p className="mt-3 text-white/55">
-          We&apos;re building the caller queue and casting the first Tee &amp; Tap
+          We&apos;re building the caller queue and casting the first
           panels right now. Submit your topic and you could be in episode one.
         </p>
         <Link

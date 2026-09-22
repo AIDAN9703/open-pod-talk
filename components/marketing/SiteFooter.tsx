@@ -37,8 +37,8 @@ export function SiteFooter() {
               all views, just bring it!
             </p>
             <p className="mt-2 text-sm leading-relaxed text-white/45">
-              Live call-in podcast and 2v2 bar debates filmed at Tee &amp; Tap.
-              Real people, real arguments, zero script polish.
+              A moderated panel podcast recorded in Pittsburgh. Real people, real
+              arguments, zero script polish.
             </p>
           </div>
 
@@ -58,27 +58,9 @@ export function SiteFooter() {
               <Link href="/about" className="text-white/60 hover:text-white transition-colors">
                 About
               </Link>
-              <Link href="/" className="text-[#ff6600] hover:text-[#ff781a] transition-colors font-medium">
-                Call in →
+              <Link href="/casting" className="text-[#ff6600] hover:text-[#ff781a] transition-colors font-medium">
+                Apply to be a guest →
               </Link>
-            </div>
-
-            {/* Tee & Tap */}
-            <div className="flex flex-col gap-2">
-              <span className="text-xs font-semibold uppercase tracking-wider text-white/35">
-                Tee &amp; Tap
-              </span>
-              <Link href="/casting" className="text-white/60 hover:text-white transition-colors">
-                Casting call
-              </Link>
-              <a
-                href="https://teeandtaps.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white/60 hover:text-white transition-colors"
-              >
-                The venue ↗
-              </a>
             </div>
 
             {/* Listen */}

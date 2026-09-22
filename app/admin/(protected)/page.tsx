@@ -152,7 +152,7 @@ export default async function AdminPage({
                     <div className="text-xs text-white/40">{sub.email}</div>
                     {sub.source === "tee_tap_panel" ? (
                       <span className="mt-1 inline-flex rounded-full border border-[#ff6600]/40 bg-[#ff6600]/10 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-[#ffb380]">
-                        Tee &amp; Tap panel
+                        Panel
                       </span>
                     ) : sub.request_type === "in_person" ? (
                       <span className="mt-1 inline-flex rounded-full border border-emerald-500/35 bg-emerald-950/50 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-emerald-200">

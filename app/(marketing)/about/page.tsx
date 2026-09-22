@@ -5,7 +5,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "About — Open Pod Talk",
   description:
-    "What is Open Pod Talk? A live call-in podcast and Jubilee-style bar debate series filmed at Tee & Tap. All views, just bring it.",
+    "What is Open Pod Talk? A live call-in podcast and a moderated panel series recorded in Pittsburgh. All views, just bring it.",
 };
 
 const FAQ = [
@@ -14,16 +14,16 @@ const FAQ = [
     a: "Anyone 18 or older with a topic, a debate, a story, or a hot take. We read every submission — no topic is too niche or too blunt, as long as you can back it up.",
   },
   {
-    q: "What are the Tee & Tap sessions?",
-    a: "Our Jubilee-style panel series filmed inside Tee & Tap, the bar we own. We close the whole place for the taping, set a table with two conservatives and two liberals (plus the occasional wildcard), put our moderator Mark at the head of it, and film the debate. Apply at openpodtalk.com/casting — every seat is cast by hand.",
+    q: "What is the panel series?",
+    a: "A moderated panel recording in Pittsburgh. We set a table with two people who lean right and two who lean left (plus the occasional wildcard), put our moderator Mark at the head of it, and record the argument. Apply at openpodtalk.com/casting — every seat is cast by hand.",
   },
   {
-    q: "Do Tee & Tap panelists need debate experience?",
+    q: "Do panelists need debate experience?",
     a: "No. We're casting for conviction and composure, not credentials. If you can state what you believe and hold your ground for ten minutes of pushback without shouting, you're qualified.",
   },
   {
-    q: "Do Tee & Tap panelists get paid?",
-    a: "Yes. $50 an hour for your time on site, which works out to about $150 for the recording. Food and drinks are included. Show up sober — drinks at the table during the recording are fine — and you'll sign a standard appearance release and liability waiver before you sit down.",
+    q: "Do panelists get paid?",
+    a: "Yes. $35 an hour for your time on site, which works out to about $105 for a typical recording. Food and drinks are included, and we invite good panelists back. Show up sober — drinks at the table during the recording are fine — and you'll sign a standard appearance release and liability waiver before you sit down.",
   },
   {
     q: "What do I need to participate remotely?",
@@ -35,7 +35,7 @@ const FAQ = [
   },
   {
     q: "Do I have to be on camera?",
-    a: "Camera is optional for remote callers; audio is required. Tee & Tap panelists are on camera — that's the format. We record both video and audio on our end, locally on your device, so a network hiccup won't kill the quality.",
+    a: "Camera is optional for remote callers; audio is required. Panelists are on camera — that's the format. We record both video and audio on our end, locally on your device, so a network hiccup won't kill the quality.",
   },
   {
     q: "Where can I watch or listen?",
@@ -51,7 +51,7 @@ const FAQ = [
   },
   {
     q: "Can I be anonymous?",
-    a: "Remote callers can ask to use a first name only or a pseudonym on air. We still need your real contact info internally to send you the studio link and manage scheduling. Panelists appear on camera, so anonymity isn't possible for Tee & Tap tapings.",
+    a: "Remote callers can ask to use a first name only or a pseudonym on air. We still need your real contact info internally to send you the studio link and manage scheduling. Panelists appear on camera, so anonymity isn't possible for panel recordings.",
   },
 ];
 
@@ -79,9 +79,9 @@ export default function AboutPage() {
             <p className="mt-4 text-base leading-relaxed text-white/50">
               It runs in two formats. The live call-in show pulls callers from a
               public submission queue and puts them on mic with our hosts. And
-              the Tee &amp; Tap sessions put two conservatives and two liberals
-              at one table inside our bar with Mark moderating — whole venue
-              shut down, cameras rolling, Jubilee-style.
+              the panel recordings put two people who lean right and two who lean
+              left at one table with Mark moderating — in person, cameras
+              rolling, no script.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
@@ -94,7 +94,7 @@ export default function AboutPage() {
                 href="/casting"
                 className="inline-flex items-center justify-center rounded-full border border-white/20 px-7 py-3 text-sm font-medium text-white/80 transition hover:border-white/40 hover:bg-white/5"
               >
-                Join a Tee &amp; Tap panel
+                Join the panel
               </Link>
             </div>
           </div>
@@ -127,8 +127,8 @@ export default function AboutPage() {
                 body: "Callers submit a topic, get screened, and come on mic cold. We don't share questions in advance. The exchange is the product.",
               },
               {
-                title: "Tee & Tap panel tapings",
-                body: "We film 2v2 debates inside Tee & Tap — our bar, closed to the public for the shoot. Panels are cast from applications to keep both sides even.",
+                title: "Panel recordings",
+                body: "We record moderated 2v2 panels in Pittsburgh, closed to the public. Panels are cast from applications to keep both sides even.",
               },
               {
                 title: "Studio-grade recording",

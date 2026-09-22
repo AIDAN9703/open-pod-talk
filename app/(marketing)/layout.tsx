@@ -52,8 +52,8 @@ export default async function MarketingLayout({
               Want a seat in the studio?
             </h2>
             <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-white/55 md:mx-0">
-              We host in-person guests in the Pittsburgh area. Remote callers use{" "}
-              <span className="text-white/85">Stream me in!</span> at the top of the page.
+              Not sure the panel is for you but want to be on the show? Tell us who
+              you are and what you&apos;d talk about, and we&apos;ll find you a seat.
             </p>
             <div className="mt-5 flex justify-center md:justify-start">
               <div className="w-full max-w-md md:w-auto md:max-w-none">

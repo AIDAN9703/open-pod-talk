@@ -68,10 +68,10 @@ function PanelForm({
   return (
     <form action={action} className="space-y-5 px-6 pb-8 pt-5">
       <p className="text-sm leading-relaxed text-white/55">
-        Tee &amp; Tap panels are filmed in person at the bar. Pay is $50 an hour,
-        about $150 for the recording, with food and drinks included. We cast
-        every seat by hand to keep the table balanced — tell us where you stand
-        and why you can hold your ground.
+        Panels are recorded in person in Pittsburgh. Pay is $35 an hour, about
+        $105 for the recording, with food and drinks included, and we invite
+        good panelists back. We cast every seat by hand to keep the table
+        balanced — tell us where you stand and why you can hold your ground.
       </p>
 
       <div className="flex flex-col gap-2">
@@ -250,7 +250,7 @@ function PanelSuccess({ onClose }: { onClose: () => void }) {
         Application in
       </h3>
       <p className="mx-auto mt-3 max-w-sm text-sm text-white/60">
-        We cast each taping by hand to keep the sides even. If you make a panel,
+        We cast each recording by hand to keep the sides even. If you make a panel,
         we&apos;ll reach out with the date and everything you need to know.
       </p>
       <button
@@ -294,7 +294,7 @@ export function PanelApplyDialog({
     <PanelForm onSuccess={() => setSucceeded(true)} defaultLean={defaultLean} />
   );
 
-  const title = "Join a Tee & Tap panel";
+  const title = "Join the panel";
 
   if (isDesktop) {
     return (
@@ -308,7 +308,7 @@ export function PanelApplyDialog({
           <DialogHeader>
             <DialogTitle>{title}</DialogTitle>
             <DialogDescription className="sr-only">
-              Apply to be a panelist on the Tee &amp; Tap debate series. Tell us your
+              Apply to be a panelist on the Open Pod Talk panel. Tell us your
               perspective, your pitch, and your availability.
             </DialogDescription>
           </DialogHeader>
@@ -335,7 +335,7 @@ export function PanelApplyDialog({
         <DrawerHeader>
           <DrawerTitle>{title}</DrawerTitle>
           <p className="sr-only">
-            Apply to be a panelist on the Tee &amp; Tap debate series. Tell us your
+            Apply to be a panelist on the Open Pod Talk panel. Tell us your
             perspective, your pitch, and your availability.
           </p>
         </DrawerHeader>

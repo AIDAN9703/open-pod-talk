@@ -41,9 +41,8 @@ function InPersonForm({ onSuccess }: { onSuccess: () => void }) {
   return (
     <form action={action} className="space-y-5 px-6 pb-8 pt-5">
       <p className="text-sm leading-relaxed text-white/55">
-        We record in the Pittsburgh area. If you&apos;d like to join an episode in the studio, fill out
-        the form below. Joining remotely instead? Use{" "}
-        <span className="text-white/80">Stream me in!</span> on the home page.
+        We record in the Pittsburgh area. If you&apos;d like a seat in the studio outside the
+        panel format, fill out the form below and we&apos;ll be in touch.
       </p>
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">

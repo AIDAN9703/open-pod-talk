@@ -181,7 +181,7 @@ const panelistSchema = z.object({
 });
 
 /**
- * Tee & Tap panel casting application — Jubilee-style 2v2 tapings.
+ * Panel casting application — moderated 2v2 recordings.
  * Stored as request_type 'in_person' (applicants come to the venue) with
  * source 'tee_tap_panel' so it needs no new DB constraint value.
  */
@@ -227,7 +227,7 @@ export async function submitPanelist(
   const ipHash = createHash("sha256").update(ip + ipSalt).digest("hex");
 
   const leanLabel = PANEL_LEANS[data.lean];
-  const topic = `Tee & Tap panel — ${leanLabel}`;
+  const topic = `Panel — ${leanLabel}`;
   const topic_details = [
     `Panel side: ${leanLabel}`,
     `Their pitch:\n${data.pitch}`,

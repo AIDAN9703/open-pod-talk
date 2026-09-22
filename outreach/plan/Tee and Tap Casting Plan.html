@@ -1,0 +1,426 @@
+<title>Tee &amp; Tap Casting Plan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Geist:wght@400;500;600&display=swap">
+<style>
+  :root {
+    --bg: #050505; --surface: #0e0e0e; --surface-2: #161514; --line: rgba(255,255,255,0.10); --line-strong: rgba(255,255,255,0.18);
+    --ink: #f4f2ef; --ink-2: #c9c4bd; --muted: #8f8a83; --accent: #ff6600; --accent-soft: rgba(255,102,0,0.14); --accent-ink: #ffb380;
+    --red: #e5484d; --red-soft: rgba(229,72,77,0.16); --red-ink: #ffb4b6; --blue: #3e83f8; --blue-soft: rgba(62,131,248,0.16); --blue-ink: #b9d0ff;
+    --warn-soft: rgba(255,196,0,0.12); --warn-ink: #ffd666; --shadow: 0 24px 64px rgba(0,0,0,0.5);
+    color-scheme: dark;
+  }
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) {
+      --bg: #faf7f3; --surface: #ffffff; --surface-2: #f2ede6; --line: rgba(20,14,8,0.10); --line-strong: rgba(20,14,8,0.20);
+      --ink: #15110d; --ink-2: #3d3730; --muted: #6f685f; --accent: #e65c00; --accent-soft: rgba(230,92,0,0.10); --accent-ink: #b84800;
+      --red: #c8383e; --red-soft: rgba(200,56,62,0.10); --red-ink: #a12b30; --blue: #2b67cf; --blue-soft: rgba(43,103,207,0.10); --blue-ink: #1f4f9f;
+      --warn-soft: rgba(214,150,0,0.12); --warn-ink: #7a5300; --shadow: 0 18px 48px rgba(40,25,10,0.10);
+      color-scheme: light;
+    }
+  }
+  :root[data-theme="light"] {
+    --bg: #faf7f3; --surface: #ffffff; --surface-2: #f2ede6; --line: rgba(20,14,8,0.10); --line-strong: rgba(20,14,8,0.20);
+    --ink: #15110d; --ink-2: #3d3730; --muted: #6f685f; --accent: #e65c00; --accent-soft: rgba(230,92,0,0.10); --accent-ink: #b84800;
+    --red: #c8383e; --red-soft: rgba(200,56,62,0.10); --red-ink: #a12b30; --blue: #2b67cf; --blue-soft: rgba(43,103,207,0.10); --blue-ink: #1f4f9f;
+    --warn-soft: rgba(214,150,0,0.12); --warn-ink: #7a5300; --shadow: 0 18px 48px rgba(40,25,10,0.10);
+    color-scheme: light;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: "Geist", "Helvetica Neue", Arial, sans-serif; font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 48px 24px 96px; display: grid; grid-template-columns: 1fr; gap: 40px; }
+  @media (min-width: 960px) { .wrap { grid-template-columns: 200px minmax(0, 1fr); gap: 56px; } }
+  .display { font-family: "Montserrat", "Arial Black", Arial, sans-serif; font-weight: 800; letter-spacing: -0.02em; line-height: 1.05; text-wrap: balance; }
+  .eyebrow { font-family: "Montserrat", Arial, sans-serif; font-weight: 700; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); }
+  h1 { font-size: clamp(2.2rem, 5vw, 3.4rem); margin: 10px 0 14px; }
+  h2 { font-size: 1.45rem; margin: 0 0 12px; }
+  h3 { font-family: "Montserrat", Arial, sans-serif; font-weight: 700; font-size: 0.95rem; letter-spacing: 0.01em; margin: 24px 0 8px; color: var(--ink); }
+  p { margin: 0 0 14px; max-width: 68ch; color: var(--ink-2); }
+  p strong, li strong { color: var(--ink); font-weight: 600; }
+  ul, ol { margin: 0 0 16px; padding-left: 22px; color: var(--ink-2); max-width: 68ch; }
+  li { margin-bottom: 6px; }
+  li::marker { color: var(--accent); font-weight: 600; }
+  a { color: var(--accent-ink); text-decoration: underline; text-decoration-color: color-mix(in srgb, var(--accent) 45%, transparent); text-underline-offset: 3px; }
+  a:hover { color: var(--ink); }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+  code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 0.9em; background: var(--surface-2); padding: 1px 6px; border-radius: 4px; color: var(--ink); }
+
+  /* side nav */
+  nav.toc { display: none; }
+  @media (min-width: 960px) {
+    nav.toc { display: block; position: sticky; top: 32px; align-self: start; font-size: 13px; }
+    nav.toc ol { list-style: none; padding: 0; margin: 12px 0 0; }
+    nav.toc li { margin: 0; }
+    nav.toc a { display: block; padding: 6px 0 6px 12px; color: var(--muted); text-decoration: none; border-left: 2px solid var(--line); }
+    nav.toc a:hover { color: var(--ink); border-left-color: var(--accent); }
+  }
+
+  header.hero { grid-column: 1 / -1; padding-bottom: 28px; border-bottom: 1px solid var(--line); }
+  .lede { font-size: 1.1rem; color: var(--ink-2); max-width: 62ch; }
+  .seats { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin: 22px 0 6px; }
+  .seat { font-family: "Montserrat", Arial, sans-serif; font-weight: 800; font-size: 13px; letter-spacing: 0.04em; padding: 7px 12px; border-radius: 999px; border: 1px solid; }
+  .seat.r { color: var(--red-ink); background: var(--red-soft); border-color: color-mix(in srgb, var(--red) 55%, transparent); }
+  .seat.b { color: var(--blue-ink); background: var(--blue-soft); border-color: color-mix(in srgb, var(--blue) 55%, transparent); }
+  .seat.m { color: var(--accent-ink); background: var(--accent-soft); border-color: color-mix(in srgb, var(--accent) 55%, transparent); }
+  .vs { font-family: "Montserrat", Arial, sans-serif; font-weight: 900; color: var(--muted); font-size: 13px; padding: 0 4px; }
+  .facts { display: flex; flex-wrap: wrap; gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; margin-top: 22px; }
+  .fact { flex: 1 1 170px; background: var(--surface); padding: 14px 16px; }
+  .fact .k { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+  .fact .v { font-family: "Montserrat", Arial, sans-serif; font-weight: 700; font-size: 1.05rem; margin-top: 4px; color: var(--ink); }
+
+  main { min-width: 0; display: grid; gap: 44px; }
+  section { min-width: 0; }
+  .scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
+  table { border-collapse: collapse; width: 100%; min-width: 640px; font-size: 14px; }
+  th, td { text-align: left; vertical-align: top; padding: 11px 14px; border-bottom: 1px solid var(--line); color: var(--ink-2); }
+  th { font-family: "Montserrat", Arial, sans-serif; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); background: var(--surface-2); font-weight: 700; }
+  tr:last-child td { border-bottom: 0; }
+  td.num { font-variant-numeric: tabular-nums; white-space: nowrap; color: var(--ink); font-weight: 500; }
+  td strong { color: var(--ink); font-weight: 600; }
+  .tag { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 2px 8px; border-radius: 999px; border: 1px solid; white-space: nowrap; }
+  .tag.r { color: var(--red-ink); border-color: color-mix(in srgb, var(--red) 55%, transparent); background: var(--red-soft); }
+  .tag.b { color: var(--blue-ink); border-color: color-mix(in srgb, var(--blue) 55%, transparent); background: var(--blue-soft); }
+  .tag.o { color: var(--accent-ink); border-color: color-mix(in srgb, var(--accent) 55%, transparent); background: var(--accent-soft); }
+  .tag.n { color: var(--muted); border-color: var(--line-strong); }
+
+  .note { border-left: 3px solid var(--accent); background: var(--accent-soft); padding: 14px 18px; border-radius: 0 10px 10px 0; margin: 18px 0; max-width: 72ch; }
+  .note p { margin: 0; color: var(--ink); }
+  .note.warn { border-left-color: var(--warn-ink); background: var(--warn-soft); }
+  .note.warn p { color: var(--ink); }
+
+  .steps { counter-reset: step; list-style: none; padding: 0; margin: 0; max-width: 72ch; }
+  .steps li { counter-increment: step; position: relative; padding: 0 0 18px 44px; }
+  .steps li::before { content: counter(step); position: absolute; left: 0; top: 2px; width: 28px; height: 28px; border-radius: 999px; background: var(--accent); color: #050505; font-family: "Montserrat", Arial, sans-serif; font-weight: 800; font-size: 13px; display: grid; place-items: center; }
+  .steps li::after { content: ""; position: absolute; left: 13.5px; top: 32px; bottom: 4px; width: 1px; background: var(--line-strong); }
+  .steps li:last-child::after { display: none; }
+  .steps b { display: block; color: var(--ink); font-weight: 600; margin-bottom: 2px; }
+  .steps span { color: var(--ink-2); }
+
+  .week { display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 0 20px; padding: 16px 0; border-top: 1px solid var(--line); }
+  .week:last-child { border-bottom: 1px solid var(--line); }
+  .week .when { font-family: "Montserrat", Arial, sans-serif; font-weight: 700; font-size: 13px; color: var(--ink); line-height: 1.4; }
+  .week .when small { display: block; color: var(--muted); font-weight: 500; font-family: "Geist", Arial, sans-serif; }
+  .week ul { margin: 0; }
+  @media (max-width: 560px) { .week { grid-template-columns: 1fr; gap: 6px; } table { min-width: 560px; } }
+
+  .rhythm { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+  .day { background: var(--surface); padding: 12px; min-height: 120px; font-size: 13px; color: var(--ink-2); }
+  .day .d { font-family: "Montserrat", Arial, sans-serif; font-weight: 800; font-size: 12px; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 6px; }
+  .day.tape { background: var(--accent-soft); }
+  .day.tape .d { color: var(--accent); }
+  @media (max-width: 760px) { .rhythm { grid-template-columns: repeat(2, minmax(0, 1fr)); } .day { min-height: 0; } }
+
+  .files li { margin-bottom: 4px; }
+  .files code { font-size: 0.85em; }
+  footer { grid-column: 1 / -1; border-top: 1px solid var(--line); padding-top: 20px; color: var(--muted); font-size: 13px; }
+  @media print { nav.toc { display: none; } .wrap { grid-template-columns: 1fr; } body { background: #fff; color: #111; } }
+  @media (prefers-reduced-motion: no-preference) { a { transition: color 120ms ease; } }
+</style>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="eyebrow">Open Pod Talk · Guest outreach plan · September 2026</div>
+    <h1 class="display">Tee &amp; Tap Casting Plan</h1>
+    <p class="lede">How we find, screen, paper, and seat two conservatives and two liberals per taping for The Tee &amp; Tap Sessions, with Mark moderating. Built for Aidan and Mark to run from, and for the floor manager and bar staff to read the parts that concern them.</p>
+    <div class="seats">
+      <span class="seat r">R1</span><span class="seat r">R2</span>
+      <span class="vs">VS</span>
+      <span class="seat b">L1</span><span class="seat b">L2</span>
+      <span class="vs">+</span>
+      <span class="seat m">MARK · MODERATOR</span>
+    </div>
+    <div class="facts">
+      <div class="fact"><div class="k">Booked per taping</div><div class="v">4 seats + 2 alternates</div></div>
+      <div class="fact"><div class="k">Where</div><div class="v">Tee &amp; Tap, taping nights</div></div>
+      <div class="fact"><div class="k">First taping target</div><div class="v">Sep 29</div></div>
+      <div class="fact"><div class="k">Applications needed, month one</div><div class="v">~120 (60 per side)</div></div>
+      <div class="fact"><div class="k">Paperwork deadline</div><div class="v">48 hours before call</div></div>
+      <div class="fact"><div class="k">Pay</div><div class="v">$35 / hour, food &amp; drinks</div></div>
+    </div>
+  </header>
+
+  <nav class="toc" aria-label="Sections">
+    <div class="eyebrow">Contents</div>
+    <ol>
+      <li><a href="#format">1. The format on paper</a></li>
+      <li><a href="#math">2. Pipeline math</a></li>
+      <li><a href="#channels">3. Where the people come from</a></li>
+      <li><a href="#screening">4. Screening and vetting</a></li>
+      <li><a href="#legal">5. Paperwork and safety</a></li>
+      <li><a href="#timeline">6. Four-week timeline</a></li>
+      <li><a href="#rhythm">7. The weekly rhythm</a></li>
+      <li><a href="#roles">8. Who does what</a></li>
+      <li><a href="#metrics">9. What we measure</a></li>
+      <li><a href="#site">10. Website changes needed</a></li>
+      <li><a href="#risks">11. Risks and how we handle them</a></li>
+      <li><a href="#files">12. What is in the folder</a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <section id="format">
+      <div class="eyebrow">Section 1</div>
+      <h2 class="display">The format on paper</h2>
+      <p>Two conservatives across from two liberals at one table in the middle of Tee &amp; Tap, with Mark in the moderator's chair. A claim goes up, each side takes a position, and the other side pushes back. Mark keeps it fair, keeps it moving, and has the only hand that can stop it. No script, no pre-cleared talking points, and the camera does not stop.</p>
+      <p>A taping is about three hours door to door: 45 minutes of check-in and paperwork verification, a 15-minute seat-and-sound check, roughly 90 minutes of recording across four or five prompts, and a short wrap. That yields one 60-minute episode plus 8 to 12 clips.</p>
+      <p><strong>Cadence.</strong> Start with one taping every other week so the bench can catch up with the schedule, then move to weekly once each side has at least eight pre-screened people ready to sit. Pick the night by the bar's calendar; nothing in this plan depends on which night of the week it is.</p>
+      <h3>What a good table looks like</h3>
+      <p>Within each side of two, cast for two different jobs rather than two copies of one person:</p>
+      <ul>
+        <li><strong>The anchor</strong> is calm and articulate, the person the other side has to take seriously. Usually the oldest at the table.</li>
+        <li><strong>The heat</strong> is passionate and quick, willing to interrupt, and the reason the clips travel.</li>
+        <li><strong>The story</strong> is the swap: when the night's prompts fit, replace the heat with someone who has standing from their own life, a nurse on healthcare, a veteran on foreign policy, a landlord or a tenant on housing.</li>
+      </ul>
+      <p>Mix ages, neighborhoods, and backgrounds inside each side. Cast both sides before confirming either, so a strong red bench does not pull a weak blue one onto camera.</p>
+      <div class="note"><p><strong>Site, ads, and packet now say the same thing.</strong> Two-versus-two with Mark moderating, $35 an hour and about $105 for the recording, food and drinks included, show up sober. Any future change to format, pay, or the alcohol rule goes to all three at once.</p></div>
+    </section>
+
+    <section id="math">
+      <div class="eyebrow">Section 2</div>
+      <h2 class="display">Pipeline math</h2>
+      <p>Every taping books six people: four seats and one alternate per side. The alternates come to the bar, eat, and get a small show-up fee whether or not they sit. The funnel assumptions below are planning estimates for a first-time casting effort in a mid-sized city, not measurements. Replace them with real numbers after the first two weeks.</p>
+      <div class="scroll"><table>
+        <thead><tr><th>Stage</th><th>Assumed conversion</th><th>Per 100 applications</th><th>Why it leaks</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Applications</strong> received</td><td class="num">—</td><td class="num">100</td><td>Ads, groups, org referrals, the site form.</td></tr>
+          <tr><td><strong>Screening call</strong> booked and attended</td><td class="num">45%</td><td class="num">45</td><td>Half of applicants never answer a follow-up. Send the invite within 48 hours and offer evening slots.</td></tr>
+          <tr><td><strong>Passed</strong> screening (score 18 of 25 or better)</td><td class="num">40%</td><td class="num">18</td><td>Can't state the other side's argument, can't hold composure, or won't accept the release.</td></tr>
+          <tr><td><strong>Cast and signed</strong> within the 48-hour deadline</td><td class="num">75%</td><td class="num">14</td><td>Cold feet about being on camera with their name, or scheduling.</td></tr>
+          <tr><td><strong>Showed up</strong> sober and on time</td><td class="num">85%</td><td class="num">12</td><td>Life. This is what the alternates are for.</td></tr>
+        </tbody>
+      </table></div>
+      <p style="margin-top:14px">About one in eight applicants ends up in a chair. To fill six chairs from a standing start you need roughly 50 applications per taping cycle, about 25 per side. The number falls fast once a bench exists: from the second taping on you are replacing two or three people, not six, because passed-but-unseated applicants and returning panelists carry over.</p>
+      <div class="scroll"><table>
+        <thead><tr><th>Month-one target</th><th><span class="tag r">Conservative</span></th><th><span class="tag b">Liberal</span></th><th>Total</th></tr></thead>
+        <tbody>
+          <tr><td>Applications</td><td class="num">60</td><td class="num">60</td><td class="num">120</td></tr>
+          <tr><td>Screening calls completed</td><td class="num">27</td><td class="num">27</td><td class="num">54</td></tr>
+          <tr><td>Seat-ready bench (passed screening)</td><td class="num">10–11</td><td class="num">10–11</td><td class="num">21</td></tr>
+          <tr><td>Tapings that bench supports, with reuse</td><td class="num" colspan="3">4 tapings (two in month one, two in month two) before new applications are needed</td></tr>
+        </tbody>
+      </table></div>
+      <p style="margin-top:14px">Watch the two sides separately from day one. In Pittsburgh, and on Facebook in particular, expect liberal applications to come in faster; the conservative bench is the one that needs the organization outreach in Section 3 and the red-only ad creative.</p>
+    </section>
+
+    <section id="channels">
+      <div class="eyebrow">Section 3</div>
+      <h2 class="display">Where the people come from</h2>
+      <p>Every channel points at one place: the existing panel application on the homepage, reached through the short link <code>openpodtalk.com/casting</code>, which is live. Replies that come in through Craigslist relay email or Facebook messages arrive at openpodtalk@gmail.com and get pushed to the same form so every applicant lands in the admin dashboard with the same fields.</p>
+      <div class="scroll"><table>
+        <thead><tr><th>Channel</th><th>Expected share of applications</th><th>Quality</th><th>How to work it</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Facebook groups and the Page</strong></td><td class="num">~40%</td><td><span class="tag n">Mixed</span></td><td>Pinned Page post, an Event, and permissioned posts in 10 to 15 neighborhood, campus, politics, and podcast groups. Answer every comment within the hour; comment threads are where the skeptics turn into applicants.</td></tr>
+          <tr><td><strong>Boosted post</strong></td><td class="num">~20%</td><td><span class="tag n">Mixed</span></td><td>Meta will likely classify this as a social-issues ad. Start identity authorization a week early, run the disclaimer as "Paid for by Open Pod Talk," and run the red and blue creatives as separate ads so each self-selects its audience. About $10 a day per creative for two weeks.</td></tr>
+          <tr><td><strong>Craigslist</strong> (gigs &gt; talent)</td><td class="num">~15%</td><td><span class="tag n">Uneven</span></td><td>One post, one category, renewed every 48 hours, alternating the long and short listings. Small posting fee. Skews older and more suburban, which the panel needs.</td></tr>
+          <tr><td><strong>Organizations</strong></td><td class="num">~15%</td><td><span class="tag o">Highest</span></td><td>People who already show up to argue in person. Email twelve groups, six per side, follow up once, offer to attend a meeting. Braver Angels, campus political and debate clubs, young-professional party organizations, law-school societies.</td></tr>
+          <tr><td><strong>Campus, flyers, Reddit, Nextdoor, referrals</strong></td><td class="num">~10%</td><td><span class="tag o">High</span></td><td>Flyers with a QR code at the bar and near campuses; a mod-approved Reddit post; Nextdoor for the suburbs. Ask every cast panelist to refer one person from the other side.</td></tr>
+          <tr><td><strong>Existing caller database</strong></td><td class="num">Bonus</td><td><span class="tag o">High</span></td><td>The admin dashboard already holds callers who asked to come in-studio. Filter for in-person requests and invite them to apply; they have already accepted a release once.</td></tr>
+        </tbody>
+      </table></div>
+      <p style="margin-top:14px">The copy for all of these, the organization target list, and the applicant email templates are in the Ads and Outreach Kit in the folder.</p>
+    </section>
+
+    <section id="screening">
+      <div class="eyebrow">Section 4</div>
+      <h2 class="display">Screening and vetting</h2>
+      <p>The screening call is where the show is actually cast. It is also the only line of defense against the two things that can sink an episode: someone who cannot hold their composure, and someone who is there to hurt a specific person.</p>
+      <ol class="steps">
+        <li><b>Application lands</b><span>The form captures side, contact, pitch, availability, socials, and an optional video. Read the pitch the same day. Anyone who cannot write three sentences about what they believe is a pass.</span></li>
+        <li><b>Screening invite within 48 hours</b><span>Send the scheduling link and the housekeeping paragraph: filmed and published, standard release, show up sober, pay. Anyone who bounces off that paragraph saved everyone a call.</span></li>
+        <li><b>The 15-minute video call</b><span>Six questions, scored 1 to 5 on conviction, composure, clarity, camera, and fit. The script and the red flags are in the kit. Cast at 18 or more of 25, bench at 15 to 17.</span></li>
+        <li><b>The ten-minute search</b><span>Google the name plus Pittsburgh. Look at the public socials they gave you. You are looking for threats, harassment, doxxing, a current candidacy or party job they did not disclose, or a stated plan to "expose" someone. Note what you found on the submission in the admin dashboard.</span></li>
+        <li><b>Cast the table, both sides at once</b><span>Anchor and heat on each side, one alternate per side, ages and backgrounds mixed. Mark signs off on the six names.</span></li>
+        <li><b>Confirmation email with the e-sign envelope</b><span>Documents 01 through 05 in one envelope, due 48 hours before call time. Unsigned at the deadline means the alternate is promoted and a new alternate is called from the bench.</span></li>
+        <li><b>Day-before text</b><span>Call time, address, photo ID, wardrobe, no drinking. Reply YES to confirm. No reply by noon on taping day means the alternate is warned to be ready.</span></li>
+      </ol>
+    </section>
+
+    <section id="legal">
+      <div class="eyebrow">Section 5</div>
+      <h2 class="display">Paperwork and safety</h2>
+      <p>The legal packet in the folder has nine documents. Panelists sign five of them; the rest are for the venue, the door, and the floor manager. The packet is drafted for Pennsylvania, which is an all-party-consent state for recording and enforces liability waivers only when they are clear and conspicuous. <strong>A Pennsylvania attorney should review it before the first signature.</strong></p>
+      <div class="scroll"><table>
+        <thead><tr><th>Document</th><th>Who</th><th>When</th></tr></thead>
+        <tbody>
+          <tr><td><strong>01</strong> Appearance Release and Consent</td><td>Panelist and Producer</td><td>E-sign at casting; 48-hour deadline; confirmed verbally on camera</td></tr>
+          <tr><td><strong>02</strong> Liability Waiver, Assumption of Risk, Indemnity</td><td>Panelist</td><td>Same envelope</td></tr>
+          <tr><td><strong>03</strong> Code of Conduct</td><td>Panelist</td><td>Same envelope; summary read aloud at the door</td></tr>
+          <tr><td><strong>04</strong> Confidentiality and Pre-Release</td><td>Panelist and Producer</td><td>Same envelope</td></tr>
+          <tr><td><strong>05</strong> Information and Emergency Contact Form</td><td>Panelist; staff completes the ID box</td><td>Same envelope; ID checked at the door</td></tr>
+          <tr><td><strong>06</strong> Filming Notice door sign</td><td>Posted</td><td>Every entrance, every taping, photographed</td></tr>
+          <tr><td><strong>07</strong> Location Release, Tee &amp; Tap to Open Pod Talk</td><td>Venue owner and Producer</td><td>Once, before the first taping, then yearly</td></tr>
+          <tr><td><strong>08</strong> Signing Checklist and Day-of Sheet</td><td>Floor manager</td><td>One per taping; includes Mark's consent script and the incident log</td></tr>
+          <tr><td><strong>00</strong> Read Me First</td><td>You and the attorney</td><td>Blanks to fill, Pennsylvania notes, insurance to ask about</td></tr>
+        </tbody>
+      </table></div>
+      <h3>Three layers of consent</h3>
+      <p>Written, at the door, and on camera. The e-signature is the contract. The floor manager confirms it at check-in against a photo ID and reads the eight-line conduct summary. Then Mark reads the consent script from the Day-of Sheet before the first prompt and each panelist says their name and "I consent" on the recording, and the timecode goes on the sheet. If anyone declines at that moment, the alternate sits and the script runs again.</p>
+      <h3>Show up sober, drinks at the table</h3>
+      <p>Panelists arrive sober and are checked at the door. Once recording starts, the bar may serve them at the table under its normal responsible-service rules, and Mark or the floor manager can cut anyone off or pull them from the set. This is the packet's biggest liability question: people drinking on camera during a political argument is exactly what the waiver is trying to cover. The attorney should read the alcohol sections of the waiver, the code of conduct, and the location release with that in mind. Bar staff are briefed not to serve panelist lanyards before recording starts.</p>
+      <h3>Insurance to arrange before the first taping</h3>
+      <ul>
+        <li><strong>Media liability</strong> covering defamation, privacy, and intellectual property claims from what panelists say on air. Most small producers skip it; a political debate show should not.</li>
+        <li><strong>General liability</strong> for the production, with Tee &amp; Tap named as additional insured on taping days. Check whether the bar's own policy excludes filming.</li>
+        <li><strong>Equipment</strong> coverage for the cameras and audio gear on location.</li>
+      </ul>
+      <div class="note warn"><p><strong>Two entities, two signatures.</strong> Even if the same people own Open Pod Talk and Tee &amp; Tap, sign the Location Release. It keeps the bar's liquor liability and the show's media liability from bleeding into each other, and it is the first document a broker will ask for.</p></div>
+    </section>
+
+    <section id="timeline">
+      <div class="eyebrow">Section 6</div>
+      <h2 class="display">Four-week timeline</h2>
+      <p>Dated from today, Monday, September 8, 2026, with the first taping targeted for September 29. If the attorney review runs long, everything shifts a week; do not start posting until the packet is final, because the ads promise a "standard release" and the confirmation email attaches it.</p>
+      <div class="week">
+        <div class="when">Week 0<small>Sep 8 – 14</small></div>
+        <ul>
+          <li>Send the legal packet to a Pennsylvania attorney; fill every yellow blank first (entity names, address, payment method, Mark's full name).</li>
+          <li>Pay is set at $35 an hour for time on site, about $105 for a typical taping, and is already in the release, the ads, and the emails. Still to decide: the alternate show-up fee and the payment method. Ask the attorney whether a flat $105 per taping is cleaner than an hourly rate, since hourly pay reads more like wages.</li>
+          <li>The casting inbox is <code>openpodtalk@gmail.com</code> and the <code>/casting</code> short link is live; pick the e-sign tool and load the five panelist documents as one template envelope.</li>
+          <li>Start Meta ad authorization (government ID, mailed or emailed code). Create the Facebook Event for the casting window.</li>
+          <li>Photograph the table set-up in the bar with red and blue side lighting for ad creative and the pinned post.</li>
+          <li>Ship the website copy changes in Section 10.</li>
+        </ul>
+      </div>
+      <div class="week">
+        <div class="when">Week 1<small>Sep 15 – 21</small></div>
+        <ul>
+          <li>Monday: post Craigslist Ad A; pin the Page post; publish the Event.</li>
+          <li>Tuesday and Wednesday: message admins of 15 groups; post where permitted. Email 12 organizations, six per side.</li>
+          <li>Thursday: boosts go live if authorized. Screening calls begin; hold two evening blocks.</li>
+          <li>Hang flyers at the bar and near the Oakland campuses; ask r/pittsburgh mods where a casting post belongs.</li>
+        </ul>
+      </div>
+      <div class="week">
+        <div class="when">Week 2<small>Sep 22 – 28</small></div>
+        <ul>
+          <li>Target 30 screening calls by Thursday. Renew Craigslist every 48 hours, alternating Ad A and Ad B.</li>
+          <li>Follow up with every organization that has not replied.</li>
+          <li><strong>Friday, Sep 26:</strong> cast Taping 1, two per side plus one alternate per side; Mark signs off; send confirmation emails with the e-sign envelope.</li>
+          <li><strong>Saturday, Sep 27, end of day:</strong> 48-hour paperwork deadline. Promote alternates for anyone unsigned.</li>
+          <li>Sunday: day-before texts; brief the floor manager and bar manager; print the door signs and the Day-of Sheet.</li>
+        </ul>
+      </div>
+      <div class="week">
+        <div class="when">Week 3<small>Sep 29 – Oct 5</small></div>
+        <ul>
+          <li><strong>Sep 29: Taping 1.</strong> Signs up, phones pouched, consent on camera, incident log open, two backups of the footage before anyone leaves.</li>
+          <li>Next day: thank-you emails with the embargo reminder and the release date; everyone paid.</li>
+          <li>Two days after: 30-minute post-mortem with Mark. What did the funnel actually convert at? Which side is thin? Update the assumptions in Section 2.</li>
+          <li>Screening continues; cast Taping 2 for the week of October 13, or pull it forward a week if the bench allows.</li>
+        </ul>
+      </div>
+      <div class="week">
+        <div class="when">Week 4<small>Oct 6 – 12</small></div>
+        <ul>
+          <li>Pitch the local press with stills from Taping 1: a Pittsburgh bar that shuts down for cross-party debates is a story, and the casting link rides along.</li>
+          <li>Publish the first clips if the edit is ready; every clip carries the casting link in the caption.</li>
+          <li>Ask each Taping 1 panelist for one referral from the other side.</li>
+          <li>Decide on weekly cadence based on bench depth: eight seat-ready per side is the threshold.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="rhythm">
+      <div class="eyebrow">Section 7</div>
+      <h2 class="display">The weekly rhythm</h2>
+      <p>Once the first taping is done, casting becomes a routine. Count backwards from taping night, whichever night of the week it lands on.</p>
+      <div class="rhythm">
+        <div class="day"><div class="d">T−4</div>Cast the taping, both sides and alternates. Mark approves. Confirmations and e-sign envelopes out.</div>
+        <div class="day"><div class="d">T−3</div>Screening calls for the taping after this one. Read new applications.</div>
+        <div class="day"><div class="d">T−2</div>48-hour paperwork deadline at end of day. Promote alternates as needed.</div>
+        <div class="day"><div class="d">T−1</div>Day-before texts. Brief the floor manager and bar manager. Print signs and the sheet.</div>
+        <div class="day tape"><div class="d">TAPING</div>Floor manager runs the Day-of Sheet; Mark runs the table.</div>
+        <div class="day"><div class="d">T+1</div>Thank-yous out, everyone paid, footage backed up to two drives.</div>
+        <div class="day"><div class="d">T+2</div>Post-mortem. Renew Craigslist. Refresh the pinned post. Update funnel numbers.</div>
+      </div>
+    </section>
+
+    <section id="roles">
+      <div class="eyebrow">Section 8</div>
+      <h2 class="display">Who does what</h2>
+      <div class="scroll"><table>
+        <thead><tr><th>Role</th><th>Owns</th><th>On taping day</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Mark</strong> — moderator</td><td>Final approval of every cast list and prompt set. The house rules at the table.</td><td>Reads the consent script on camera. Only person who can stop a segment or remove a panelist from the table.</td></tr>
+          <tr><td><strong>Aidan</strong> — casting lead</td><td>Ads, the casting inbox, screening calls, the vetting search, e-sign envelopes, confirmations, the bench spreadsheet, weekly numbers.</td><td>Producer on the floor. Decides on late arrivals and alternates. Signs off the Day-of Sheet with the floor manager.</td></tr>
+          <tr><td><strong>Floor manager</strong> — a paid Tee &amp; Tap staffer for the night</td><td>Check-in, ID verification, conduct summary, phone pouches, door signs, incident log, bar-staff liaison.</td><td>The person every panelist is told to find if something goes wrong.</td></tr>
+          <tr><td><strong>Camera and audio lead</strong></td><td>Set, safety of cables and lights, primary and backup recordings, live stream.</td><td>Confirms recording is rolling before Mark reads the consent script; two backups before strike.</td></tr>
+          <tr><td><strong>Bar manager on duty</strong></td><td>Responsible service under the liquor license.</td><td>No service to panelist lanyards until recording starts; cuts off anyone Mark or the floor manager flags. Walks the room with the floor manager after strike.</td></tr>
+        </tbody>
+      </table></div>
+    </section>
+
+    <section id="metrics">
+      <div class="eyebrow">Section 9</div>
+      <h2 class="display">What we measure</h2>
+      <p>One row per week in a shared sheet, filled in at the Wednesday post-mortem. Five minutes, and it tells you which side is thin and which channel is paying for itself.</p>
+      <ul>
+        <li><strong>Applications by side</strong>, and the ratio between them. Under 40 percent on either side means that side's ad and org outreach need more spend this week.</li>
+        <li><strong>Screening booked rate</strong> (calls held ÷ applications) and <strong>pass rate</strong> (18-plus scores ÷ calls held).</li>
+        <li><strong>Cast-to-show rate</strong>, and the count of alternates who ended up sitting.</li>
+        <li><strong>Bench depth by side</strong>: passed, unseated, still available. The weekly-cadence trigger is eight per side.</li>
+        <li><strong>Cost per application</strong> for boosted posts (spend ÷ applications with a Facebook source) and for Craigslist (fee ÷ applications).</li>
+        <li><strong>Incidents</strong>, by count and type, from the Day-of Sheet log. The target is zero and the trend matters more than the number.</li>
+      </ul>
+    </section>
+
+    <section id="site">
+      <div class="eyebrow">Section 10</div>
+      <h2 class="display">Website changes shipped</h2>
+      <p>The site now says what the ads say. Shipped September 8 and 9:</p>
+      <ul>
+        <li>Homepage casting section, About FAQ, hero, footer, page metadata, and the application form: two conservatives versus two liberals with Mark moderating. No fixed night of the week.</li>
+        <li>Pay stated as $35 an hour, about $105 for the recording, food and drinks included, in the casting section and a new FAQ entry, along with the show-up-sober rule.</li>
+        <li><code>openpodtalk.com/casting</code> redirects to the casting section, so every ad, flyer, and QR code shares one short URL.</li>
+        <li>Still optional: a "Tee &amp; Tap panel" filter in the admin submissions queue so panel applicants are one click away from the caller queue. The data already distinguishes them.</li>
+      </ul>
+    </section>
+
+    <section id="risks">
+      <div class="eyebrow">Section 11</div>
+      <h2 class="display">Risks and how we handle them</h2>
+      <div class="scroll"><table>
+        <thead><tr><th>Risk</th><th>What we do about it</th></tr></thead>
+        <tbody>
+          <tr><td><strong>No-shows</strong> leave a side short</td><td>One alternate per side at every taping, paid a show-up fee. Day-before text with a required YES. Stipend paid after wrap, never before.</td></tr>
+          <tr><td><strong>Lopsided applications</strong>, usually a thin conservative bench</td><td>Track sides separately. Red-only ad creative. Organization outreach weighted to whichever side is thin. Never confirm one side before the other is cast.</td></tr>
+          <tr><td><strong>Plants, trolls, and "exposers"</strong></td><td>Screening call plus the ten-minute search. Anyone who wants to humiliate a named person, appear masked, or will not say what they believe in their own words does not sit.</td></tr>
+          <tr><td><strong>Defamation</strong> of a real person on air</td><td>Panelist warranties and indemnity in the release. Mark can cut and move on. Producer controls the edit. Media liability insurance. Publish full episodes alongside clips so no one can claim a clip fabricated the context.</td></tr>
+          <tr><td><strong>Alcohol incident</strong></td><td>Arrive-sober check at the door; no service before recording starts; after that the bar serves at its discretion and Mark or the floor manager can cut anyone off or pull them from the set. Safe-ride plan captured on the information form. Attorney reviews the alcohol clauses specifically.</td></tr>
+          <tr><td><strong>Harassment or doxxing of a panelist</strong> after release</td><td>First-name-and-initial option on screen. Comment moderation on release day. A clear reporting address in the code of conduct and a promise to act on reports.</td></tr>
+          <tr><td><strong>Meta rejects the boosted post</strong></td><td>Complete social-issues authorization in Week 0. Run the disclaimer. Appeal once as a casting notice for a program, then run the authorized version. Groups and the Event carry the load meanwhile.</td></tr>
+          <tr><td><strong>Craigslist flags the listing</strong></td><td>One post, one category, renewed rather than reposted, two rotating versions. If ghosted, wait 48 hours and post the other version from the same account.</td></tr>
+          <tr><td><strong>A panelist wants out after taping</strong></td><td>The release is irrevocable and says so. Be kind, offer the first-name-only graphic if that helps, and hold the line; the release exists for exactly this.</td></tr>
+          <tr><td><strong>The packet is used before a lawyer sees it</strong></td><td>Do not. The ads promise a "standard release"; the attorney review is what makes it one. Week 0 exists for this.</td></tr>
+        </tbody>
+      </table></div>
+    </section>
+
+    <section id="files">
+      <div class="eyebrow">Section 12</div>
+      <h2 class="display">What is in the folder</h2>
+      <p>Everything lives in <code>outreach/</code> inside the project, as editable Word documents. Yellow-highlighted brackets are blanks to fill.</p>
+      <h3>outreach/legal</h3>
+      <ul class="files">
+        <li><code>00 - READ ME FIRST - How to use this packet.docx</code></li>
+        <li><code>01 - Panelist Appearance Release and Consent Agreement.docx</code></li>
+        <li><code>02 - Liability Waiver, Assumption of Risk, Release and Indemnity.docx</code></li>
+        <li><code>03 - Panelist Code of Conduct and Acknowledgment.docx</code></li>
+        <li><code>04 - Confidentiality and Pre-Release Agreement.docx</code></li>
+        <li><code>05 - Panelist Information and Emergency Contact Form.docx</code></li>
+        <li><code>06 - Filming Notice (door sign).docx</code></li>
+        <li><code>07 - Location Release (Tee &amp; Tap to Open Pod Talk).docx</code></li>
+        <li><code>08 - Signing Checklist and Day-of Sheet.docx</code></li>
+      </ul>
+      <h3>outreach/ads</h3>
+      <ul class="files">
+        <li><code>Ads and Outreach Kit - Casting the Tee and Tap Sessions.docx</code> — Craigslist listings, Facebook Page, group, Event, and boosted-post copy, social captions, the flyer, the organization email and target list, applicant email templates, and the screening call script.</li>
+      </ul>
+      <h3>outreach/plan</h3>
+      <ul class="files">
+        <li><code>Tee and Tap Casting Plan.html</code> — this page.</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>Open Pod Talk · Tee &amp; Tap Casting Plan · Prepared September 8, 2026. The legal packet is a set of drafts for attorney review, not legal advice. All views, just bring it.</footer>
+</div>

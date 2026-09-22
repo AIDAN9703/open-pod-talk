@@ -37,13 +37,13 @@ export async function sendSubmissionNotification(data: {
 
   const subject =
     data.request_type === "panel"
-      ? `Tee & Tap panel application: ${esc(data.name)}`
+      ? `Panel application: ${esc(data.name)}`
       : data.request_type === "in_person"
         ? `In-studio visitor: ${esc(data.topic)}`
         : `New caller submission: ${esc(data.topic)}`;
   const heading =
     data.request_type === "panel"
-      ? "Tee & Tap panel application"
+      ? "Panel application"
       : data.request_type === "in_person"
         ? "In-studio visitor request"
         : "New caller submission";
@@ -74,7 +74,7 @@ export async function sendConfirmationEmail(data: {
   const followUp =
     data.request_type === "panel"
       ? `
-      <p>We cast each Tee &amp; Tap panel by hand to keep the sides balanced. If you're picked for an upcoming taping, we'll reach out with the date, venue details, and what to expect on camera.</p>`
+      <p>We cast each panel by hand to keep the sides balanced. If you're picked for an upcoming taping, we'll reach out with the date, venue details, and what to expect on camera.</p>`
       : data.request_type === "in_person"
         ? `
       <p>If we can slot you into the calendar, we'll reach out with studio address, parking, timing, and what to expect.</p>`
@@ -86,7 +86,7 @@ export async function sendConfirmationEmail(data: {
     to: data.to,
     subject:
       data.request_type === "panel"
-        ? "We received your Tee & Tap panel application"
+        ? "We received your panel application"
         : data.request_type === "in_person"
           ? "We received your in-studio Open Pod Talk request"
           : "We received your Open Pod Talk submission",
@@ -94,7 +94,7 @@ export async function sendConfirmationEmail(data: {
       <h2>Thanks, ${esc(data.name)}!</h2>
       <p>We've received ${
         data.request_type === "panel"
-          ? "your application for the Tee &amp; Tap panel series"
+          ? "your application for the panel series"
           : data.request_type === "in_person"
             ? "your request to join us in-studio"
             : "your submission"

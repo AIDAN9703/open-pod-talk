@@ -21,11 +21,23 @@ export function SiteNav({
       <div className="mx-auto flex h-14 max-w-6xl items-center justify-between gap-3 px-4 sm:h-16 sm:px-6">
         <Link
           href="/"
-          className="opt-display shrink-0 text-lg text-white transition hover:text-[#ffb380] sm:text-xl"
+          aria-label="Open Pod Talk podcast, home"
+          className="group inline-flex shrink-0 flex-col leading-none text-white transition hover:text-[#ffb380]"
         >
-          <span className="text-[#ff6600]">O</span>PEN{" "}
-          <span className="text-[#ff6600]">P</span>OD{" "}
-          <span className="text-[#ff6600]">T</span>ALK
+          <span className="opt-display text-2xl sm:text-[1.75rem]">
+            <span className="text-[#ff6600]">O</span>PEN{" "}
+            <span className="text-[#ff6600]">P</span>OD{" "}
+            <span className="text-[#ff6600]">T</span>ALK
+          </span>
+          {/* One word stretched to the full width of the line above */}
+          <span
+            aria-hidden
+            className="mt-0.5 flex w-full justify-between font-[family-name:var(--font-opt)] text-[10px] font-extrabold uppercase text-white/55 transition group-hover:text-[#ffb380]/70 sm:text-[11px]"
+          >
+            {"PODCAST".split("").map((ch, i) => (
+              <span key={i}>{ch}</span>
+            ))}
+          </span>
         </Link>
         <nav className="hidden items-center gap-6 text-sm font-medium text-white/60 md:flex">
           {NAV_LINKS.map((link) => (

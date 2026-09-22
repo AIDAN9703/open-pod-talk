@@ -1,7 +1,5 @@
 import { PanelApplyDialog } from "@/components/marketing/PanelApplyDialog";
 
-const TEE_AND_TAP_URL = "https://teeandtaps.com";
-
 function SideCard({
   side,
   title,
@@ -40,7 +38,7 @@ function SideCard({
         className={`inline-flex w-fit items-center gap-2 rounded-full border px-3 py-1 text-[11px] font-bold uppercase tracking-widest ${accent.chip}`}
       >
         <span className={`h-1.5 w-1.5 rounded-full ${accent.dot}`} />
-        Two seats per taping
+        Two seats per recording
       </span>
       <h3 className="opt-display mt-4 text-3xl text-white sm:text-4xl">{title}</h3>
       <ul className="mt-5 flex-1 space-y-3">
@@ -79,7 +77,7 @@ export function CastingSides() {
           bullets={[
             "You lean conservative and can actually argue it, not just repeat it.",
             "You can take ten minutes of pushback without shouting over people or melting down.",
-            "You're 18 or older and can get to the Pittsburgh area for an evening taping.",
+            "You're 18 or older and can get to Pittsburgh for an evening recording.",
           ]}
         />
         <SideCard
@@ -89,7 +87,7 @@ export function CastingSides() {
           bullets={[
             "You lean liberal and came to defend it in the room, not in the replies.",
             "You'd rather change one mind at the table than dunk for the clip.",
-            "You're 18 or older and can get to the Pittsburgh area for an evening taping.",
+            "You're 18 or older and can get to Pittsburgh for an evening recording.",
           ]}
         />
       </div>
@@ -99,23 +97,15 @@ export function CastingSides() {
           Don&apos;t fit neatly on either side? We keep wildcard seats for
           independents, libertarians, and the genuinely unclassifiable.
         </p>
-        <div className="mt-5 flex flex-col items-center justify-center gap-3 sm:flex-row">
+        <div className="mt-5 flex justify-center">
           <PanelApplyDialog
             label="Apply as a wildcard"
             defaultLean="other"
             className="inline-flex w-full items-center justify-center rounded-xl border border-white/20 px-6 py-3 text-sm font-semibold text-white/80 transition hover:border-white/40 hover:bg-white/5 sm:w-auto"
           />
-          <a
-            href={TEE_AND_TAP_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex w-full items-center justify-center rounded-xl border border-[#ff6600]/40 px-6 py-3 text-sm font-semibold text-[#ffb380] transition hover:border-[#ff6600] hover:bg-[#ff6600]/10 sm:w-auto"
-          >
-            Check out the venue ↗
-          </a>
         </div>
         <p className="mt-4 text-xs text-white/35">
-          18+. Filmed on location at Tee &amp; Tap. Panelists appear on camera and
+          18+. Recorded in person in Pittsburgh. Panelists appear on camera and
           in clips; the release agreement is part of the application.
         </p>
       </div>
