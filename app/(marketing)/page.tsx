@@ -79,7 +79,9 @@ export default async function HomePage() {
               </li>
             ))}
           </ul>
-          <p className="opt-eyebrow">A podcast recorded in Pittsburgh</p>
+          <p className="font-[family-name:var(--font-opt)] text-lg font-extrabold uppercase tracking-[0.22em] text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.7)] sm:text-2xl">
+            Coming November 2026
+          </p>
           <h1 className="opt-display mt-5 max-w-4xl text-[clamp(3.2rem,12vw,5rem)] text-white drop-shadow-[0_2px_24px_rgba(0,0,0,0.6)] lg:text-[6rem] xl:text-[6.75rem]">
             All views.
             <br />

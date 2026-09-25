@@ -12,9 +12,9 @@ const SUPPORT_PHOTOS = [
     caption: "The accent wall",
   },
   {
-    src: "/open-pod-talk-entrance.png",
-    alt: "Entrance to the Open Pod Talk studio",
-    caption: "Walk-ins start here",
+    src: "/studio-center-stage.png",
+    alt: "The Open Pod Talk screen glowing on the studio's brick wall above a leather guest chair",
+    caption: "Center stage",
   },
 ] as const;
 
