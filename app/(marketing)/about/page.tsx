@@ -23,7 +23,7 @@ const FAQ = [
   },
   {
     q: "Do panelists get paid?",
-    a: "Yes. $35 an hour for your time on site, which works out to about $105 for a typical recording. We invite good panelists back, and you'll sign a standard appearance release and liability waiver before you sit down.",
+    a: "Yes. $35 an hour for your time on site, and recordings run 3–4 hours. We invite good panelists back, and you'll sign a standard appearance release and liability waiver before you sit down.",
   },
   {
     q: "What do I need to participate remotely?",

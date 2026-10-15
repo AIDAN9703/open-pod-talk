@@ -148,7 +148,7 @@ export async function submitCaller(
 const PANEL_LEANS = {
   conservative: "Conservative",
   liberal: "Liberal",
-  other: "Independent / other",
+  other: "Moderate",
 } as const;
 
 const panelistSchema = z.object({
@@ -164,13 +164,9 @@ const panelistSchema = z.object({
   pitch: z
     .string()
     .trim()
-    .min(20, "Give us a little more — what do you believe, and can you defend it?")
+    .min(3, "List at least one issue you care about")
     .max(2500),
-  availability: z
-    .string()
-    .trim()
-    .min(5, "Tell us which evenings could work")
-    .max(2500),
+  availability: z.string().trim().max(2500).optional().or(z.literal("")),
   instagram: z.string().trim().max(120).optional().or(z.literal("")),
   tiktok: z.string().trim().max(120).optional().or(z.literal("")),
   video_url: z.string().url("Must be a valid URL").max(500).optional().or(z.literal("")),
@@ -230,8 +226,8 @@ export async function submitPanelist(
   const topic = `Panel — ${leanLabel}`;
   const topic_details = [
     `Panel side: ${leanLabel}`,
-    `Their pitch:\n${data.pitch}`,
-    `Availability:\n${data.availability}`,
+    `Issues they care about:\n${data.pitch}`,
+    ...(data.availability ? [`Availability:\n${data.availability}`] : []),
   ].join("\n\n");
 
   try {

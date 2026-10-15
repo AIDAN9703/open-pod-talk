@@ -14,9 +14,9 @@ import {
 type Lean = "conservative" | "liberal" | "other";
 
 const LEAN_OPTIONS: { value: Lean; label: string; activeClass: string }[] = [
-  { value: "conservative", label: "I lean right", activeClass: "border-side-red/70 bg-side-red/15 text-white" },
-  { value: "liberal", label: "I lean left", activeClass: "border-side-blue/70 bg-side-blue/15 text-white" },
-  { value: "other", label: "Somewhere else", activeClass: "border-[#ff6600]/70 bg-[#ff6600]/12 text-white" },
+  { value: "conservative", label: "Conservative", activeClass: "border-side-red/70 bg-side-red/15 text-white" },
+  { value: "liberal", label: "Liberal", activeClass: "border-side-blue/70 bg-side-blue/15 text-white" },
+  { value: "other", label: "Moderate", activeClass: "border-[#ff6600]/70 bg-[#ff6600]/12 text-white" },
 ];
 
 /** The panel application, rendered inline on /casting. */
@@ -51,10 +51,9 @@ export function CastingForm() {
         action={action}
         className="space-y-5 rounded-2xl border border-white/10 bg-[#0a0a0a] p-6 sm:p-8"
       >
-        <div className="flex flex-col gap-2">
-          <p className="text-sm font-medium text-white/75">Which side are you on? *</p>
-          {err.lean?.[0] && <p className="text-xs text-[#ff8566]">Pick a side.</p>}
-          <div className="grid grid-cols-1 gap-2 sm:grid-cols-3">
+        <div className="flex flex-col gap-2" role="radiogroup" aria-label="Your politics">
+          {err.lean?.[0] && <p className="text-xs text-[#ff8566]">Pick one.</p>}
+          <div className="grid grid-cols-3 gap-2">
             {LEAN_OPTIONS.map((opt) => (
               <label
                 key={opt.value}
@@ -111,25 +110,14 @@ export function CastingForm() {
           </SubmissionField>
         </div>
 
-        <SubmissionField label="Tell us about yourself and the issues you care about *" error={err.pitch?.[0]}>
+        <SubmissionField label="Issues you care about *" error={err.pitch?.[0]}>
           <textarea
             name="pitch"
             required
-            minLength={20}
+            minLength={3}
             maxLength={2500}
-            rows={4}
+            rows={3}
             className={submissionInputClass("min-h-[104px] resize-y")}
-          />
-        </SubmissionField>
-
-        <SubmissionField label="When are you usually free? *" error={err.availability?.[0]}>
-          <input
-            name="availability"
-            required
-            minLength={5}
-            maxLength={2500}
-            className={submissionInputClass()}
-            placeholder="e.g. Weeknights after 6pm"
           />
         </SubmissionField>
 

@@ -4,19 +4,20 @@ import { CastingForm } from "@/components/marketing/CastingForm";
 export const metadata: Metadata = {
   title: "Casting: apply to be on the panel",
   description:
-    "Open Pod Talk is casting people who lean right and people who lean left for a paid panel recording in Pittsburgh. $35 an hour, 18+.",
+    "Open Pod Talk is casting conservatives, liberals, and moderates for a paid panel recording in the South Hills of Pittsburgh. $35 an hour, 18+.",
 };
 
-const FACTS = ["$35 an hour", "About 3 hours", "Pittsburgh, in person", "18+", "Starts November 2026"];
+const FACTS = ["$35 an hour", "3–4 hours", "South Hills of Pittsburgh", "18+", "Starts November 2026"];
 
 export default function CastingPage() {
   return (
     <div className="py-14 sm:py-20">
       <div className="mx-auto max-w-2xl px-4 sm:px-6">
         <p className="opt-eyebrow">Now casting</p>
-        <h1 className="opt-display mt-3 text-4xl text-white sm:text-5xl">
-          Lean <span className="text-side-red">right</span>? Lean{" "}
-          <span className="text-side-blue">left</span>? Apply.
+        <h1 className="opt-display mt-3 text-5xl text-white sm:text-6xl">
+          All views.
+          <br />
+          <span className="text-[#ff6600]">Just bring it.</span>
         </h1>
         <p className="mt-5 text-base leading-relaxed text-white/60">
           We&apos;re casting a paid panel recording: two people from each side, one table,
