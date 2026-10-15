@@ -19,11 +19,11 @@ const FAQ = [
   },
   {
     q: "Do panelists need debate experience?",
-    a: "No. We're casting for conviction and composure, not credentials. If you can state what you believe and hold your ground for ten minutes of pushback without shouting, you're qualified.",
+    a: "No. We're casting for conviction and composure, not credentials. If you can say what you believe and argue it without shouting, you're qualified.",
   },
   {
     q: "Do panelists get paid?",
-    a: "Yes. $35 an hour for your time on site, which works out to about $105 for a typical recording. Food and drinks are included, and we invite good panelists back. Show up sober — drinks at the table during the recording are fine — and you'll sign a standard appearance release and liability waiver before you sit down.",
+    a: "Yes. $35 an hour for your time on site, which works out to about $105 for a typical recording. We invite good panelists back, and you'll sign a standard appearance release and liability waiver before you sit down.",
   },
   {
     q: "What do I need to participate remotely?",
