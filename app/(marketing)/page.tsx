@@ -21,7 +21,7 @@ const TICKER_ITEMS = [
 
 const TOPIC_SIGNS = [
   { src: "/topic-corruption.png", alt: "Corruption" },
-  { src: "/topic-sports-trash-talk.png", alt: "Sports trash talk" },
+  { src: "/topic-politics-logo.webp", alt: "Politics: elephant and donkey face off" },
   { src: "/topic-mainstream-media.png", alt: "Mainstream media" },
   { src: "/topic-artificial-intelligence.webp", alt: "Artificial intelligence" },
   { src: "/topic-police-ice.png", alt: "Police and ICE" },
