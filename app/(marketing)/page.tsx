@@ -21,7 +21,7 @@ const TICKER_ITEMS = [
 
 const TOPIC_SIGNS = [
   { src: "/topic-corruption.png", alt: "Corruption" },
-  { src: "/topic-politics-logo.webp", alt: "Politics: elephant and donkey face off" },
+  { src: "/topic-politics-logo.webp", alt: "Politics: elephant and donkey face off", white: true },
   { src: "/topic-mainstream-media.png", alt: "Mainstream media" },
   { src: "/topic-artificial-intelligence.webp", alt: "Artificial intelligence" },
   { src: "/topic-police-ice.png", alt: "Police and ICE" },
@@ -73,7 +73,7 @@ export default async function HomePage() {
             {TOPIC_SIGNS.map((sign) => (
               <li
                 key={sign.src}
-                className="relative aspect-[4/3] overflow-hidden rounded-lg bg-black/30 shadow-[0_10px_30px_rgba(0,0,0,0.5)] sm:rounded-2xl"
+                className={`relative aspect-[4/3] overflow-hidden rounded-lg shadow-[0_10px_30px_rgba(0,0,0,0.5)] sm:rounded-2xl ${"white" in sign && sign.white ? "bg-white" : "bg-black/30"}`}
               >
                 <Image src={sign.src} alt={sign.alt} fill sizes="(max-width: 640px) 14vw, 160px" className="object-contain" />
               </li>
