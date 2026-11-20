@@ -110,7 +110,7 @@ export default function HomePage() {
 
           <div className="mt-10 flex flex-col items-center sm:mt-14">
             <h1 className="opt-display whitespace-nowrap text-center text-[clamp(1.5rem,6.4vw,5rem)] leading-none text-white drop-shadow-[0_4px_24px_rgba(0,0,0,0.7)]">
-              All views.{" "}
+              All views{" "}
               <span className="text-[#ff6600] [text-shadow:0_0_28px_rgba(255,102,0,0.55)]">
                 Just bring it.
               </span>
