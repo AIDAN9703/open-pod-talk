@@ -36,6 +36,26 @@ const MATCHUPS = [
     { label: "Anti-gun", cls: BLUE },
     { label: "Pro-gun", cls: RED },
   ],
+  [
+    { label: "Higher taxes", cls: BLUE },
+    { label: "Lower taxes", cls: RED },
+  ],
+  [
+    { label: "Open immigration", cls: BLUE },
+    { label: "Secure the border", cls: RED },
+  ],
+  [
+    { label: "Universal healthcare", cls: BLUE },
+    { label: "Private healthcare", cls: RED },
+  ],
+  [
+    { label: "Climate action", cls: BLUE },
+    { label: "Energy independence", cls: RED },
+  ],
+  [
+    { label: "Police reform", cls: BLUE },
+    { label: "Back the blue", cls: RED },
+  ],
 ] as const;
 
 export default function HomePage() {
