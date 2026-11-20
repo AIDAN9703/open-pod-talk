@@ -91,7 +91,7 @@ export default function HomePage() {
                 <span className="whitespace-nowrap font-[family-name:var(--font-opt)] text-[10px] font-extrabold uppercase tracking-normal text-white min-[400px]:text-xs sm:text-3xl sm:tracking-[0.12em]">
                   {side.label} / {side.sub}
                 </span>
-                <span className="mt-3 text-[10px] font-semibold uppercase tracking-[0.2em] text-white/70 sm:mt-4 sm:text-sm">
+                <span className="mt-3 text-xs font-bold uppercase tracking-[0.2em] text-white/85 sm:mt-4 sm:text-lg">
                   Topics:
                 </span>
                 <ul className="mt-2 flex flex-wrap justify-center gap-1.5 sm:gap-2">
