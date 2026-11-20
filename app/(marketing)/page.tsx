@@ -88,13 +88,13 @@ export default function HomePage() {
                 href="/casting"
                 className={`flex min-w-0 flex-1 flex-col items-center rounded-xl border px-2 py-3 text-center backdrop-blur-sm transition sm:px-5 sm:py-5 ${side.box}`}
               >
-                <span className="font-[family-name:var(--font-opt)] text-xs font-extrabold uppercase tracking-[0.06em] text-white sm:text-3xl sm:tracking-[0.2em]">
-                  {side.label}
+                <span className="whitespace-nowrap font-[family-name:var(--font-opt)] text-[10px] font-extrabold uppercase tracking-normal text-white min-[400px]:text-xs sm:text-3xl sm:tracking-[0.12em]">
+                  {side.label} / {side.sub}
                 </span>
-                <span className="mt-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-white/70 sm:text-base sm:tracking-[0.3em]">
-                  {side.sub}
+                <span className="mt-3 text-[10px] font-semibold uppercase tracking-[0.2em] text-white/70 sm:mt-4 sm:text-sm">
+                  Topics:
                 </span>
-                <ul className="mt-3 flex flex-wrap justify-center gap-1.5 sm:mt-4 sm:gap-2">
+                <ul className="mt-2 flex flex-wrap justify-center gap-1.5 sm:gap-2">
                   {side.stances.map((stance) => (
                     <li
                       key={stance}
