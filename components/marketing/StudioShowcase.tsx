@@ -40,8 +40,8 @@ export function StudioShowcase() {
         <figure className="group relative mt-10 overflow-hidden rounded-2xl border border-white/10 ring-1 ring-white/[0.04]">
           <div className="relative aspect-[4/3] w-full sm:aspect-[16/8] lg:aspect-[16/7]">
             <Image
-              src="/studio-bento-conversation.png"
-              alt="Open Pod Talk studio with two leather chairs facing each other for conversation"
+              src="/studio-set-full-view-1.png"
+              alt="The Open Pod Talk studio: the main desk, guest chairs, and the glowing logo wall"
               fill
               sizes="(max-width: 1152px) 100vw, 1104px"
               className="object-cover transition duration-700 ease-out group-hover:scale-[1.02]"
@@ -49,7 +49,7 @@ export function StudioShowcase() {
             <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-black/70 to-transparent" />
           </div>
           <figcaption className="absolute bottom-4 left-4 rounded-full border border-white/15 bg-black/60 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-white/80 backdrop-blur-sm sm:bottom-5 sm:left-5">
-            Two chairs. No script.
+            The main table
           </figcaption>
         </figure>
 

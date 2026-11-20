@@ -26,14 +26,14 @@ const SIDES = [
     sub: "Left",
     box: "border-side-blue/60 bg-side-blue/15 hover:bg-side-blue/25",
     chip: "border-side-blue/50 bg-side-blue/20",
-    stances: ["Pro-choice", "Anti-gun", "Tax the wealthy", "Open immigration", "Universal healthcare", "Climate action", "Police reform"],
+    stances: ["Pro-choice", "Anti-gun", "Tax the wealthy", "Open immigration", "Universal healthcare", "Climate action", "Abolish police / ICE"],
   },
   {
     label: "Conservative",
     sub: "Right",
     box: "border-side-red/60 bg-side-red/15 hover:bg-side-red/25",
     chip: "border-side-red/50 bg-side-red/20",
-    stances: ["Pro-life", "Pro-gun", "Lower taxes", "Secure the border", "Private healthcare", "Energy independence", "Back the blue"],
+    stances: ["Pro-life", "Pro-gun", "Lower taxes", "Secure the border", "Private healthcare", "Energy independence", "Support police / ICE"],
   },
 ] as const;
 
