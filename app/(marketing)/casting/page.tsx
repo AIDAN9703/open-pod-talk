@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     "Open Pod Talk is casting conservatives, liberals, and moderates for a paid panel recording in the South Hills of Pittsburgh. $35 an hour, 18+.",
 };
 
-const FACTS = ["$35 an hour", "3–4 hours", "South Hills of Pittsburgh", "18+", "Starts November 2026"];
+const FACTS = ["$35 an hour", "3–4 hours", "South Hills of Pittsburgh", "18+"];
 
 export default function CastingPage() {
   return (
