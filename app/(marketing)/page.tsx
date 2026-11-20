@@ -26,7 +26,7 @@ const SIDES = [
     sub: "Left",
     box: "border-side-blue/60 bg-side-blue/15 hover:bg-side-blue/25",
     chip: "border-side-blue/50 bg-side-blue/20",
-    stances: ["Pro-choice", "Anti-gun", "Higher taxes", "Open immigration", "Universal healthcare", "Climate action", "Police reform"],
+    stances: ["Pro-choice", "Anti-gun", "Tax the wealthy", "Open immigration", "Universal healthcare", "Climate action", "Police reform"],
   },
   {
     label: "Conservative",
