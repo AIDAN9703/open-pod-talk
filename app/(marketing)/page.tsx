@@ -19,43 +19,22 @@ const TOPIC_SIGNS = [
   { src: "/topic-gender-question.png", alt: "Gender" },
 ] as const;
 
-const BLUE = "border-side-blue/60 bg-side-blue/20 hover:bg-side-blue/30";
-const RED = "border-side-red/60 bg-side-red/20 hover:bg-side-red/30";
-
-/** Each row is a left-vs-right matchup: liberal side on the left, conservative on the right. */
-const MATCHUPS = [
-  [
-    { label: "Liberal", sub: "Left", cls: BLUE },
-    { label: "Conservative", sub: "Right", cls: RED },
-  ],
-  [
-    { label: "Pro-choice", cls: BLUE },
-    { label: "Pro-life", cls: RED },
-  ],
-  [
-    { label: "Anti-gun", cls: BLUE },
-    { label: "Pro-gun", cls: RED },
-  ],
-  [
-    { label: "Higher taxes", cls: BLUE },
-    { label: "Lower taxes", cls: RED },
-  ],
-  [
-    { label: "Open immigration", cls: BLUE },
-    { label: "Secure the border", cls: RED },
-  ],
-  [
-    { label: "Universal healthcare", cls: BLUE },
-    { label: "Private healthcare", cls: RED },
-  ],
-  [
-    { label: "Climate action", cls: BLUE },
-    { label: "Energy independence", cls: RED },
-  ],
-  [
-    { label: "Police reform", cls: BLUE },
-    { label: "Back the blue", cls: RED },
-  ],
+/** Two sides, each with the positions it usually argues. Listed in matching order. */
+const SIDES = [
+  {
+    label: "Liberal",
+    sub: "Left",
+    box: "border-side-blue/60 bg-side-blue/15 hover:bg-side-blue/25",
+    chip: "border-side-blue/50 bg-side-blue/20",
+    stances: ["Pro-choice", "Anti-gun", "Higher taxes", "Open immigration", "Universal healthcare", "Climate action", "Police reform"],
+  },
+  {
+    label: "Conservative",
+    sub: "Right",
+    box: "border-side-red/60 bg-side-red/15 hover:bg-side-red/25",
+    chip: "border-side-red/50 bg-side-red/20",
+    stances: ["Pro-life", "Pro-gun", "Lower taxes", "Secure the border", "Private healthcare", "Energy independence", "Back the blue"],
+  },
 ] as const;
 
 export default function HomePage() {
@@ -95,33 +74,37 @@ export default function HomePage() {
             ))}
           </ul>
 
-          {/* Matchups: left side vs right side */}
-          <div className="mt-4 flex flex-col gap-3 sm:mt-5 sm:gap-4">
-            {MATCHUPS.map((pair) => (
-              <div key={pair[0].label} className="relative flex items-stretch justify-between gap-12 sm:gap-36">
-                <span
-                  aria-hidden
-                  className="opt-display pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-3xl text-white drop-shadow-[0_4px_20px_rgba(0,0,0,0.8)] sm:text-7xl"
-                >
-                  VS
+          {/* The two sides, each holding its positions */}
+          <div className="relative mt-4 flex items-stretch justify-between gap-12 sm:mt-5 sm:gap-28">
+            <span
+              aria-hidden
+              className="opt-display pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-3xl text-white drop-shadow-[0_4px_20px_rgba(0,0,0,0.8)] sm:text-7xl"
+            >
+              VS
+            </span>
+            {SIDES.map((side) => (
+              <Link
+                key={side.label}
+                href="/casting"
+                className={`flex min-w-0 flex-1 flex-col items-center rounded-xl border px-2 py-3 text-center backdrop-blur-sm transition sm:px-5 sm:py-5 ${side.box}`}
+              >
+                <span className="font-[family-name:var(--font-opt)] text-xs font-extrabold uppercase tracking-[0.06em] text-white sm:text-3xl sm:tracking-[0.2em]">
+                  {side.label}
                 </span>
-                {pair.map((side) => (
-                  <Link
-                    key={side.label}
-                    href="/casting"
-                    className={`flex min-w-0 flex-1 flex-col items-center justify-center rounded-xl border px-2 py-3 text-center backdrop-blur-sm transition sm:px-4 sm:py-5 ${side.cls}`}
-                  >
-                    <span className="font-[family-name:var(--font-opt)] text-xs font-extrabold uppercase tracking-[0.06em] text-white sm:text-3xl sm:tracking-[0.2em]">
-                      {side.label}
-                    </span>
-                    {"sub" in side && (
-                      <span className="mt-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-white/70 sm:text-base sm:tracking-[0.3em]">
-                        {side.sub}
-                      </span>
-                    )}
-                  </Link>
-                ))}
-              </div>
+                <span className="mt-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-white/70 sm:text-base sm:tracking-[0.3em]">
+                  {side.sub}
+                </span>
+                <ul className="mt-3 flex flex-wrap justify-center gap-1.5 sm:mt-4 sm:gap-2">
+                  {side.stances.map((stance) => (
+                    <li
+                      key={stance}
+                      className={`rounded-full border px-2 py-0.5 text-[9px] font-bold uppercase tracking-wide text-white/90 sm:px-3 sm:py-1 sm:text-xs ${side.chip}`}
+                    >
+                      {stance}
+                    </li>
+                  ))}
+                </ul>
+              </Link>
             ))}
           </div>
 
