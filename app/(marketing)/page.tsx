@@ -98,7 +98,7 @@ export default function HomePage() {
                   {side.stances.map((stance) => (
                     <li
                       key={stance}
-                      className={`rounded-full border px-2 py-0.5 text-[9px] font-bold uppercase tracking-wide text-white/90 sm:px-3 sm:py-1 sm:text-xs ${side.chip}`}
+                      className={`rounded-full border px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-white/90 sm:px-4 sm:py-1.5 sm:text-sm ${side.chip}`}
                     >
                       {stance}
                     </li>
