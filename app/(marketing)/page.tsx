@@ -62,7 +62,13 @@ export default function HomePage() {
           </ul>
 
           {/* The two sides */}
-          <div className="mt-4 flex items-stretch justify-between gap-4 sm:mt-5">
+          <div className="relative mt-4 flex items-stretch justify-between gap-4 sm:mt-5">
+            <span
+              aria-hidden
+              className="opt-display pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-5xl text-white drop-shadow-[0_4px_20px_rgba(0,0,0,0.8)] sm:text-7xl"
+            >
+              VS
+            </span>
             {SIDES.map((side) => (
               <Link
                 key={side.label}
