@@ -32,6 +32,10 @@ const MATCHUPS = [
     { label: "Pro-choice", cls: BLUE },
     { label: "Pro-life", cls: RED },
   ],
+  [
+    { label: "Anti-gun", cls: BLUE },
+    { label: "Pro-gun", cls: RED },
+  ],
 ] as const;
 
 export default function HomePage() {
