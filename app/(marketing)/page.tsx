@@ -108,11 +108,19 @@ export default function HomePage() {
             ))}
           </div>
 
-          <h1 className="opt-display mt-10 max-w-4xl text-[clamp(3.2rem,12vw,5rem)] text-white drop-shadow-[0_2px_24px_rgba(0,0,0,0.6)] sm:mt-14 lg:text-[6rem] xl:text-[6.75rem]">
-            All views.
-            <br />
-            <span className="text-[#ff6600]">Just bring it.</span>
-          </h1>
+          <div className="mt-10 flex flex-col items-center sm:mt-14">
+            <h1 className="opt-display whitespace-nowrap text-center text-[clamp(1.5rem,6.4vw,5rem)] leading-none text-white drop-shadow-[0_4px_24px_rgba(0,0,0,0.7)]">
+              All views.{" "}
+              <span className="text-[#ff6600] [text-shadow:0_0_28px_rgba(255,102,0,0.55)]">
+                Just bring it.
+              </span>
+            </h1>
+            <div aria-hidden className="mt-4 flex w-full max-w-md items-center gap-3 sm:mt-5">
+              <span className="h-px flex-1 bg-gradient-to-r from-transparent to-[#ff6600]/70" />
+              <span className="h-1.5 w-1.5 rotate-45 bg-[#ff6600]" />
+              <span className="h-px flex-1 bg-gradient-to-l from-transparent to-[#ff6600]/70" />
+            </div>
+          </div>
         </div>
       </section>
 
