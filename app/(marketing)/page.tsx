@@ -19,9 +19,19 @@ const TOPIC_SIGNS = [
   { src: "/topic-gender-question.png", alt: "Gender" },
 ] as const;
 
-const SIDES = [
-  { label: "Conservative", sub: "Right", cls: "border-side-red/60 bg-side-red/20 hover:bg-side-red/30" },
-  { label: "Liberal", sub: "Left", cls: "border-side-blue/60 bg-side-blue/20 hover:bg-side-blue/30" },
+const BLUE = "border-side-blue/60 bg-side-blue/20 hover:bg-side-blue/30";
+const RED = "border-side-red/60 bg-side-red/20 hover:bg-side-red/30";
+
+/** Each row is a left-vs-right matchup: liberal side on the left, conservative on the right. */
+const MATCHUPS = [
+  [
+    { label: "Liberal", sub: "Left", cls: BLUE },
+    { label: "Conservative", sub: "Right", cls: RED },
+  ],
+  [
+    { label: "Pro-choice", cls: BLUE },
+    { label: "Pro-life", cls: RED },
+  ],
 ] as const;
 
 export default function HomePage() {
@@ -61,27 +71,33 @@ export default function HomePage() {
             ))}
           </ul>
 
-          {/* The two sides */}
-          <div className="relative mt-4 flex items-stretch justify-between gap-12 sm:mt-5 sm:gap-36">
-            <span
-              aria-hidden
-              className="opt-display pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-3xl text-white drop-shadow-[0_4px_20px_rgba(0,0,0,0.8)] sm:text-7xl"
-            >
-              VS
-            </span>
-            {SIDES.map((side) => (
-              <Link
-                key={side.label}
-                href="/casting"
-                className={`flex min-w-0 flex-1 flex-col items-center justify-center rounded-xl border px-2 py-3 sm:px-4 text-center backdrop-blur-sm transition sm:py-5 ${side.cls}`}
-              >
-                <span className="font-[family-name:var(--font-opt)] text-xs font-extrabold uppercase tracking-[0.06em] text-white sm:text-3xl sm:tracking-[0.2em]">
-                  {side.label}
+          {/* Matchups: left side vs right side */}
+          <div className="mt-4 flex flex-col gap-3 sm:mt-5 sm:gap-4">
+            {MATCHUPS.map((pair) => (
+              <div key={pair[0].label} className="relative flex items-stretch justify-between gap-12 sm:gap-36">
+                <span
+                  aria-hidden
+                  className="opt-display pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-3xl text-white drop-shadow-[0_4px_20px_rgba(0,0,0,0.8)] sm:text-7xl"
+                >
+                  VS
                 </span>
-                <span className="mt-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-white/70 sm:text-base sm:tracking-[0.3em]">
-                  {side.sub}
-                </span>
-              </Link>
+                {pair.map((side) => (
+                  <Link
+                    key={side.label}
+                    href="/casting"
+                    className={`flex min-w-0 flex-1 flex-col items-center justify-center rounded-xl border px-2 py-3 text-center backdrop-blur-sm transition sm:px-4 sm:py-5 ${side.cls}`}
+                  >
+                    <span className="font-[family-name:var(--font-opt)] text-xs font-extrabold uppercase tracking-[0.06em] text-white sm:text-3xl sm:tracking-[0.2em]">
+                      {side.label}
+                    </span>
+                    {"sub" in side && (
+                      <span className="mt-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-white/70 sm:text-base sm:tracking-[0.3em]">
+                        {side.sub}
+                      </span>
+                    )}
+                  </Link>
+                ))}
+              </div>
             ))}
           </div>
 
