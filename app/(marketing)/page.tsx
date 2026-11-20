@@ -62,10 +62,10 @@ export default function HomePage() {
           </ul>
 
           {/* The two sides */}
-          <div className="relative mt-4 flex items-stretch justify-between gap-4 sm:mt-5">
+          <div className="relative mt-4 flex items-stretch justify-between gap-12 sm:mt-5 sm:gap-36">
             <span
               aria-hidden
-              className="opt-display pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-5xl text-white drop-shadow-[0_4px_20px_rgba(0,0,0,0.8)] sm:text-7xl"
+              className="opt-display pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-3xl text-white drop-shadow-[0_4px_20px_rgba(0,0,0,0.8)] sm:text-7xl"
             >
               VS
             </span>
@@ -73,12 +73,12 @@ export default function HomePage() {
               <Link
                 key={side.label}
                 href="/casting"
-                className={`flex w-40 flex-col items-center justify-center rounded-xl border px-4 py-3 text-center backdrop-blur-sm transition sm:w-56 sm:py-4 ${side.cls}`}
+                className={`flex min-w-0 flex-1 flex-col items-center justify-center rounded-xl border px-2 py-3 sm:px-4 text-center backdrop-blur-sm transition sm:py-5 ${side.cls}`}
               >
-                <span className="font-[family-name:var(--font-opt)] text-sm font-extrabold uppercase tracking-[0.14em] text-white sm:text-base">
+                <span className="font-[family-name:var(--font-opt)] text-xs font-extrabold uppercase tracking-[0.06em] text-white sm:text-3xl sm:tracking-[0.2em]">
                   {side.label}
                 </span>
-                <span className="mt-0.5 text-xs font-semibold uppercase tracking-[0.2em] text-white/70">
+                <span className="mt-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-white/70 sm:text-base sm:tracking-[0.3em]">
                   {side.sub}
                 </span>
               </Link>
