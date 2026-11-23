@@ -7,7 +7,7 @@ import { StudioShowcase } from "@/components/marketing/StudioShowcase";
 export const metadata: Metadata = {
   title: "Open Pod Talk — all views, just bring it!",
   description:
-    "A paid, moderated panel recording in Pittsburgh for people who lean right and people who lean left. Apply to be a guest.",
+    "Open Pod Talk is a stream-in podcast for all views. Click the link and jump on the show.",
 };
 
 const TOPIC_SIGNS = [

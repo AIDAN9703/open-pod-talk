@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     template: "%s — Open Pod Talk",
   },
   description:
-    "all views, just bring it! Open Pod Talk (OPT): a moderated panel podcast recorded in Pittsburgh.",
+    "all views, just bring it! Open Pod Talk (OPT) is a stream-in podcast for all views.",
   icons: {
     icon: [{ url: "/logo.webp", type: "image/webp" }],
     apple: [{ url: "/logo.webp", type: "image/webp" }],

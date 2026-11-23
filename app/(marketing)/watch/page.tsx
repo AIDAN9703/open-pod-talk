@@ -6,7 +6,7 @@ import { getYoutubeEmbedSrc } from "@/lib/youtube-embed";
 export const metadata: Metadata = {
   title: "Watch — Open Pod Talk",
   description:
-    "Watch Open Pod Talk live on YouTube. Live call-in episodes and panel recordings.",
+    "Watch Open Pod Talk live on YouTube. A stream-in podcast for all views.",
 };
 
 export default async function WatchPage() {

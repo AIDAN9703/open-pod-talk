@@ -37,8 +37,8 @@ export function SiteFooter() {
               all views, just bring it!
             </p>
             <p className="mt-2 text-sm leading-relaxed text-white/45">
-              A moderated panel podcast recorded in Pittsburgh. Real people, real
-              arguments, zero script polish.
+              A stream-in podcast for all views. Click the link and jump on
+              the show.
             </p>
           </div>
 

@@ -1,59 +1,59 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { StreamInButton } from "@/components/marketing/StreamIn";
 
 export const metadata: Metadata = {
   title: "About — Open Pod Talk",
   description:
-    "What is Open Pod Talk? A live call-in podcast and a moderated panel series recorded in Pittsburgh. All views, just bring it.",
+    "Open Pod Talk is a stream-in podcast for all views. Anyone can stream in and say their piece. All views, just bring it.",
 };
+
+const HOW_IT_WORKS = [
+  {
+    title: "Anyone can stream in",
+    body: "Our studio link is on the home page. Click it, allow your camera and mic, and you're in. No sign-up, no application.",
+  },
+  {
+    title: "All views",
+    body: "Left, right, or somewhere in between. Every side gets a turn, and Mark keeps it moving.",
+  },
+  {
+    title: "No script",
+    body: "Nobody gets questions in advance. The real back-and-forth is the show.",
+  },
+  {
+    title: "Recorded clean",
+    body: "We run on Riverside, which records everyone locally, so the episode sounds good even if your connection hiccups.",
+  },
+] as const;
 
 const FAQ = [
   {
     q: "Who can stream in?",
-    a: "Anyone 18 or older. Our Riverside studio link is on the home page and it's open. Click it, allow your camera and mic, and you're in. Mark brings people on as the conversation goes.",
+    a: "Anyone 18 or older. Click the stream-in link, allow your camera and mic, and Mark brings people on as the conversation goes.",
   },
   {
-    q: "What is the panel series?",
-    a: "A moderated panel recording in Pittsburgh. We set a table with two people who lean right and two who lean left (plus the occasional wildcard), put our moderator Mark at the head of it, and record the argument. Want a seat? Email openpodtalk@gmail.com.",
-  },
-  {
-    q: "Do panelists need debate experience?",
-    a: "No. We're casting for conviction and composure, not credentials. If you can say what you believe and argue it without shouting, you're qualified.",
-  },
-  {
-    q: "Do panelists get paid?",
-    a: "Yes. $35 an hour for your time on site, and recordings run 3–4 hours. We invite good panelists back, and you'll sign a standard appearance release and liability waiver before you sit down.",
-  },
-  {
-    q: "What do I need to participate remotely?",
-    a: "Chrome or Edge on a desktop or laptop, wired headphones (not AirPods or Bluetooth), a quiet room, and at least 10 Mbps upload. We run on Riverside.fm — no app to download, just a browser link.",
-  },
-  {
-    q: "How long does it take to hear back?",
-    a: "We review submissions on a rolling basis. If your topic fits an upcoming episode, you'll get a heads-up at least 48 hours in advance with a Riverside studio link and a 10-minute tech check time.",
-  },
-  {
-    q: "Do I have to be on camera?",
-    a: "Camera is optional for remote callers; audio is required. Panelists are on camera — that's the format. We record both video and audio on our end, locally on your device, so a network hiccup won't kill the quality.",
-  },
-  {
-    q: "Where can I watch or listen?",
-    a: "We stream live on YouTube, and the edited episode goes up on Apple Podcasts, Spotify, YouTube Music, and Amazon Music. Clips go up on social in the days after.",
+    q: "What do I need?",
+    a: "A phone or computer with a camera and mic, a decent connection, and a quiet spot. Headphones help a lot. It runs in your browser, so there's nothing to download on a computer.",
   },
   {
     q: "Is this scripted?",
-    a: "No. We have a format but no script. The whole point is the real back-and-forth — we don't edit the argument out of it.",
+    a: "No. There's a moderator and a topic, but no script.",
+  },
+  {
+    q: "Where can I watch or listen?",
+    a: "Live on YouTube, with episodes and clips going up after. Links are at the bottom of the page.",
   },
   {
     q: "What happens to my recording?",
-    a: "By submitting and appearing on the show, you grant Open Pod Talk a perpetual license to use your voice, likeness, and statements in the episode and clips. Full legal language is on our privacy page.",
+    a: "Everything is recorded and may be published. By streaming in, you allow Open Pod Talk to use your voice, likeness, and statements in episodes and clips. The full terms are on our privacy page.",
   },
   {
-    q: "Can I be anonymous?",
-    a: "Remote callers can ask to use a first name only or a pseudonym on air. We still need your real contact info internally to send you the studio link and manage scheduling. Panelists appear on camera, so anonymity isn't possible for panel recordings.",
+    q: "How do I reach you?",
+    a: "Email openpodtalk@gmail.com.",
   },
-];
+] as const;
 
 export default function AboutPage() {
   return (
@@ -72,40 +72,22 @@ export default function AboutPage() {
               All views. <span className="text-[#ff6600]">Just bring it.</span>
             </h1>
             <p className="mt-4 text-lg leading-relaxed text-white/65">
-              Open Pod Talk is built around one idea: the best conversations
-              happen when real people bring real topics — not guests who have
-              already rehearsed their sound bite.
+              Open Pod Talk is a stream-in podcast for all views. Anyone can
+              click our link, jump on, and say their piece, with Mark Raymond
+              moderating.
             </p>
-            <p className="mt-4 text-base leading-relaxed text-white/50">
-              It runs in two formats. The live call-in show pulls callers from a
-              public submission queue and puts them on mic with our hosts. And
-              the panel recordings put two people who lean right and two who lean
-              left at one table with Mark moderating — in person, cameras
-              rolling, no script.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link
-                href="/submit"
-                className="inline-flex items-center justify-center rounded-full bg-[#ff6600] px-7 py-3 text-sm font-bold text-white shadow-[0_0_24px_rgba(255,102,0,0.35)] transition hover:bg-[#ff781a]"
-              >
-                Submit your topic
-              </Link>
-              <Link
-                href="/#stream-in"
-                className="inline-flex items-center justify-center rounded-full border border-white/20 px-7 py-3 text-sm font-medium text-white/80 transition hover:border-white/40 hover:bg-white/5"
-              >
-                Stream in
-              </Link>
+            <div className="mt-8">
+              <StreamInButton />
             </div>
           </div>
           <div className="relative">
             <div className="absolute -inset-4 rounded-3xl bg-[#ff6600]/15 blur-3xl" />
             <Image
-              src="/studio-set-full-view-1.png"
-              alt="Open Pod Talk studio"
+              src="/studio-main-table.webp"
+              alt="The Open Pod Talk studio table"
               width={600}
-              height={400}
-              className="relative w-full rounded-2xl border border-white/10 object-cover shadow-[0_24px_64px_rgba(0,0,0,0.5)]"
+              height={800}
+              className="relative max-h-[28rem] w-full rounded-2xl border border-white/10 object-cover shadow-[0_24px_64px_rgba(0,0,0,0.5)]"
             />
           </div>
         </div>
@@ -113,36 +95,10 @@ export default function AboutPage() {
         {/* How it works */}
         <section className="mt-20">
           <p className="opt-eyebrow">Format</p>
-          <h2 className="opt-display mt-3 text-3xl text-white">
-            How the show works
-          </h2>
+          <h2 className="opt-display mt-3 text-3xl text-white">How the show works</h2>
           <div className="mt-6 grid gap-4 sm:grid-cols-2">
-            {[
-              {
-                title: "Live every week",
-                body: "We broadcast live on YouTube every week. The full episode goes into the podcast feed within 24 hours.",
-              },
-              {
-                title: "Real callers, not guests",
-                body: "Callers submit a topic, get screened, and come on mic cold. We don't share questions in advance. The exchange is the product.",
-              },
-              {
-                title: "Panel recordings",
-                body: "We record moderated 2v2 panels in Pittsburgh, closed to the public. Panels are cast from applications to keep both sides even.",
-              },
-              {
-                title: "Studio-grade recording",
-                body: "Every call is recorded locally via Riverside.fm — per-participant uncompressed audio, regardless of internet quality. The podcast sounds clean even when the debate gets loud.",
-              },
-              {
-                title: "30-second producer screen",
-                body: "Every caller waits in a lobby. Our producer confirms identity, checks your headphones, and does a mic level check before you're on air. No cold calls go straight to the host.",
-              },
-            ].map((item) => (
-              <div
-                key={item.title}
-                className="rounded-xl border border-white/10 bg-[#0a0a0a] p-5"
-              >
+            {HOW_IT_WORKS.map((item) => (
+              <div key={item.title} className="rounded-xl border border-white/10 bg-[#0a0a0a] p-5">
                 <h3 className="font-[family-name:var(--font-opt)] font-bold text-white">
                   {item.title}
                 </h3>
@@ -155,9 +111,7 @@ export default function AboutPage() {
         {/* FAQ */}
         <section className="mt-20">
           <p className="opt-eyebrow">FAQ</p>
-          <h2 className="opt-display mt-3 text-3xl text-white">
-            Frequently asked questions
-          </h2>
+          <h2 className="opt-display mt-3 text-3xl text-white">Frequently asked questions</h2>
           <div className="mt-6 divide-y divide-white/[0.08]">
             {FAQ.map(({ q, a }) => (
               <div key={q} className="py-5">
@@ -170,18 +124,9 @@ export default function AboutPage() {
 
         {/* CTA */}
         <section className="mt-16 rounded-2xl border border-[#ff6600]/25 bg-[#ff6600]/8 p-8 text-center">
-          <h2 className="opt-display text-3xl text-white">
-            Ready to be on the show?
-          </h2>
-          <p className="mt-3 text-white/55">
-            Worst case — silence. Best case — you&apos;re on mic this week.
-          </p>
-          <Link
-            href="/submit"
-            className="mt-6 inline-flex items-center justify-center rounded-full bg-[#ff6600] px-10 py-3.5 text-base font-bold text-white shadow-[0_0_28px_rgba(255,102,0,0.4)] transition hover:bg-[#ff781a]"
-          >
-            Submit your topic →
-          </Link>
+          <h2 className="opt-display text-3xl text-white">Ready to be on the show?</h2>
+          <p className="mt-3 text-white/55">The link is open. Click it and you&apos;re in.</p>
+          <StreamInButton className="mt-6" />
         </section>
       </div>
     </div>
