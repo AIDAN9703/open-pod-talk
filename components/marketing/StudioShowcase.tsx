@@ -36,15 +36,15 @@ export function StudioShowcase() {
           </p>
         </div>
 
-        {/* Feature image — two chairs, wide and cinematic */}
+        {/* Feature image — the main table */}
         <figure className="group relative mt-10 overflow-hidden rounded-2xl border border-white/10 ring-1 ring-white/[0.04]">
-          <div className="relative aspect-[4/3] w-full sm:aspect-[16/8] lg:aspect-[16/7]">
+          <div className="relative aspect-[3/4] w-full sm:aspect-[16/10] lg:aspect-[16/9]">
             <Image
-              src="/studio-set-full-view-1.png"
-              alt="The Open Pod Talk studio: the main desk, guest chairs, and the glowing logo wall"
+              src="/studio-main-table.webp"
+              alt="The Open Pod Talk main table: four chairs, mics, and the glowing logo sign on the wall"
               fill
               sizes="(max-width: 1152px) 100vw, 1104px"
-              className="object-cover transition duration-700 ease-out group-hover:scale-[1.02]"
+              className="object-cover object-[50%_58%] transition duration-700 ease-out group-hover:scale-[1.02]"
             />
             <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-black/70 to-transparent" />
           </div>
