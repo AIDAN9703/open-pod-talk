@@ -11,11 +11,6 @@ const SUPPORT_PHOTOS = [
     alt: "Studio accent wall with posters and signs behind the set",
     caption: "The accent wall",
   },
-  {
-    src: "/studio-center-stage.png",
-    alt: "The Open Pod Talk screen glowing on the studio's brick wall above a leather guest chair",
-    caption: "Center stage",
-  },
 ] as const;
 
 export function StudioShowcase() {
@@ -54,7 +49,7 @@ export function StudioShowcase() {
         </figure>
 
         {/* Supporting row */}
-        <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-3 sm:gap-4">
+        <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-4">
           {SUPPORT_PHOTOS.map((photo) => (
             <figure
               key={photo.src}
@@ -65,7 +60,7 @@ export function StudioShowcase() {
                   src={photo.src}
                   alt={photo.alt}
                   fill
-                  sizes="(max-width: 640px) 100vw, 360px"
+                  sizes="(max-width: 640px) 100vw, 552px"
                   className="object-cover transition duration-700 ease-out group-hover:scale-[1.02]"
                 />
                 <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black/70 to-transparent" />
