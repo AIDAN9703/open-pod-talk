@@ -52,14 +52,11 @@ export function SiteFooter() {
               <Link href="/watch" className="text-white/60 hover:text-white transition-colors">
                 Watch live
               </Link>
-              <Link href="/episodes" className="text-white/60 hover:text-white transition-colors">
-                Episodes
-              </Link>
               <Link href="/about" className="text-white/60 hover:text-white transition-colors">
                 About
               </Link>
-              <Link href="/casting" className="text-[#ff6600] hover:text-[#ff781a] transition-colors font-medium">
-                Apply to be a guest →
+              <Link href="/#stream-in" className="text-[#ff6600] hover:text-[#ff781a] transition-colors font-medium">
+                Stream in →
               </Link>
             </div>
 

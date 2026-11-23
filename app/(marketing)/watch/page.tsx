@@ -105,14 +105,14 @@ export default async function WatchPage() {
               Rather be on the show than watch it?
             </h2>
             <p className="mt-1 text-sm text-white/55">
-              Call in from anywhere, or take a seat on the panel.
+              Our studio link is open. Stream in anytime.
             </p>
           </div>
           <Link
-            href="/casting"
+            href="/#stream-in"
             className="inline-flex shrink-0 items-center justify-center rounded-full bg-[#ff6600] px-6 py-3 text-sm font-bold text-white shadow-[0_0_24px_rgba(255,102,0,0.35)] transition hover:bg-[#ff781a]"
           >
-            Get on air →
+            Stream in →
           </Link>
         </div>
       </div>

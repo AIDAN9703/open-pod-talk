@@ -10,12 +10,12 @@ export const metadata: Metadata = {
 
 const FAQ = [
   {
-    q: "Who can call in?",
-    a: "Anyone 18 or older with a topic, a debate, a story, or a hot take. We read every submission — no topic is too niche or too blunt, as long as you can back it up.",
+    q: "Who can stream in?",
+    a: "Anyone 18 or older. Our Riverside studio link is on the home page and it's open. Click it, allow your camera and mic, and you're in. Mark brings people on as the conversation goes.",
   },
   {
     q: "What is the panel series?",
-    a: "A moderated panel recording in Pittsburgh. We set a table with two people who lean right and two who lean left (plus the occasional wildcard), put our moderator Mark at the head of it, and record the argument. Apply at openpodtalk.com/casting — every seat is cast by hand.",
+    a: "A moderated panel recording in Pittsburgh. We set a table with two people who lean right and two who lean left (plus the occasional wildcard), put our moderator Mark at the head of it, and record the argument. Want a seat? Email openpodtalk@gmail.com.",
   },
   {
     q: "Do panelists need debate experience?",
@@ -91,10 +91,10 @@ export default function AboutPage() {
                 Submit your topic
               </Link>
               <Link
-                href="/casting"
+                href="/#stream-in"
                 className="inline-flex items-center justify-center rounded-full border border-white/20 px-7 py-3 text-sm font-medium text-white/80 transition hover:border-white/40 hover:bg-white/5"
               >
-                Join the panel
+                Stream in
               </Link>
             </div>
           </div>

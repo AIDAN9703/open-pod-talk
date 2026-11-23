@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { StreamInButton, StreamInSection } from "@/components/marketing/StreamIn";
 import { StudioShowcase } from "@/components/marketing/StudioShowcase";
 
 export const metadata: Metadata = {
@@ -85,7 +86,7 @@ export default function HomePage() {
             {SIDES.map((side) => (
               <Link
                 key={side.label}
-                href="/casting"
+                href="#stream-in"
                 className={`flex min-w-0 flex-1 flex-col items-center rounded-xl border px-2 py-3 text-center backdrop-blur-sm transition sm:px-5 sm:py-5 ${side.box}`}
               >
                 <span className="whitespace-nowrap font-[family-name:var(--font-opt)] text-[10px] font-extrabold uppercase tracking-normal text-white min-[400px]:text-xs sm:text-3xl sm:tracking-[0.12em]">
@@ -120,10 +121,12 @@ export default function HomePage() {
               <span className="h-1.5 w-1.5 rotate-45 bg-[#ff6600]" />
               <span className="h-px flex-1 bg-gradient-to-l from-transparent to-[#ff6600]/70" />
             </div>
+            <StreamInButton className="mt-8 sm:mt-10" />
           </div>
         </div>
       </section>
 
+      <StreamInSection />
       <StudioShowcase />
     </main>
   );
